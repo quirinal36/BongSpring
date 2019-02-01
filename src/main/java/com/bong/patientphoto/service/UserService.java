@@ -19,8 +19,8 @@ public class UserService implements PatientPhotoService<UserVO> {
 	
 	@Override
 	public int insert(UserVO input) {
-		// TODO Auto-generated method stub
-		return 0;
+		input.setPassword(passwordEncoder.encode(input.getPassword()));
+		return dao.insert(input);
 	}
 
 	@Override

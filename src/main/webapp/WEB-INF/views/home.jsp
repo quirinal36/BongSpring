@@ -10,5 +10,12 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+<p>
+	<a href="/member/login">로그인</a>
+</p>
+
+${user}
+
 </body>
 </html>

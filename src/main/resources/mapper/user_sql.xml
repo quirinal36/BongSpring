@@ -8,11 +8,13 @@
 	(
 		username,
 		password,
+		user_phon
 	)
 	values
 	(
 		'${username}',
 		'${password}',
+		'${user_phon}'
 	)
 	</insert>
 	<select id="selectOne" parameterType="user" resultType="user">

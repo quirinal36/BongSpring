@@ -30,7 +30,7 @@
 		<input type="submit" value="로그인" class="bt1" />
 	</form>
 	<a href="/member/find">아이디/비밀번호 찾기</a>
-	<a href="/member/join_step1">회원가입</a>
+	<a href="/member/join_step2">회원가입</a>
 </div>
 <!-- 컨텐츠 끝 -->
 </div>

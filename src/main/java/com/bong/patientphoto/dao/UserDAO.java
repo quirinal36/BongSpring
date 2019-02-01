@@ -15,8 +15,7 @@ public class UserDAO implements PatientPhotoDAO<UserVO> {
 	
 	@Override
 	public int insert(UserVO input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(namespace+".insert", input);
 	}
 
 	@Override
