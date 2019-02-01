@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user_sql">
+	<insert id="insert" parameterType="user">
+	INSERT INTO users 
+	(
+		user_phon,
+		username,
+		nickname,
+		password,
+		sign_up_date,
+		birth
+	)
+	values
+	(
+		'${user_phon}',
+		'${username}',
+		'${nickname}',
+		'${password}',
+		NOW(),
+		'${birth}'
+		
+	)
+	</insert>
+	<select id="selectOne" parameterType="user" resultType="user">
+		SELECT 
+			*
+		FROM users 
+		<where>
+			<if test="user_phon != null">user_phon = '${user_phon}'</if>
+		</where>
+	</select>
+	
+	<select id="login" parameterType="user" resultType="user">
+		SELECT 
+			usr.id, 
+			usr.username, 
+			usr.password, 
+			usr.sign_up_date, 
+			usr.user_phon, 
+			usr.nickname,
+			role.role AS role
+		FROM users usr, roles role
+		<where>
+			<if test="user_phon != null">user_phon = '${user_phon}'</if>
+			and usr.role = role.user_role_id
+		</where>
+	</select>
+</mapper>

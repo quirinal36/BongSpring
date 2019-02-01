@@ -1,0 +1,48 @@
+package com.bong.patientphoto.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.bong.patientphoto.vo.UserVO;
+
+@Component("userService")
+public class UserService implements PatientPhotoService<UserVO> {
+
+	@Override
+	public int insert(UserVO input) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(UserVO input) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(UserVO input) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public UserVO selectOne(UserVO input) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UserVO> select(UserVO input) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UserVO> select() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
