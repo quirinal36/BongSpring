@@ -87,4 +87,10 @@ public class MemberController  {
 	public ModelAndView getView(ModelAndView mv) {
 		return mv;
 	}
+	
+	@RequestMapping(value="/detail/detail", method=RequestMethod.GET)
+	public ModelAndView getDetailView(ModelAndView mv) {
+		mv.setViewName("/detail");
+		return mv;
+	}
 }

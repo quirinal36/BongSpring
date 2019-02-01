@@ -6,22 +6,13 @@
 	<insert id="insert" parameterType="user">
 	INSERT INTO users 
 	(
-		user_phon,
 		username,
-		nickname,
 		password,
-		sign_up_date,
-		birth
 	)
 	values
 	(
-		'${user_phon}',
 		'${username}',
-		'${nickname}',
 		'${password}',
-		NOW(),
-		'${birth}'
-		
 	)
 	</insert>
 	<select id="selectOne" parameterType="user" resultType="user">
@@ -38,14 +29,10 @@
 			usr.id, 
 			usr.username, 
 			usr.password, 
-			usr.sign_up_date, 
-			usr.user_phon, 
-			usr.nickname,
-			role.role AS role
+			role.user_role AS role
 		FROM users usr, roles role
 		<where>
-			<if test="user_phon != null">user_phon = '${user_phon}'</if>
-			and usr.role = role.user_role_id
+			usr.user_role = role.id
 		</where>
 	</select>
 </mapper>

@@ -4,10 +4,18 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class UserVO {
+	private int id;
 	private String username;
 	private String password;
 	private String role;
+	private String user_phon;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -25,6 +33,12 @@ public class UserVO {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getUser_phon() {
+		return user_phon;
+	}
+	public void setUser_phon(String user_phon) {
+		this.user_phon = user_phon;
 	}
 	
 	@Override
