@@ -28,6 +28,7 @@ public class UserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserVO user = new UserVO();
+		logger.info("username:" + username);
 		user.setUsername(username);
 		user = dao.login(user);
 		

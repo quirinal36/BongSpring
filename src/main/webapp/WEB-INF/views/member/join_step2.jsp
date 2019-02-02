@@ -4,14 +4,16 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/member.css"><c:param name="dt" value="${nowDate }"/></c:url>" media="all" />
+	<link rel="stylesheet" type="text/css" href="http://www.bacoder.kr/webpr/css/style.css" />
+	
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script type="text/javascript">
 	function formSubmit(){
 		var pwd = $("input[name='password']").val();
 		var pwd_confirm = $("input[name='password_confirm']").val();
 		
-		if(pwd.length < 8){
-			toast({text:"비밀번호를 8자 이상으로 설정해주세요."});
+		if(pwd.length < 1){
+			toast({text:"비밀번호를 1자 이상으로 설정해주세요."});
 			$("input[name='password']").focus();
 			return false;
 		}
@@ -27,18 +29,17 @@
 	</script>
 </head>
 <body>
-<div id="wrap">
+<div class="wrap">
 <header><c:import url="/inc/header"></c:import></header>
-<div id="container_wrap">
-<div id="container">
+<div class="container_wrap">
+<div class="container">
 <!-- 컨텐츠 시작 -->
-<h2 class="title">회원가입</h2>
 
 <div id="join_step2" class="page member">
 	<form method="post" action="/member/insert">
 		
 		<div class="info">
-			<strong>정보입력</strong>
+			<strong>회원가입</strong>
 			<div>
 				<dl>
 					<dt>아이디</dt>
@@ -48,7 +49,6 @@
 					<dt>비밀번호</dt>
 					<dd>
 						<input type="password" name="password"/>
-						<input type="button" class="icon_q" value="도움말" />
 					</dd>
 				</dl>
 				<dl>

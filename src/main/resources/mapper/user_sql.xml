@@ -34,7 +34,8 @@
 			role.user_role AS role
 		FROM users usr, roles role
 		<where>
-			usr.user_role = role.id
+			usr.username = '${username}'
+			and usr.user_role = role.id
 		</where>
 	</select>
 </mapper>

@@ -46,7 +46,7 @@ public class HomeController {
 		
 		//mv.addAttribute("serverTime", formattedDate );
 		mv.addObject("serverTime", formattedDate);
-		if(req.isUserInRole("ROLE_USER")) {
+		if(req.isUserInRole("ROLE_USER") || req.isUserInRole("ROLE_ADMIN")) {
 			String username = authentication.getName();
 			UserDetails user = userService.loadUserByUsername(username);
 			mv.addObject("user", user);
@@ -54,5 +54,9 @@ public class HomeController {
 		mv.setViewName("home");
 		return mv;
 	}
-	
+	@RequestMapping(value="/inc/header")
+	public ModelAndView getHeaderView(ModelAndView mv) {
+		mv.setViewName("/inc/header");
+		return mv;
+	}
 }

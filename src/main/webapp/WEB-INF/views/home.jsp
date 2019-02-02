@@ -1,21 +1,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<<!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+<link rel="stylesheet" type="text/css" href="http://www.bacoder.kr/webpr/css/style.css" />
+<meta charset="UTF-8">
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-
-<p>
-	<a href="/member/login">로그인</a>
-</p>
-
-${user}
-
+	<div class="wrap">
+		<%@ include file="/WEB-INF/views/inc/header.jsp" %>
+		<div class="container_wrap">
+			<div class="container">
+			${user}
+			</div>
+		</div>
+		<footer>
+			<p>ⓒ 회사명.</p>
+		</footer>
+	</div>
 </body>
 </html>
