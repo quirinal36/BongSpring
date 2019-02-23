@@ -1,4 +1,4 @@
-package com.bong.patientphoto.security.config;
+   package com.bong.patientphoto.security.config;
 
 import java.util.Collection;
 
