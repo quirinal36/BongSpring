@@ -7,9 +7,7 @@
 	</c:when>
 	<c:otherwise>
 		<form id="fileform" name="fileform" method="post">
-			<input type="hidden" name="order"		value="${order }"/>
 			<input type="hidden" name="filename" 	value="${filename}">
-			<input type="hidden" name="target" 		value="${target}">
 			<input type="hidden" name="url" 		value="${uploaded_url}">
 		</form>
 	</c:otherwise>
@@ -18,23 +16,24 @@
 	function fileAttach(){ 
 		var f = document.fileform;
 	    var fname 	= f.filename.value; 
-	    var target  = f.target.value;
+	    //var target  = f.target.value;
 	    var uploaded_url = f.url.value;
-	    var formData = $("#fileform").serialize();
-	    console.log("target: " + target);
+	    //var formData = $("#fileform").serialize();
+	    console.log("fname: " + fname);
 	    console.log("uploaded_url : " + uploaded_url);
 	    
 	    try{
-	    	window.opener.$("#"+target).css({
-	    		'background-image' : "url(" + uploaded_url +")",
-	    		'background-size' : '100%'
+	    	window.opener.$("#targetImgPreview").css({
+	    		'background' : 'url("' + uploaded_url +'") 50% 50%',
+    			'background-size' : 'contain',
+    			'background-position' : '50% 50%',
+    			'background-repeat' : 'no-repeat'
 	    		});
-	    	window.opener.$("#"+target +" > input").toggleClass('delete upload');
-	    	window.opener.$("#"+target +" > input[type='hidden']").val(JSON.stringify(formData));
+	    	window.opener.$("#targetUpload").val(uploaded_url);
 	    }catch(e){ 
            alert(e); 
 	    }
 	}
 	fileAttach();
-	//this.window.close();
+	this.window.close();
 </script>

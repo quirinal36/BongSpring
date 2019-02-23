@@ -48,8 +48,7 @@ public class UserService implements PatientPhotoService<UserVO> {
 
 	@Override
 	public List<UserVO> select() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select();
 	}
 
 }

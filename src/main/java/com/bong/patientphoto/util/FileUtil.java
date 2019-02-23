@@ -11,7 +11,7 @@ public class FileUtil {
 	Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
 	
 	public void copyFileIntoUpload(File file) {
-		String path = "/opt/bitnami/apache-tomcat/webapps/ImageUploadProject/upload/";
+		String path = "/opt/bitnami/apache-tomcat/webapps/bong/upload";
 	    try {
 	        if (!isFolderExists(path)) {
 	            new File(path).mkdir();

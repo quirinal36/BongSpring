@@ -38,4 +38,13 @@
 			and usr.user_role = role.id
 		</where>
 	</select>
+	
+	<select id="select_all" resultType="user">
+		SELECT * FROM users
+		<where>
+			role = 2
+			order by username desc
+		</where>
+		
+	</select>
 </mapper>

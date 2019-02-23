@@ -44,8 +44,7 @@ public class UserDAO implements PatientPhotoDAO<UserVO> {
 
 	@Override
 	public List<UserVO> select() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace +".select_all");
 	}
 
 	public UserVO login(UserVO user) {

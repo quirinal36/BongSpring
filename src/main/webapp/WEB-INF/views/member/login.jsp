@@ -12,7 +12,7 @@
 		<div class="container">
 		<!-- 컨텐츠 시작 -->
 		<div id="login" class="member">
-			<form class="form1" action="<c:url value="${ctx}/j_spring_security_check"/>" method="post">
+			<form class="form1" action="<c:url value="/j_spring_security_check"/>" method="post">
 				<dl>
 					<dd><input type="text" name="loginid" value="${loginid }" required placeholder="아이디를 입력하세요."/></dd>
 				</dl>

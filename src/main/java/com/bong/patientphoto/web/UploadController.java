@@ -48,7 +48,7 @@ public class UploadController extends BacoderController{
 	public ModelAndView getFileUploader(ModelAndView mv, HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
 		UserVO user = getUser();
-		if(user.getId() > 0) {
+		if(user!=null && user.getId() > 0) {
 			// 임시 업로드 디렉터리
 			String srcPath = req.getSession().getServletContext().getRealPath("/upload");
 			// 최종 저장할 디렉터리
@@ -63,6 +63,8 @@ public class UploadController extends BacoderController{
 				String upfile = (multi.getFilesystemName("Filedata"));
 				if (!upfile.equals("")) {
 					// 저장할 파일명 포맷(날짜와 시간조합) 으로 파일명을 만든다. 
+					final String ext = upfile.substring(upfile.lastIndexOf(".")+1);
+					logger.info("ext : "+ext);
 					SimpleDateFormat formatter2 = new SimpleDateFormat ("yyyy_MM_dd_HHmmssSSS", java.util.Locale.KOREA);
 					String dateString = formatter2.format(new java.util.Date());
 					String moveFileName = dateString + upfile.substring(upfile.lastIndexOf("."));
@@ -71,11 +73,11 @@ public class UploadController extends BacoderController{
 					File sourceFile = new File(srcPath + File.separator + upfile);
 					// 최종 저장장소에 저잘될 파일
 					File targetFile = new File(path + File.separator + moveFileName);
-					
+					logger.info("targetFile: " + targetFile.getAbsolutePath());
 					// 임시 저장장소에 올라온 파일을 이미지로 변환
 					BufferedImage img = ImageIO.read(sourceFile);
 					try {
-						ImageIO.write(img, "JPEG", targetFile);
+						ImageIO.write(img, ext, targetFile);
 					}catch(FileNotFoundException e) {
 						e.printStackTrace();
 					}
@@ -122,12 +124,15 @@ public class UploadController extends BacoderController{
 	 */
 	private String makeUserPath(int userId) {
 		String path = System.getProperty("user.dir");
+		logger.info("path: "+path);
+		
 		StringBuilder builder = new StringBuilder()
 				.append(path.substring(0, path.lastIndexOf(File.separator)))
 				.append(File.separator).append("webapps").append(File.separator)
 				.append("upload").append(File.separator)
 				.append("com.bong.patientphoto").append(File.separator)
 				.append(userId).append(File.separator);
+		logger.info("builder: " + builder);
 		
 		File file = new File(builder.toString());
 		file.mkdirs();

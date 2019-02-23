@@ -1,6 +1,7 @@
 package com.bong.patientphoto.web;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,11 +34,13 @@ public class MemberController  {
 	public ModelAndView getJoinStep2View(ModelAndView mv, UserVO user) {
 		user.setUsername("이형구");
 		mv.addObject("user", user);
+		mv.setViewName("/member/join_step2");
 		return mv;
 	}
 	
 	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
-	public ModelAndView memberInsert(ModelAndView mv, UserVO user, HttpServletResponse resp) throws IOException {
+	public ModelAndView memberInsert(ModelAndView mv, 
+			UserVO user, HttpServletResponse resp) throws IOException {
 		int result = userService.insert(user);
 		
 		mv.addObject("user", user);
@@ -64,7 +67,7 @@ public class MemberController  {
 	 * @param mv
 	 * @return
 	 */
-	@RequestMapping(value="/member/login", method=RequestMethod.GET)
+	@RequestMapping(value= {"/member/login", "/login"}, method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getLoginView(ModelAndView mv,
 			@RequestParam(value = "loginid", required = false) String loginId,
 			@RequestParam(value = "loginRedirect", required = false) String redirectUrl) {
@@ -91,6 +94,14 @@ public class MemberController  {
 	@RequestMapping(value="/detail/detail", method=RequestMethod.GET)
 	public ModelAndView getDetailView(ModelAndView mv) {
 		mv.setViewName("/detail");
+		return mv;
+	}
+	
+	@RequestMapping(value="/admin", method=RequestMethod.GET)
+	public ModelAndView getAdminView(ModelAndView mv) {
+		List<UserVO> list = userService.select();
+		mv.addObject("list", list);
+		mv.setViewName("/member/list");
 		return mv;
 	}
 }

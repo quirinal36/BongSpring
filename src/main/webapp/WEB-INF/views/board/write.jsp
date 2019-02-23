@@ -31,7 +31,7 @@
 	}
 	function openFileUpload(homeUrl){
 		var child = window.open(homeUrl+"/photo_upload",
-				"mywindow","menubar=1,resizable=1,width=380,height=250");
+				"mywindow","menubar=1,resizable=1,width=380,height=415");
 	}
 	</script>
 </head>
@@ -57,9 +57,9 @@
 							<tr>
 								<td>사진업로드</td>
 								<td>
-									<input type="button" onclick="openFileUpload('${baseUrl}');" value="사진올리기"/>	
+									<div id="targetImgPreview" style="height:300px;"></div>
+									<input type="button" onclick="openFileUpload('${baseUrl}');" value="사진올리기"/>
 									<input type="hidden" id="targetUpload" name="photoUrl"/>
-									<img src="" id="temp_src" width="300"/>
 								</td>
 							<tr>
 								<td colspan="2">
