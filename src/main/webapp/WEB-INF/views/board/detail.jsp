@@ -49,7 +49,8 @@
 							</tr>
 							<tr>
 								<td colspan="2">
-								<img src="<c:url value="${board.photoUrl }"/>"/>
+								<img src="<c:url value="${board.photoUrl }"/>"
+								style="width:100%;"/>
 								</td>
 							</tr>
 						</tbody>
