@@ -9,6 +9,7 @@ public class UserVO {
 	private String password;
 	private String role;
 	private String user_phon;
+	private int user_role;
 	
 	public int getId() {
 		return id;
@@ -41,6 +42,12 @@ public class UserVO {
 		this.user_phon = user_phon;
 	}
 	
+	public int getUser_role() {
+		return user_role;
+	}
+	public void setUser_role(int user_role) {
+		this.user_role = user_role;
+	}
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

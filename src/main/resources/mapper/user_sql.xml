@@ -40,11 +40,37 @@
 	</select>
 	
 	<select id="select_all" resultType="user">
-		SELECT * FROM users
+		SELECT 
+			usr.id,
+			usr.username,
+			usr.user_phon,
+			usr.user_role,
+			role.user_role AS role
+		FROM users usr left join roles role on usr.user_role = role.id
 		<where>
-			role = 2
-			order by username desc
+			
+			
 		</where>
-		
+		order by username desc
 	</select>
+	
+	<update id="update" parameterType="user" >
+		UPDATE users
+		<set>
+			<choose>
+				<when test="username != null and username!= ''">
+				username = '${username}',
+				</when>
+				<when test="password != null and password != ''">
+				password = '${password}',
+				</when>
+				<otherwise>
+				user_role = ${user_role}
+				</otherwise>
+			</choose>
+		</set>
+		<where>
+			id = ${id}
+		</where>
+	</update>
 </mapper>

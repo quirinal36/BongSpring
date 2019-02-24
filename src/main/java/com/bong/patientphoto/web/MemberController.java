@@ -3,6 +3,7 @@ package com.bong.patientphoto.web;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -98,10 +99,20 @@ public class MemberController  {
 	}
 	
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
-	public ModelAndView getAdminView(ModelAndView mv) {
-		List<UserVO> list = userService.select();
-		mv.addObject("list", list);
+	public ModelAndView getAdminView(ModelAndView mv, HttpServletRequest req) {
+		if(req.isUserInRole("ROLE_ADMIN")) {
+			List<UserVO> list = userService.select();
+			mv.addObject("list", list);
+		}
 		mv.setViewName("/member/list");
 		return mv;
+	}
+	@RequestMapping(value="/admin/update")
+	public void updateUser(UserVO user
+			, HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		if(req.isUserInRole("ROLE_ADMIN")) {
+			int result = userService.update(user);
+			resp.getWriter().append("{\"result\":" + result +"}");
+		}
 	}
 }
