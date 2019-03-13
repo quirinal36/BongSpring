@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.bong.patientphoto.security.AuthenticationFacade;
 import com.bong.patientphoto.service.BoardService;
+import com.bong.patientphoto.service.OPRecordService;
 import com.bong.patientphoto.service.UserService;
 import com.bong.patientphoto.vo.UserVO;
 
@@ -25,6 +26,9 @@ public class BacoderController {
 	
 	@Resource(name="userService")
 	protected UserService userService;
+	
+	@Resource(name="oprecordService")
+	protected OPRecordService oprecordService;
 	
 	@Autowired
 	protected AuthenticationFacade authenticationFacade;
