@@ -25,8 +25,7 @@ public class UserService implements PatientPhotoService<UserVO> {
 
 	@Override
 	public int update(UserVO input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(input);
 	}
 
 	@Override
