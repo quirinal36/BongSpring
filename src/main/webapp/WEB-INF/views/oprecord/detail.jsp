@@ -3,14 +3,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>수술기록지</title>
+	<link rel="stylesheet" type="text/css" media="all" href="http://www.bacoder.kr/webpr/css/table.css" >
+	<link rel="stylesheet" type="text/css" href="http://www.bacoder.kr/webpr/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/board.css"/>" />
+</head>
 
+<body>
 <table border="1">
-<thead>
-<tr>
-<td colspan=6>수술기록지</td>
-</tr>
-</thead>
-
 <tbody>
 <tr><td colspan=6>환자정보</td></tr>
 <tr>
@@ -47,5 +50,7 @@
 </tbody>
 
 </table>
+</body>
 
 <input type="button" value="수정" onclick="window.location.href='/oprecord/update/${item.id}'"/>
+</html>

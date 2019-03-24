@@ -3,7 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-
+<!DOCTYPE html>
+<html>
 <form action="/oprecord/update/save">
 <table border="1">
 <thead>
@@ -28,7 +29,7 @@
 <td>마취명 : </td>
 <td><input type="text" name="anesthesia" value="${item.anesthesia }"/></td>
 <td>집도의 : </td>
-<td><input type="text" name="doctor" value="${item.doctor }"/></td>
+<td><input type="text" name="doctor" title="집도의" value="${item.doctor }"/></td>
 </tr>
 
 <tr><td colspan=6>진단명</td></tr>
@@ -39,13 +40,16 @@
 
 <tr><td colspan=6>OP Findings</td></tr>
 <tr><td colspan=6>
-<input type="text" name="opfinding" value="${item.opfinding }"/></td></tr>
+<input type="text" name="opfinding" title="OP findings" value="${item.opfinding }"style="width:600px;height:100px"/></td></tr>
 
 <tr><td colspan=6>Procedure</td></tr>
-<tr><td colspan=6><input type="text" name="opProcedure" value="${item.opProcedure }"/></td></tr>
+<tr><td colspan=6>
+<input type="text" name="opProcedure" value="${item.opProcedure }" style="width:600px;height:400px"/>
+</td></tr>
 </tbody>
 
 </table>
 <input type="hidden" value="${item.id }" name="id"/>
 <input type="submit" value="수정완료"/>
 </form>
+</html>
