@@ -6,14 +6,14 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class OPRecord {
 	int id;
 	int patientId;
-	String name;
+	String patientName;
 	String opdate;
 	String doctor;
 	String dx;
 	String anesthesia;
 	String opname;
 	String opfinding;
-	String procedure;
+	String opProcedure;
 	String opfee;
 	String ref;
 	
@@ -32,12 +32,6 @@ public class OPRecord {
 	}
 	public void setPatientId(int patientId) {
 		this.patientId = patientId;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getOpdate() {
 		return opdate;
@@ -75,12 +69,6 @@ public class OPRecord {
 	public void setOpfinding(String opfinding) {
 		this.opfinding = opfinding;
 	}
-	public String getProcedure() {
-		return procedure;
-	}
-	public void setProcedure(String procedure) {
-		this.procedure = procedure;
-	}
 	public String getOpfee() {
 		return opfee;
 	}
@@ -92,6 +80,22 @@ public class OPRecord {
 	}
 	public void setRef(String ref) {
 		this.ref = ref;
+	}
+
+	public String getPatientName() {
+		return patientName;
+	}
+
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+
+	public String getOpProcedure() {
+		return opProcedure;
+	}
+
+	public void setOpProcedure(String opProcedure) {
+		this.opProcedure = opProcedure;
 	}
 
 	@Override

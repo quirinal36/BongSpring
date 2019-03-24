@@ -5,9 +5,57 @@
 <mapper namespace="oprecord_sql">
 	<select id="select_all" resultType="oprecord">
 		SELECT * FROM OPRecord
-		order by id asc
+		order by id desc
 		
 		limit 0,20
 		
 	</select>
+	
+	<select id="select_one" parameterType="oprecord" resultType="oprecord">
+		SELECT * FROM OPRecord
+		WHERE id = ${id}	
+	</select>	
+	
+	<insert id="insert" parameterType="oprecord">
+		INSERT INTO OPRecord
+		(
+			patientId,
+			patientName,
+			opdate,
+			doctor,
+			dx,
+			anesthesia,
+			opname,
+			opfinding,
+			opProcedure
+		)
+		values
+		(
+			${patientId},
+			'${patientName}',
+			'${opdate}',
+			'${doctor}',
+			'${dx}',
+			'${anesthesia}',
+			'${opname}',
+			'${opfinding}',
+			'${opProcedure}'
+		)
+	</insert>
+	
+	<update id="update" parameterType="oprecord">
+		UPDATE OPRecord
+		<set>
+			patientId = ${patientId},
+			patientName = '${patientName}',
+			opdate = '${opdate}',
+			doctor = '${doctor}',
+			dx = '${dx}',
+			anesthesia = '${anesthesia}',
+			opname = '${opname}',
+			opfinding = '${opfinding}',
+			opProcedure = '${opProcedure}'		
+		</set>
+		WHERE id = ${id}
+	</update>
 </mapper>

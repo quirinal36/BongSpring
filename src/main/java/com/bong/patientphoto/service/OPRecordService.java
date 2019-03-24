@@ -18,13 +18,13 @@ public class OPRecordService implements DataService<OPRecord> {
 	@Override
 	public int insert(OPRecord input) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(input);
 	}
 
 	@Override
 	public int update(OPRecord input) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(input);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class OPRecordService implements DataService<OPRecord> {
 	@Override
 	public OPRecord selectOne(OPRecord input) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.selectOne(input);
 	}
 
 	@Override

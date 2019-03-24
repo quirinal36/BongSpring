@@ -21,7 +21,7 @@
 						<input type="text" placeholder="작성자/제목 검색" name="search" value="${board.search }"/>
 						<input type="submit" value="검색"/>
 						<sec:authorize access="isAuthenticated()">
-							<input type="button" value="새글작성" onclick="javascript:window.location.href='<c:url value='/board/write'/>'"/>
+							<input type="button" value="새글작성" onclick="javascript:window.location.href='<c:url value='/oprecord/write'/>'"/>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							글을 작성하시려면 로그인해주세요
@@ -33,20 +33,35 @@
 					</form>
 					<table>
 						<colgroup>
+							<col width="2%">
+							<col width="8%">
 							<col width="10%">
-							<col width="90%">
+							<col width="30%">
+							<col width="30%">
+							<col width="20%">
 						</colgroup>
 						<thead>
 							<tr>
-								<th>num</th>
-								<th>procedure</th>
+								<th>No</th>
+								<th>수술일</th>
+								<th>환자명</th>
+								<th>진단명</th>
+								<th>수술명</th>
+								<th>집도의</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${list }" var="item" varStatus="sts">
 								<tr>
 									<td>${sts.count }</td>
-									<td>${item.procedure }</td>
+									<td>${item.opdate }</td>
+									<td>${item.patientName}</td>
+									<td>${item.dx }</td>
+									<td>
+									<a href="/oprecord/detail/${item.id }">
+									${item.opname } </a>
+									</td>
+									<td>${item.doctor }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
