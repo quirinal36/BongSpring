@@ -58,4 +58,20 @@
 		</set>
 		WHERE id = ${id}
 	</update>
+	<select id="count" parameterType="oprecord" resultType="int">
+		SELECT count(*)
+			FROM OPRecord
+		<where>
+			opname like '%${search}%' OR dx like '%${search}%' OR doctor like '%${search}%' 
+		</where>	
+	</select>
+	<select id="select" parameterType="oprecord" resultType="oprecord">
+		SELECT * FROM OPRecord
+		<where>
+			opname like '%${search}%' OR dx like '%${search}%' OR doctor like '%${search}%' 
+		</where>
+		order by id desc
+		
+		limit ${from}, ${pageSize}
+	</select>
 </mapper>

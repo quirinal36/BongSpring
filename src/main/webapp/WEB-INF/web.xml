@@ -11,6 +11,14 @@
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 	
+	<jsp-config>
+		<taglib>
+			<taglib-uri>customTags</taglib-uri>
+			<taglib-location>/WEB_INF/tlds/customTags.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	
+	
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" media="all" href="http://www.bacoder.kr/webpr/css/table.css" >
 	<link rel="stylesheet" type="text/css" href="http://www.bacoder.kr/webpr/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/board.css"/>" />
-	<script src="<c:url value="/resources/js/board.js"><c:param name="dt" value="${nowDate }"/></c:url>"></script>
+	<script src="<c:url value="/resources/js/record.js"><c:param name="dt" value="${nowDate }"/></c:url>"></script>
 	</head>
 	<body>
 		<div class="wrap">
@@ -18,7 +18,7 @@
 			<div class="container_wrap">
 				<div class="container">
 					<form action="<c:url value="/oprecord/list"/>">
-						<input type="text" placeholder="작성자/제목 검색" name="search" value="${board.search }"/>
+						<input type="text" placeholder="진단/수술명/주치의 검색" name="search" value="${record.search }"/>
 						<input type="submit" value="검색"/>
 						<sec:authorize access="isAuthenticated()">
 							<input type="button" value="새글작성" onclick="javascript:window.location.href='<c:url value='/oprecord/write'/>'"/>
@@ -26,10 +26,10 @@
 						<sec:authorize access="isAnonymous()">
 							글을 작성하시려면 로그인해주세요
 						</sec:authorize>
-						<input type="button" value="정렬" onclick="javascript:orderSubmit('${board.orderById}');"/>
-						<input type="hidden" value="${board.orderById }" name="orderById"/>
-						<input type="hidden" value="${board.pageNo }" name="page"/>
-						<span style="float:right;">총<c:out value="${board.totalCount }"/>개의 게시글</span>
+						<input type="button" value="정렬" onclick="javascript:orderSubmit('');"/>
+						<input type="hidden" value="" name="orderById"/>
+						<input type="hidden" value="${record.pageNo }" name="pageNum"/>
+						<span style="float:right;">총<c:out value="${record.totalCount }"/>개의 게시글</span>
 					</form>
 					<table>
 						<colgroup>
@@ -66,6 +66,11 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<div class="board-list-page">
+						<c:forEach begin="1" end="${record.endPageNo }" varStatus="status">
+							<a href="javascript:movePage('${status.index }')" class="fc-blue board-list-page-num<c:if test="${record.pageNo == status.index}">-on</c:if>">${status.index}</a>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 		</div>

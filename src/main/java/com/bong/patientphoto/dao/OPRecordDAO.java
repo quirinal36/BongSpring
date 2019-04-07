@@ -42,7 +42,7 @@ public class OPRecordDAO implements DataAccess<OPRecord> {
 	@Override
 	public List<OPRecord> select(OPRecord input) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace + ".select", input);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class OPRecordDAO implements DataAccess<OPRecord> {
 	@Override
 	public int count(OPRecord input) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace + ".count", input);
 	}
 
 }

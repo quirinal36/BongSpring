@@ -1,6 +1,9 @@
 package com.bong.patientphoto.web;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +20,29 @@ import com.bong.patientphoto.vo.OPRecord;
 public class OPRecordController extends BacoderController {
 
 	@RequestMapping(value="/oprecord/list", method=RequestMethod.GET)
-	public ModelAndView getOprecordListView(ModelAndView mv) {
-		List<OPRecord> list = oprecordService.select();
-		
-		mv.addObject("list", list);
-		mv.setViewName("/oprecord/list");
+	public ModelAndView getOprecordListView(HttpServletRequest req, ModelAndView mv, OPRecord record, @RequestParam(value="pageNum")Optional<Integer>pageNum) {
+		if(req.isUserInRole("ROLE_USER") || req.isUserInRole("ROLE_ADMIN"))
+		{
+			int totalCount = oprecordService.count(record);
+			if(pageNum.isPresent())
+			{
+				record.setPageNo(pageNum.get());
+			}
+			else
+			{
+				record.setPageNo(1);
+			}
+			record.setTotalCount(totalCount);
+			logger.info(record.toString());
+			List<OPRecord> list = oprecordService.select(record);
+			
+			mv.addObject("record", record);
+			mv.addObject("list", list);
+			mv.setViewName("/oprecord/list");
+		}
+		else {
+			mv.setViewName("redirect:/");
+		}
 		return mv;
 	}
 	

@@ -3,7 +3,7 @@ package com.bong.patientphoto.vo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class OPRecord {
+public class OPRecord extends Paging{
 	int id;
 	int patientId;
 	String patientName;
@@ -15,6 +15,7 @@ public class OPRecord {
 	String opfinding;
 	String opProcedure;
 	String opfee;
+	String search;
 	String ref;
 	
 	public OPRecord() {
@@ -96,6 +97,15 @@ public class OPRecord {
 
 	public void setOpProcedure(String opProcedure) {
 		this.opProcedure = opProcedure;
+	}
+
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
 	@Override

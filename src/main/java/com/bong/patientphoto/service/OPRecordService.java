@@ -42,7 +42,7 @@ public class OPRecordService implements DataService<OPRecord> {
 	@Override
 	public List<OPRecord> select(OPRecord input) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.select(input);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class OPRecordService implements DataService<OPRecord> {
 	@Override
 	public int count(OPRecord input) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.count(input);
 	}
 
 }

@@ -46,7 +46,7 @@
 </td></tr>
 
 <tr><td colspan=6>Procedure</td></tr>
-<tr><td colspan=6>${item.opProcedure }</td></tr>
+<tr><td colspan=6 style="text-align:left;">${item.opProcedure }</td></tr>
 </tbody>
 
 </table>

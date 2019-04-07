@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="su" uri="tlds/customTags.tld"%>
 
 <!DOCTYPE html>
 <html>
@@ -44,7 +45,9 @@
 
 <tr><td colspan=6>Procedure</td></tr>
 <tr><td colspan=6>
-<input type="text" name="opProcedure" value="${item.opProcedure }" style="width:600px;height:400px"/>
+<textarea name="opProcedure" style="width:100%;" rows="15">
+${su:replaceBR(item.opProcedure) }
+</textarea>
 </td></tr>
 </tbody>
 
