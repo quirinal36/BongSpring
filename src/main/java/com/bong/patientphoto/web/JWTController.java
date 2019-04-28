@@ -65,7 +65,7 @@ public class JWTController extends BacoderController {
 		resp.setCharacterEncoding("UTF-8");
 		logger.info("send token");
 		resp.getWriter().append("send token");
-		getInfo("1yJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vaHNib25nLnN5bm9sb2d5Lm1lIiwic3ViIjoidXNlcnMvYm9uZyIsImV4cCI6MTMwMDgxOSwibmFtZSI6Ikh3YW5nc2UgQm9uZyIsInNjb3BlIjoic2VsZiBncm91cHMvYWRtaW5zIn0.w5eYnbsAvMvgRN7zoWFIGEiE159lutX2oGtMAH73Isc");
+		getInfo("eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vaHNib25nLnN5bm9sb2d5Lm1lIiwic3ViIjoidXNlcnMvYm9uZyIsImV4cCI6MTMwMDgxOSwibmFtZSI6Ikh3YW5nc2UgQm9uZyIsInNjb3BlIjoic2VsZiBncm91cHMvYWRtaW5zIn0.w5eYnbsAvMvgRN7zoWFIGEiE159lutX2oGtMAH73Isc");
 	}
 	
 	

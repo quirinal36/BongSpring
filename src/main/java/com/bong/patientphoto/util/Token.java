@@ -27,7 +27,8 @@ public class Token {
 		    .setSigningKey(getSignatureKey())         // (2)
 		    .parseClaimsJws(token); // (3)
 		    String sub = jws.getBody().getSubject();
-		    logger.info("authorized Token : " + sub);
+		    String exp = jws.getBody().getExpiration().toString();
+		    logger.info("authorized Token : " + sub + "/" + exp);
 		   
 		    // we can safely trust the JWT
 		     return true;
