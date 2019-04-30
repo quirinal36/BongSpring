@@ -108,7 +108,8 @@ public class JWTController extends BacoderController {
 		    Jwts.builder()
 		    .setIssuer("http://hsbong.synology.me")
 			  .setSubject("users/bong")
-			  .setExpiration(new Date(1300819380))
+			//  .setExpiration(new Date(1300819380))
+			  .setExpiration(expirationDate)
 			  .claim("name", "Hwangse Bong")
 			  .claim("scope", "self groups/admins")
 			  .signWith(
