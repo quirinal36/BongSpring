@@ -4,7 +4,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/member.css"><c:param name="dt" value="${nowDate }"/></c:url>" media="all" />
-	<link rel="stylesheet" type="text/css" href="http://www.bacoder.kr/webpr/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
 </head>
 <body>
 <div class="wrap">

@@ -7,8 +7,8 @@
 	<meta charset="utf-8">
 	<title>form action</title>
 	
-	<link rel="stylesheet" type="text/css" href="http://www.bacoder.kr/webpr/css/style.css" />
-	<link href="http://www.bacoder.kr/webpr/css/table.css" rel="stylesheet" type="text/css" media="all">
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
 	
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script type="text/javascript">
