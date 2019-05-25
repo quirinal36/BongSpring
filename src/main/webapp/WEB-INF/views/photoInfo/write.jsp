@@ -89,26 +89,32 @@
 	</div>
 	<script type="text/javascript">
 	$(function () {
-	    $('#fileupload').fileupload({
-	        dataType: 'json',
-	        done: function (e, data) {
-	        	var url = $("input[name='uploadUrl']").val();
-	            // $("#uploaded-files tr:has(td)").remove();
-	            $.each(data.result, function (index, file) {
-	            	console.log(file);
-	                $("#uploaded-files").append(
-	                        $('<tr/>')
-	                        .append($('<td/>').text(file.fileName))
-	                        .append($('<td/>').text(file.fileSize))
-	                        .append($('<td/>').text(file.fileType))
-	                        .append($('<td/>').html(
-	                        		"<input type='button' value='삭제' onclick='deleteThis("+index+")'/>"
-	                        		+
-	                        		"<input type='hidden' value='" + file.fileUri + "' name='fileUri'/>"
-	                        		))
-	                        )//end $("#uploaded-files").append()
-	            }); 
-	        },
+	    $('#fileupload')
+	    	.fileupload({
+		        dataType: 'json',
+		        disableImageResize: /Android(?!.*Chrome)|Opera/
+		            .test(window.navigator && navigator.userAgent),
+		        imageMaxWidth: 800,
+		        imageMaxHeight: 800,
+		        imageCrop: true, // Force cropped images
+		        done: function (e, data) {
+		        	var url = $("input[name='uploadUrl']").val();
+		            // $("#uploaded-files tr:has(td)").remove();
+		            $.each(data.result, function (index, file) {
+		            	console.log(file);
+		                $("#uploaded-files").append(
+		                        $('<tr/>')
+		                        .append($('<td/>').text(file.fileName))
+		                        .append($('<td/>').text(file.fileSize))
+		                        .append($('<td/>').text(file.fileType))
+		                        .append($('<td/>').html(
+		                        		"<input type='button' value='삭제' onclick='deleteThis("+index+")'/>"
+		                        		+
+		                        		"<input type='hidden' value='" + file.fileUri + "' name='fileUri'/>"
+		                        		))
+		                        )//end $("#uploaded-files").append()
+		            }); 
+		        },
 	 		
 	        progressall: function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -117,7 +123,7 @@
 	                progress + '%'
 	            );
 	        },
-	 
+	 		
 	        dropZone: $('#dropzone')
 	    });
 	});
