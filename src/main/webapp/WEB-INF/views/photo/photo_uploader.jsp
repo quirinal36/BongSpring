@@ -8,7 +8,9 @@
 <script src="<c:url value="/resources/js/sweetalert2.all.min.js"><c:param name="dt" value="${nowDate }"/></c:url>"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
-	var maxFileSize = 10240000;
+	var kb = 1024;
+	var mb = 1024 * kb;
+	var maxFileSize = 10 * mb;
 	
 	function fn_imageUp() {
 		document.editor_upimage.submit();
@@ -21,36 +23,47 @@
 	
 	$(function(){
 		$("#uploadInputBox").on('change', function(e){
-			var file = this.files[0];
+			var length = this.files.length;
 			
-			if(file.size > maxFileSize){
-				toast({
-					'text':'용량초과'
-				});
-			}else{
-				var reader  = new FileReader();
-				reader.onloadend = function(){
-					$("#preview").attr("src", reader.result);	
-				}
+			for(var i=0; i<length; i++){
+				var dd = $("#file_infos_temp dd").clone();
 				
-				if(file){
-					reader.readAsDataURL(file);
-					$("#preview").show();
+				var file = this.files[i];
+				
+				if(file.size > maxFileSize){
+					toast({
+						'text':'용량초과'
+					});
+				}else{
+					var reader  = new FileReader();
+					reader.onloadend = function(){
+						$(dd).find(".preview").attr("src", reader.result);	
+						console.log("--0");
+						console.log($(dd));
+					}
+					if(file){
+						console.log("--1");
+						console.log(file);
+						reader.readAsDataURL(file);
+						// $("#preview").show();
+					}
+					// console.log(sizeToMB(file.size));
+					$(dd).find(".file_name").html(file.name);
+					//$("#file_size").html("(" + sizeToMB(file.size) +")");
+					
+					//$("#file_info").show();
 				}
-				console.log(sizeToMB(file.size));
-				$("#file_name").html(file.name);
-				$("#file_size").html("(" + sizeToMB(file.size) +")");
-				$(this).hide();
-				$("#file_info").show();
-				$("#btn_confirm").attr("src", "/resources/img/photoQuickPopup/btn_confirm2.png");
+				$("#btn_confirm").attr("src", "<c:url value='/resources/img/photoQuickPopup/btn_confirm2.png'/>");
+				dd.appendTo("#file_infos");
 			}
+			$(this).hide();
 		});
 	});
 	function deleteUpload(){
 		$("#uploadInputBox").show();
 		$("#preview").hide();
 		$("#file_info").hide();
-		$("#btn_confirm").attr("src", "/resources/img/photoQuickPopup/btn_confirm.png");
+		$("#btn_confirm").attr("src", "<c:url value='/resources/img/photoQuickPopup/btn_confirm.png'/>");
 	}
 	function sizeToMB(input){
 		var kb = Number(parseInt(input) / 1024).toFixed(2);
@@ -80,17 +93,17 @@
 		<form id="editor_upimage" name="editor_upimage" action="<c:url value="/file_uploader"/>" method="post" enctype="multipart/form-data" onSubmit="return false;">
 	        <div id="pop_content2">
 				<input type="file" class="upload" id="uploadInputBox" name="Filedata"
-					accept="image/x-png, image/gif, image/jpeg, image/bmp">
+					accept="image/x-png, image/gif, image/jpeg, image/bmp" multiple>
 				<input type="hidden" value="${target}" name="target"/>
-				<input type="hidden" value="${order}" name="order"/>
-				<dl>
-					<dd id="file_info" style="display:none;">
-						<span id="file_name"></span>
-						<span id="file_size"></span>
-						<a href="javascript:deleteUpload();"><img src="<c:url value="/resources/img/photoQuickPopup/btn_del.png"/>" width="16" height="16" alt="삭제"></a>
-					</dd>
+				<dl id="file_infos"></dl>
+				<dl id="file_infos_temp" style="display:none;">
 					<dd>
-						<img src="" height="200" id="preview" style="display:none;"/>
+						<span class="file_name"></span>
+						<span class="file_size"></span>
+						<a href="javascript:deleteUpload();">
+							<img src="<c:url value="/resources/img/photoQuickPopup/btn_del.png"/>" width="16" height="16" alt="삭제">
+						</a>
+						<img src="" height="200" class="preview" />
 					</dd>
 				</dl>
 	            <p class="dsc" id="info">

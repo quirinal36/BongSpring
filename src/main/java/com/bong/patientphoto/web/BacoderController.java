@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import com.bong.patientphoto.security.AuthenticationFacade;
 import com.bong.patientphoto.service.BoardService;
 import com.bong.patientphoto.service.OPRecordService;
+import com.bong.patientphoto.service.PhotoInfoService;
 import com.bong.patientphoto.service.UserService;
 import com.bong.patientphoto.vo.UserVO;
 
@@ -30,12 +31,15 @@ public class BacoderController {
 	@Resource(name="oprecordService")
 	protected OPRecordService oprecordService;
 	
+	@Resource(name="photoInfoService")
+	protected PhotoInfoService photoInfoService;
+	
 	@Autowired
 	protected AuthenticationFacade authenticationFacade;
 	
 	public UserVO getUser() {
 		String authUser = authenticationFacade.getAuthentication().getName();
-		logger.info("authUser: " + authUser);
+		// logger.info("authUser: " + authUser);
 		UserVO searchUser = new UserVO();
 		searchUser.setUsername(authUser);
 		UserVO user = userService.selectOne(searchUser);

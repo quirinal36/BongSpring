@@ -21,7 +21,7 @@
 						<input type="text" placeholder="작성자/제목 검색" name="search" value="${board.search }"/>
 						<input type="submit" value="검색"/>
 						<sec:authorize access="isAuthenticated()">
-							<input type="button" value="새글작성" onclick="javascript:window.location.href='<c:url value='/board/write'/>'"/>
+							<input type="button" value="새글작성" onclick="javascript:window.location.href='<c:url value='/photoInfo/write'/>'"/>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 							글을 작성하시려면 로그인해주세요

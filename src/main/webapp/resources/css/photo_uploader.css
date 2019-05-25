@@ -10,7 +10,7 @@ a:hover,a:active,a:focus{text-decoration:underline}
 
 /* Contents */
 .blind{visibility:hidden;position:absolute;line-height:0}
-#pop_wrap{width:383px}
+#pop_wrap{width:1200px}
 #pop_header{height:26px;padding:14px 0 0 20px;border-bottom:1px solid #ededeb;background:#f4f4f3}
 .pop_container{padding:11px 20px 0}
 #pop_footer{margin:21px 20px 0;padding:10px 0 16px;border-top:1px solid #e5e5e5;text-align:center}

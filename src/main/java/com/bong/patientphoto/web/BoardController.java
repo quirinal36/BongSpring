@@ -1,6 +1,7 @@
 package com.bong.patientphoto.web;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,8 +49,6 @@ public class BoardController extends BacoderController {
 		
 		board.setTotalCount(boardService.count(board));
 		
-		logger.info(board.toString());
-		
 		list = boardService.select(board);
 		mv.addObject("board", board);
 		mv.addObject("list", list);
@@ -67,6 +66,9 @@ public class BoardController extends BacoderController {
 	public ModelAndView getWriteView(ModelAndView mv) {
 		UserVO user = getUser();
 		mv.addObject("user", user);
+		LocalDate today = LocalDate.now();
+		mv.addObject("today", today);
+		
 		mv.setViewName("/board/write");
 		return mv;
 	}

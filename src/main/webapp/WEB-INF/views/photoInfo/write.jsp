@@ -11,20 +11,7 @@
 	<link href="<c:url value="/resources/css/dropzone.css"/>" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
-	<script type="text/javascript">
-	$(document).ready(function(){
-		
-		var url = $("#clearUrl").val();
-		console.log(url);
-		
-		$.ajax({
-			url : url,
-			type : "GET"
-		}).done(function(resp){
-			alert("clear ok~!");
-		});
-	});
-	</script>
+	
 </head>
 <body>
 	<div class="wrap">
@@ -74,9 +61,15 @@
 				        <div style="width: 0%;"></div>
 				    </div>
 				    <table id="uploaded-files">
+				    	<colgroup>
+				    		<col width="25%">
+				    		<col width="25%">
+				    		<col width="25%">
+				    		<col width="25%">
+				    	</colgroup>
 				    	<thead>
 				    		<tr>
-								<th colspan="3">사진업로드</th>
+								<th colspan="4">사진업로드</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -84,11 +77,11 @@
 					            <th>파일명</th>
 					            <th>Size</th>
 					            <th>Type</th>
+					            <th></th>
 					        </tr>
 				        </tbody>
 				    </table>
 					<input type="hidden" value="<c:url value="/upload/get"/>" name="uploadUrl">
-					<input type="hidden" value="<c:url value="/upload/clear"/>" name="clearUrl">
 					<input type="button" value="글작성" onclick="javascript:insertBoard();">
 				</form>
 			</div>
@@ -97,17 +90,22 @@
 	<script type="text/javascript">
 	$(function () {
 	    $('#fileupload').fileupload({
-	    	imageCrop: true,
 	        dataType: 'json',
 	        done: function (e, data) {
 	        	var url = $("input[name='uploadUrl']").val();
-	            $("#uploaded-files tr:has(td)").remove();
+	            // $("#uploaded-files tr:has(td)").remove();
 	            $.each(data.result, function (index, file) {
+	            	console.log(file);
 	                $("#uploaded-files").append(
 	                        $('<tr/>')
 	                        .append($('<td/>').text(file.fileName))
 	                        .append($('<td/>').text(file.fileSize))
 	                        .append($('<td/>').text(file.fileType))
+	                        .append($('<td/>').html(
+	                        		"<input type='button' value='삭제' onclick='deleteThis("+index+")'/>"
+	                        		+
+	                        		"<input type='hidden' value='" + file.fileUri + "' name='fileUri'/>"
+	                        		))
 	                        )//end $("#uploaded-files").append()
 	            }); 
 	        },

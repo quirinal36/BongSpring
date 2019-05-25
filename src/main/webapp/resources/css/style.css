@@ -18,7 +18,7 @@ header ul li a:hover { text-decoration: underline; }
 header > div > a { float: right; display: block; margin-top: 23px; padding: 8px 30px; border: 1px solid #fff; border-radius: 100px; color: #fff; }
 header > div > a:hover { background: #fff; color: #000; }
 .container_wrap { position: relative; min-height: 100%; margin: -80px 0 -59px 0; }
-.container { width: 100%; min-width: 1000px; margin: 0 auto; padding: 80px 0 59px 0; background: url(./img/bg.jpg); background-size: cover; }
+.container { width: 100%; min-width: 1000px; margin: 0 auto; padding: 80px 0 59px 0; }
 footer { position: relative; padding: 20px 0; background: #eee; text-align: center; z-index: 10; }
 
 #login { width:500px; padding:100px; margin:0 auto; background:#fff; text-align:center; }
