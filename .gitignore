@@ -2,5 +2,3 @@
 target/classes/
 target/test-classes/log4j.xml
 target/**
-.classpath
-.settings/
