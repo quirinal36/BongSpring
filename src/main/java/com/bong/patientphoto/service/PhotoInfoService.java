@@ -18,6 +18,10 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public int insert(List<PhotoInfo> input) {
+		return dao.insert(input);
+	}
 
 	@Override
 	public int update(PhotoInfo input) {

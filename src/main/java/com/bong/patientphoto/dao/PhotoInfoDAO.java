@@ -18,6 +18,11 @@ public class PhotoInfoDAO implements DataAccess<PhotoInfo> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public int insert(List<PhotoInfo> input) {
+		return sqlSession.insert(namespace + ".insert_list", input);
+	}
+	
 	@Override
 	public int update(PhotoInfo input) {
 		// TODO Auto-generated method stub

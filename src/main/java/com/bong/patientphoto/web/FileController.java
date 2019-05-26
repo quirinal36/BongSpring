@@ -61,6 +61,7 @@ public class FileController {
 			fileMeta.setFileName(mpf.getOriginalFilename());
 			fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
 			fileMeta.setFileType(mpf.getContentType());
+			
 			String srcPath = request.getSession().getServletContext().getRealPath("/upload");
 			final String uploadedFileUri = srcPath + "/" + mpf.getOriginalFilename();
 			fileMeta.setFileUri(uploadedFileUri);

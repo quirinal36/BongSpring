@@ -2,6 +2,8 @@ package com.bong.patientphoto.web;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -26,10 +28,23 @@ public class PhotoInfoController extends BacoderController{
 			PhotoInfo info, HttpServletResponse resp,
 			@RequestParam(value="fileUri")String[] files) throws IOException {
 		logger.info(info.toString());
+		List<PhotoInfo> infoList = new ArrayList<PhotoInfo>();
+		
 		for(String file: files) {
 			logger.info(file);
+			PhotoInfo newInfo = new PhotoInfo();
+			
+			try {
+				newInfo = (PhotoInfo) info.clone();
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+			
+			newInfo.setPhotoUrl(file);
+			
+			infoList.add(newInfo);
 		}
-		int result = photoInfoService.insert(info);
+		int result = photoInfoService.insert(infoList);
 		
 		mv.addObject("info", info);
 		if(result > 0) {

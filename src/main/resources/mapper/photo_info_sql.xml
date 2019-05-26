@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="photo_info_sql">
+	<insert id="insert_list" parameterType="java.util.List">
+		INSERT into PhotoInfo 
+		(
+			patientId,
+			doctor,
+			classification,
+			date,
+			comment,
+			photoUrl
+		)
+		values
+		
+		<foreach collection="list" item="elem" index="i" open="(" separator="),(" close=")">
+			${elem.patientId},
+			'${elem.doctor}',
+			'${elem.classification}',
+			'${elem.date}',
+			'${elem.comment}',
+			'${elem.photoUrl}'
+		</foreach>
+		
+	</insert>
+</mapper>

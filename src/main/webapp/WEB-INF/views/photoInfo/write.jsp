@@ -34,11 +34,11 @@
 						<tbody>
 							<tr>
 								<td>등록번호</td>
-								<td><input type="text" name="regNo" placeholder="등록번호" required/></td>
+								<td><input type="text" name="patientId" placeholder="등록번호" required/></td>
 							</tr>
 							<tr>
-								<td>환자이름</td>
-								<td><input type="text" name="patientName" placeholder="환자이름" required/></td>
+								<td>주치의</td>
+								<td><input type="text" name="doctor" placeholder="주치의" required/></td>
 							</tr>
 							<tr>
 								<td>등록담당자</td>
@@ -46,11 +46,15 @@
 							</tr>
 							<tr>
 								<td>분류</td>
-								<td><input type="text" name="specification" placeholder="분류"/></td>
+								<td><input type="text" name="classification" placeholder="분류"/></td>
 							</tr>
 							<tr>
-								<td>찍은날짜</td>
-								<td><input type="text" name="issuedAt" placeholder="찍은날짜" value="${today }"/></td>
+								<td>촬영일</td>
+								<td><input type="text" name="date" placeholder="촬영일" value="${today }"/></td>
+							</tr>
+							<tr>
+								<td>코멘트</td>
+								<td><input type="text" name="comment" placeholder="코멘트"/></td>
 							</tr>
 							
 						</tbody>
