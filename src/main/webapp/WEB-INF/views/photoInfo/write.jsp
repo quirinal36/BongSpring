@@ -103,12 +103,7 @@
 		        imageMaxWidth: 100,
 		        imageMaxHeight: 100,
 		        previewCrop : true
-	    	}).on('fileuploadadd', function (e, data) {
-		        	var url = $("input[name='uploadUrl']").val();
-		        	
-		            // $("#uploaded-files tr:has(td)").remove();
-		            
-		    }).on('progressall', function (e, data) {
+	    	}).on('progressall', function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
 	            console.log("progress: " + progress);
 	            
@@ -127,10 +122,9 @@
 	                        .append($('<td/>').text(file.size))
 	                        .append($('<td/>').text(file.contentType))
 	                        .append($('<td/>').html(
-	                        		"<input type='button' value='삭제' onclick='deleteThis("+index+")'/>"
-	                        		+
-	                        		"<input type='hidden' value='" + file.fileUri + "' name='fileUri'/>"
+	                        		"<input type='button' value='삭제' onclick='deleteThis("+file.id+")'/>"
 	                        		))
+	                        		.attr("id", file.id)
 	                        )//end 
 	                $("#uploaded-files").append()
 	                if (file.url) {
@@ -139,8 +133,7 @@
 	                        .prop('href', file.url);
 	                    
 	                    console.log(link);
-	                    //$(data.context.children()[index])
-	                      //  .wrap(link);
+	                    
 	                } else if (file.error) {
 	                    var error = $('<span class="text-danger"/>').text(file.error);
 	                    $(data.context.children()[index])
@@ -154,6 +147,14 @@
 	});
 	function insertBoard(){
 		$("#write").submit();
+	}
+	function deleteThis(id){
+		$.ajax({
+			url : "/delete/"+id,
+			type: "DELETE"
+		}).done(function(resp){
+			$("#"+id).remove();
+		});
 	}
 	</script>
 	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>

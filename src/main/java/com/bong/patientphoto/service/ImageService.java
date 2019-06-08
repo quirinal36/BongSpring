@@ -26,8 +26,7 @@ public class ImageService implements DataService<Image> {
 
 	@Override
 	public int delete(Image input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.delete(input);
 	}
 
 	@Override

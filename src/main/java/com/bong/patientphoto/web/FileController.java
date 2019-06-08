@@ -74,8 +74,8 @@ public class FileController extends BacoderController{
                 image.setContentType(contentType);
                 image.setSize(mpf.getSize());
                 image.setThumbnailSize(thumbnailFile.length());
-                //image = imageDao.create(image);
-                image.setId(1l);
+                //int result = imageService.insert(image);
+                 image.setId(1l);
                 
                 image.setUrl("/picture/"+image.getId());
                 image.setThumbnailUrl("/thumbnail/"+image.getId());
@@ -115,20 +115,19 @@ public class FileController extends BacoderController{
     		HttpServletResponse response, @PathVariable Long id) {
 		Image param = new Image();
 		param.setId(id);
+		String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+        
+		/*
+        Image image = imageService.selectOne(param);
+        File imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
+        response.setContentType(image.getContentType());
+        response.setContentLength(image.getSize().intValue());
+        */
 		
-        // Image image = imageService.selectOne(param);
-        String srcPath = request.getSession().getServletContext().getRealPath("/upload");
-        
-        // File imageFile = new File(srcPath+"/"+image.getNewFilename());
-        
-        File imageFile = new File(srcPath + "/90eb2393-ebbc-4766-a30c-4936f60837f8.png");
-        logger.info(imageFile.getAbsolutePath());
-        
-        //response.setContentType(image.getContentType());
-        //response.setContentLength(image.getSize().intValue());
-        
-        response.setContentType("image/png");
-        response.setContentLength(8898);
+		File imageFile = new File(srcPath + "/90eb2393-ebbc-4766-a30c-4936f60837f8.png");
+		response.setContentType("image/png"); 
+		response.setContentLength(8898);
+		
         try {
             InputStream is = new FileInputStream(imageFile);
             IOUtils.copy(is, response.getOutputStream());
@@ -136,6 +135,22 @@ public class FileController extends BacoderController{
             logger.info("Could not show picture "+id +"/" + e.getLocalizedMessage());
         }
     }
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id,
+    		HttpServletRequest request) {
+		Image param = new Image();
+		param.setId(id);
+		
+        Image image = imageService.selectOne(param);
+        String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+        
+        File imageFile = new File(srcPath+"/"+image.getNewFilename());
+        imageFile.delete();
+        File thumbnailFile = new File(srcPath+"/"+image.getThumbnailFilename());
+        thumbnailFile.delete();
+        imageService.delete(image);
+	}
 	/***************************************************
 	 * URL: /upload  
 	 * upload(): receives files
@@ -143,6 +158,7 @@ public class FileController extends BacoderController{
 	 * @param response : HttpServletResponse auto passed
 	 * @return List<FileMeta> as json format
 	 ****************************************************/
+	/*
 	@RequestMapping(value="/upload/old", method = RequestMethod.POST)
 	@ResponseBody
 	public synchronized List<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
@@ -190,6 +206,7 @@ public class FileController extends BacoderController{
 		// [{"fileName":"app_engine-85x77.png","fileSize":"8 Kb","fileType":"image/png"},...]
 		return files;
 	}
+	*/
 	
 	/***************************************************
 	 * URL: /rest/controller/get/{value}

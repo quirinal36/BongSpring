@@ -30,4 +30,10 @@
 			id = ${id}
 		</where>
 	</select>
+	<delete id="delete" parameterType="image">
+		DELETE FROM Image
+		<where>
+			id = ${id}
+		</where>
+	</delete>
 </mapper>

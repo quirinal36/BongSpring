@@ -29,8 +29,7 @@ public class ImageDAO implements DataAccess<Image>{
 
 	@Override
 	public int delete(Image input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(namespace+".delete", input);
 	}
 
 	@Override
