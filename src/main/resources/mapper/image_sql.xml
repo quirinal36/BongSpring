@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="image_sql">
+	<insert id="insert" parameterType="image" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Image
+		(
+		name,
+		contentType,
+		dateCreated,
+		lastUpdated,
+		url,
+		thumbnailUrl
+		)
+		values
+		(
+		'${name}',
+		'${contentType}',
+		'${dateCreated}',
+		'${lastUpdated}',
+		'${url}',
+		'${thumbnailUrl}'
+		)
+	</insert>
+	<select id="selectOne">
+		SELECT *
+		FROM Image
+		<where>
+			id = ${id}
+		</where>
+	</select>
+</mapper>

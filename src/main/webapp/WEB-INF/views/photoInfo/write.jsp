@@ -66,18 +66,20 @@
 				    </div>
 				    <table id="uploaded-files">
 				    	<colgroup>
-				    		<col width="25%">
-				    		<col width="25%">
-				    		<col width="25%">
-				    		<col width="25%">
+				    		<col width="20%">
+				    		<col width="20%">
+				    		<col width="20%">
+				    		<col width="20%">
+				    		<col width="20%">
 				    	</colgroup>
 				    	<thead>
 				    		<tr>
-								<th colspan="4">사진업로드</th>
+								<th colspan="5">사진업로드</th>
 							</tr>
 						</thead>
 						<tbody>
 					        <tr>
+					        	<th>미리보기</th>
 					            <th>파일명</th>
 					            <th>Size</th>
 					            <th>Type</th>
@@ -105,20 +107,7 @@
 		        	var url = $("input[name='uploadUrl']").val();
 		        	
 		            // $("#uploaded-files tr:has(td)").remove();
-		            $.each(data.files, function (index, file) {
-		            	// console.log(file);
-		                $("#uploaded-files").append(
-		                        $('<tr/>')
-		                        .append($('<td/>').text(file.name))
-		                        .append($('<td/>').text(file.size))
-		                        .append($('<td/>').text(file.type))
-		                        .append($('<td/>').html(
-		                        		"<input type='button' value='삭제' onclick='deleteThis("+index+")'/>"
-		                        		+
-		                        		"<input type='hidden' value='" + file.fileUri + "' name='fileUri'/>"
-		                        		))
-		                        )//end $("#uploaded-files").append()
-		            }); 
+		            
 		    }).on('progressall', function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
 	            console.log("progress: " + progress);
@@ -131,6 +120,19 @@
 	        	console.log(data.result);
 	            $.each(data.result.files, function (index, file) {
 	            	console.log("index: " + index);
+	            	$("#uploaded-files").append(
+	                        $('<tr/>')
+	                        .append($('<td/>').append($('<img/>').attr('src', file.thumbnailUrl)))
+	                        .append($('<td/>').text(file.name))
+	                        .append($('<td/>').text(file.size))
+	                        .append($('<td/>').text(file.contentType))
+	                        .append($('<td/>').html(
+	                        		"<input type='button' value='삭제' onclick='deleteThis("+index+")'/>"
+	                        		+
+	                        		"<input type='hidden' value='" + file.fileUri + "' name='fileUri'/>"
+	                        		))
+	                        )//end 
+	                $("#uploaded-files").append()
 	                if (file.url) {
 	                    var link = $('<a>')
 	                        .attr('target', '_blank')

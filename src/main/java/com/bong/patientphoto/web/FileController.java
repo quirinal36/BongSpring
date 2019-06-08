@@ -2,8 +2,10 @@ package com.bong.patientphoto.web;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -14,12 +16,15 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +38,7 @@ import com.bong.patientphoto.vo.Image;
 import com.bong.patientphoto.vo.PhotoInfo;
 
 @Controller
-public class FileController {
+public class FileController extends BacoderController{
 	private final Logger logger = Logger.getLogger(this.getClass().getSimpleName());
 	
 	
@@ -50,7 +55,7 @@ public class FileController {
             String newFilename = newFilenameBase + originalFileExtension;
             
             String srcPath = request.getSession().getServletContext().getRealPath("/upload");
-			final String storageDirectory = srcPath + "/" + mpf.getOriginalFilename();
+            logger.info("srcPath: " + srcPath);
 			String contentType = mpf.getContentType();
 			
 			File newFile = new File(srcPath + "/" + newFilename);
@@ -70,6 +75,7 @@ public class FileController {
                 image.setSize(mpf.getSize());
                 image.setThumbnailSize(thumbnailFile.length());
                 //image = imageDao.create(image);
+                image.setId(1l);
                 
                 image.setUrl("/picture/"+image.getId());
                 image.setThumbnailUrl("/thumbnail/"+image.getId());
@@ -86,7 +92,50 @@ public class FileController {
         files.put("files", list);
         return files;
 	}
-	
+	@RequestMapping(value = "/picture/{id}", method = RequestMethod.GET)
+    public void picture(HttpServletRequest request,
+    		HttpServletResponse response, @PathVariable Long id) {
+		Image param = new Image();
+		param.setId(id);
+		
+        Image image = imageService.selectOne(param);
+        String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+        File imageFile = new File(srcPath+"/"+image.getNewFilename());
+        response.setContentType(image.getContentType());
+        response.setContentLength(image.getSize().intValue());
+        try {
+            InputStream is = new FileInputStream(imageFile);
+            IOUtils.copy(is, response.getOutputStream());
+        } catch(IOException e) {
+            logger.info("Could not show picture "+id +"/" + e.getLocalizedMessage());
+        }
+    }
+	@RequestMapping(value = "/thumbnail/{id}", method = RequestMethod.GET)
+    public void thumbnail(HttpServletRequest request,
+    		HttpServletResponse response, @PathVariable Long id) {
+		Image param = new Image();
+		param.setId(id);
+		
+        // Image image = imageService.selectOne(param);
+        String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+        
+        // File imageFile = new File(srcPath+"/"+image.getNewFilename());
+        
+        File imageFile = new File(srcPath + "/90eb2393-ebbc-4766-a30c-4936f60837f8.png");
+        logger.info(imageFile.getAbsolutePath());
+        
+        //response.setContentType(image.getContentType());
+        //response.setContentLength(image.getSize().intValue());
+        
+        response.setContentType("image/png");
+        response.setContentLength(8898);
+        try {
+            InputStream is = new FileInputStream(imageFile);
+            IOUtils.copy(is, response.getOutputStream());
+        } catch(IOException e) {
+            logger.info("Could not show picture "+id +"/" + e.getLocalizedMessage());
+        }
+    }
 	/***************************************************
 	 * URL: /upload  
 	 * upload(): receives files

@@ -8,6 +8,7 @@
 		<typeAlias type="com.bong.patientphoto.vo.Board" alias="board"/>
 		<typeAlias type="com.bong.patientphoto.vo.OPRecord" alias="oprecord"/>
 		<typeAlias type="com.bong.patientphoto.vo.PhotoInfo" alias="phtoinfo"/>
+		<typeAlias type="com.bong.patientphoto.vo.Image" alias="image"/>
 		
     </typeAliases>
 </configuration>
