@@ -1,15 +1,22 @@
 package com.bong.patientphoto.web;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 
+import org.imgscalr.Scalr;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -22,11 +29,63 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bong.patientphoto.Config;
 import com.bong.patientphoto.vo.FileMeta;
+import com.bong.patientphoto.vo.Image;
 import com.bong.patientphoto.vo.PhotoInfo;
 
 @Controller
 public class FileController {
 	private final Logger logger = Logger.getLogger(this.getClass().getSimpleName());
+	
+	
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public @ResponseBody Map upload2(MultipartHttpServletRequest request, HttpServletResponse response) {
+		Iterator<String> itr = request.getFileNames();
+        MultipartFile mpf;
+        List<Image> list = new LinkedList<>();
+        while (itr.hasNext()) {
+            mpf = request.getFile(itr.next());
+            logger.info("Uploading {}" + mpf.getOriginalFilename());
+            String newFilenameBase = UUID.randomUUID().toString();
+            String originalFileExtension = mpf.getOriginalFilename().substring(mpf.getOriginalFilename().lastIndexOf("."));
+            String newFilename = newFilenameBase + originalFileExtension;
+            
+            String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+			final String storageDirectory = srcPath + "/" + mpf.getOriginalFilename();
+			String contentType = mpf.getContentType();
+			
+			File newFile = new File(srcPath + "/" + newFilename);
+            try {
+                mpf.transferTo(newFile);
+                
+                BufferedImage thumbnail = Scalr.resize(ImageIO.read(newFile), 290);
+                String thumbnailFilename = newFilenameBase + "-thumbnail.png";
+                File thumbnailFile = new File(srcPath + "/" + thumbnailFilename);
+                ImageIO.write(thumbnail, "png", thumbnailFile);
+                
+                Image image = new Image();
+                image.setName(mpf.getOriginalFilename());
+                image.setThumbnailFilename(thumbnailFilename);
+                image.setNewFilename(newFilename);
+                image.setContentType(contentType);
+                image.setSize(mpf.getSize());
+                image.setThumbnailSize(thumbnailFile.length());
+                //image = imageDao.create(image);
+                
+                image.setUrl("/picture/"+image.getId());
+                image.setThumbnailUrl("/thumbnail/"+image.getId());
+                image.setDeleteUrl("/delete/"+image.getId());
+                image.setDeleteType("DELETE");
+                
+                logger.info(image.toString());
+                list.add(image);
+            } catch(IOException e) {
+                logger.info("Could not upload file "+mpf.getOriginalFilename() + e.getLocalizedMessage());
+            }
+        }
+        Map<String, Object> files = new HashMap<>();
+        files.put("files", list);
+        return files;
+	}
 	
 	/***************************************************
 	 * URL: /upload  
@@ -35,7 +94,7 @@ public class FileController {
 	 * @param response : HttpServletResponse auto passed
 	 * @return List<FileMeta> as json format
 	 ****************************************************/
-	@RequestMapping(value="/upload", method = RequestMethod.POST)
+	@RequestMapping(value="/upload/old", method = RequestMethod.POST)
 	@ResponseBody
 	public synchronized List<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
 		logger.info("upload controller~!!");

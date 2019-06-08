@@ -98,19 +98,20 @@
 		        dataType: 'json',
 		        disableImageResize: /Android(?!.*Chrome)|Opera/
 		            .test(window.navigator && navigator.userAgent),
-		        imageMaxWidth: 800,
-		        imageMaxHeight: 800,
-		        imageCrop: true, // Force cropped images
-		        done: function (e, data) {
+		        imageMaxWidth: 100,
+		        imageMaxHeight: 100,
+		        previewCrop : true
+	    	}).on('fileuploadadd', function (e, data) {
 		        	var url = $("input[name='uploadUrl']").val();
+		        	
 		            // $("#uploaded-files tr:has(td)").remove();
-		            $.each(data.result, function (index, file) {
-		            	console.log(file);
+		            $.each(data.files, function (index, file) {
+		            	// console.log(file);
 		                $("#uploaded-files").append(
 		                        $('<tr/>')
-		                        .append($('<td/>').text(file.fileName))
-		                        .append($('<td/>').text(file.fileSize))
-		                        .append($('<td/>').text(file.fileType))
+		                        .append($('<td/>').text(file.name))
+		                        .append($('<td/>').text(file.size))
+		                        .append($('<td/>').text(file.type))
 		                        .append($('<td/>').html(
 		                        		"<input type='button' value='삭제' onclick='deleteThis("+index+")'/>"
 		                        		+
@@ -118,18 +119,36 @@
 		                        		))
 		                        )//end $("#uploaded-files").append()
 		            }); 
-		        },
-	 		
-	        progressall: function (e, data) {
+		    }).on('progressall', function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
+	            console.log("progress: " + progress);
+	            
 	            $('#progress .bar').css(
 	                'width',
 	                progress + '%'
 	            );
-	        },
-	 		
-	        dropZone: $('#dropzone')
-	    });
+	        }).on('fileuploaddone', function (e, data) {
+	        	console.log(data.result);
+	            $.each(data.result.files, function (index, file) {
+	            	console.log("index: " + index);
+	                if (file.url) {
+	                    var link = $('<a>')
+	                        .attr('target', '_blank')
+	                        .prop('href', file.url);
+	                    
+	                    console.log(link);
+	                    //$(data.context.children()[index])
+	                      //  .wrap(link);
+	                } else if (file.error) {
+	                    var error = $('<span class="text-danger"/>').text(file.error);
+	                    $(data.context.children()[index])
+	                        .append('<br>')
+	                        .append(error);
+	                }
+	            });
+	        }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+	    
 	});
 	function insertBoard(){
 		$("#write").submit();
@@ -139,6 +158,12 @@
 	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
+	<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+	<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script> 
+	<!-- The File Upload processing plugin -->
+	<script src="<c:url value="/resources/js/jquery.fileupload-process.js"/>"></script>
+	<!-- The File Upload image preview & resize plugin -->
+	<script src="<c:url value="/resources/js/jquery.fileupload-image.js"/>"></script>
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 </body>
 </html>
