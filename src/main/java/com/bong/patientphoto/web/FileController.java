@@ -46,7 +46,7 @@ public class FileController extends BacoderController{
     public @ResponseBody Map upload2(MultipartHttpServletRequest request, HttpServletResponse response) {
 		Iterator<String> itr = request.getFileNames();
         MultipartFile mpf;
-        List<Image> list = new LinkedList<>();
+        List<PhotoInfo> list = new LinkedList<>();
         while (itr.hasNext()) {
             mpf = request.getFile(itr.next());
             logger.info("Uploading {}" + mpf.getOriginalFilename());
@@ -67,23 +67,31 @@ public class FileController extends BacoderController{
                 File thumbnailFile = new File(srcPath + "/" + thumbnailFilename);
                 ImageIO.write(thumbnail, "png", thumbnailFile);
                 
-                Image image = new Image();
-                image.setName(mpf.getOriginalFilename());
-                image.setThumbnailFilename(thumbnailFilename);
-                image.setNewFilename(newFilename);
-                image.setContentType(contentType);
-                image.setSize(mpf.getSize());
-                image.setThumbnailSize(thumbnailFile.length());
-                //int result = imageService.insert(image);
-                 image.setId(1l);
+                PhotoInfo photo = new PhotoInfo();
+                photo.setName(mpf.getOriginalFilename());
+                photo.setThumbnailFilename(thumbnailFilename);
+                photo.setNewFilename(newFilename);
+                photo.setSize((int)mpf.getSize());
+                photo.setThumbnailSize((int)thumbnailFile.length());
+                photo.setContentType(contentType);
                 
-                image.setUrl("/picture/"+image.getId());
-                image.setThumbnailUrl("/thumbnail/"+image.getId());
-                image.setDeleteUrl("/delete/"+image.getId());
-                image.setDeleteType("DELETE");
+//                Image image = new Image();
+//                image.setName(mpf.getOriginalFilename());
+//                image.setThumbnailFilename(thumbnailFilename);
+//                image.setNewFilename(newFilename);
+//                image.setContentType(contentType);
+//                image.setSize(mpf.getSize());
+//                image.setThumbnailSize(thumbnailFile.length());
+                int result = photoInfoService.insert(photo);
+//                 image.setId(1l);
                 
-                logger.info(image.toString());
-                list.add(image);
+                photo.setUrl(getWebappDir(request) +"/picture/"+photo.getId());
+                photo.setThumbnailUrl(getWebappDir(request) + "/thumbnail/"+photo.getId());
+//                image.setDeleteUrl("/delete/"+image.getId());
+//                image.setDeleteType("DELETE");
+                
+                logger.info(photo.toString());
+                list.add(photo);
             } catch(IOException e) {
                 logger.info("Could not upload file "+mpf.getOriginalFilename() + e.getLocalizedMessage());
             }
@@ -94,15 +102,15 @@ public class FileController extends BacoderController{
 	}
 	@RequestMapping(value = "/picture/{id}", method = RequestMethod.GET)
     public void picture(HttpServletRequest request,
-    		HttpServletResponse response, @PathVariable Long id) {
-		Image param = new Image();
+    		HttpServletResponse response, @PathVariable int id) {
+		PhotoInfo param = new PhotoInfo();
 		param.setId(id);
 		
-        Image image = imageService.selectOne(param);
+        PhotoInfo image = photoInfoService.selectOne(param);
         String srcPath = request.getSession().getServletContext().getRealPath("/upload");
         File imageFile = new File(srcPath+"/"+image.getNewFilename());
         response.setContentType(image.getContentType());
-        response.setContentLength(image.getSize().intValue());
+        response.setContentLength(image.getSize());
         try {
             InputStream is = new FileInputStream(imageFile);
             IOUtils.copy(is, response.getOutputStream());
@@ -112,21 +120,21 @@ public class FileController extends BacoderController{
     }
 	@RequestMapping(value = "/thumbnail/{id}", method = RequestMethod.GET)
     public void thumbnail(HttpServletRequest request,
-    		HttpServletResponse response, @PathVariable Long id) {
-		Image param = new Image();
+    		HttpServletResponse response, @PathVariable int id) {
+		PhotoInfo param = new PhotoInfo();
 		param.setId(id);
 		String srcPath = request.getSession().getServletContext().getRealPath("/upload");
         
-		/*
-        Image image = imageService.selectOne(param);
+		
+		PhotoInfo image = photoInfoService.selectOne(param);
         File imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
         response.setContentType(image.getContentType());
-        response.setContentLength(image.getSize().intValue());
-        */
+        response.setContentLength(image.getSize());
+        
 		
-		File imageFile = new File(srcPath + "/90eb2393-ebbc-4766-a30c-4936f60837f8.png");
-		response.setContentType("image/png"); 
-		response.setContentLength(8898);
+//		File imageFile = new File(srcPath + "/90eb2393-ebbc-4766-a30c-4936f60837f8.png");
+//		response.setContentType("image/png"); 
+//		response.setContentLength(8898);
 		
         try {
             InputStream is = new FileInputStream(imageFile);

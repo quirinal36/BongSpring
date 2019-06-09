@@ -16,7 +16,7 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 	@Override
 	public int insert(PhotoInfo input) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(input);
 	}
 	
 	public int insert(List<PhotoInfo> input) {
@@ -50,7 +50,7 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 	@Override
 	public PhotoInfo selectOne(PhotoInfo input) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.selectOne(input);
 	}
 
 	@Override

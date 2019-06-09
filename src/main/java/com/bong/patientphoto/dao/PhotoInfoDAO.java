@@ -16,7 +16,7 @@ public class PhotoInfoDAO implements DataAccess<PhotoInfo> {
 	@Override
 	public int insert(PhotoInfo input) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(namespace + ".insert", input);
 	}
 	
 	public int insert(List<PhotoInfo> input) {
@@ -46,7 +46,7 @@ public class PhotoInfoDAO implements DataAccess<PhotoInfo> {
 	@Override
 	public PhotoInfo selectOne(PhotoInfo input) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace + ".select_one", input);
 	}
 	@Override
 	public int count(PhotoInfo input) {

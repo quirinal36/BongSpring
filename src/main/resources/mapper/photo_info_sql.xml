@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="photo_info_sql">
-	<insert id="insert_list" parameterType="java.util.List">
+	<insert id="insert_list" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
 		INSERT into PhotoInfo 
 		(
 			patientId,
@@ -11,7 +11,13 @@
 			classification,
 			date,
 			comment,
-			photoUrl
+			photoUrl,
+			name,
+			thumbnailFilename,
+			newFilename,
+			size,
+			thumbnailSize,
+			contentType
 		)
 		values
 		
@@ -21,8 +27,61 @@
 			'${elem.classification}',
 			'${elem.date}',
 			'${elem.comment}',
-			'${elem.photoUrl}'
+			'${elem.photoUrl}',
+			'${elem.name}',
+			'${elem.thumbnailFilename}',
+			'${elem.newFilename}',
+			${elem.size},
+			${elem.thumbnailSize},
+			'${elem.contentType}'
 		</foreach>
 		
 	</insert>
+	<insert id="insert" parameterType="photoinfo" useGeneratedKeys="true" keyProperty="id">
+		INSERT into PhotoInfo 
+		(
+			doctor,
+			classification,
+			date,
+			comment,
+			photoUrl,
+			name,
+			thumbnailFilename,
+			newFilename,
+			size,
+			thumbnailSize,
+			contentType
+		)
+		values
+		
+		(
+			'${doctor}',
+			'${classification}',
+			'${date}',
+			'${comment}',
+			'${photoUrl}',
+			'${name}',
+			'${thumbnailFilename}',
+			'${newFilename}',
+			${size},
+			${thumbnailSize},
+			'${contentType}'
+		)
+		
+	</insert>
+	<select id = "select_one" parameterType="photoinfo" resultType="photoinfo">
+		select 
+			id,
+			name,
+			thumbnailFilename,
+			newFilename,
+			size,
+			thumbnailSize,
+			contentType	
+		from PhotoInfo
+		<where>
+			id = ${id}
+		</where>
+		
+	</select>
 </mapper>

@@ -41,7 +41,7 @@ public class PhotoInfoController extends BacoderController{
 			}
 			
 			newInfo.setPhotoUrl(file);
-			
+			// file name , copy 
 			infoList.add(newInfo);
 		}
 		int result = photoInfoService.insert(infoList);

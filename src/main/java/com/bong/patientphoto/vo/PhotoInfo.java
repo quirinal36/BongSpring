@@ -15,6 +15,14 @@ public class PhotoInfo implements Cloneable{
 	String photoUrl;
 	int sync;
 	String comment;
+	String name;
+	String thumbnailFilename;
+	String newFilename;
+	int size;
+	int thumbnailSize;
+	String url;
+	String thumbnailUrl;
+	String contentType;
 	
 	public PhotoInfo() {
 		
@@ -126,6 +134,102 @@ public class PhotoInfo implements Cloneable{
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getThumbnailFilename() {
+		return thumbnailFilename;
+	}
+
+
+
+	public void setThumbnailFilename(String thumbnailFilename) {
+		this.thumbnailFilename = thumbnailFilename;
+	}
+
+
+
+	public String getNewFilename() {
+		return newFilename;
+	}
+
+
+
+	public void setNewFilename(String newFilename) {
+		this.newFilename = newFilename;
+	}
+
+
+
+	public int getSize() {
+		return size;
+	}
+
+
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+
+
+	public int getThumbnailSize() {
+		return thumbnailSize;
+	}
+
+
+
+	public void setThumbnailSize(int thumbnailSize) {
+		this.thumbnailSize = thumbnailSize;
+	}
+
+
+
+	public String getUrl() {
+		return url;
+	}
+
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
+	}
+
+
+
+	public String getContentType() {
+		return contentType;
+	}
+
+
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 
