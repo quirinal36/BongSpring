@@ -9,7 +9,6 @@
 			patientId,
 			doctor,
 			classification,
-			date,
 			comment,
 			photoUrl,
 			name,
@@ -25,7 +24,6 @@
 			${elem.patientId},
 			'${elem.doctor}',
 			'${elem.classification}',
-			'${elem.date}',
 			'${elem.comment}',
 			'${elem.photoUrl}',
 			'${elem.name}',
@@ -42,7 +40,6 @@
 		(
 			doctor,
 			classification,
-			date,
 			comment,
 			photoUrl,
 			name,
@@ -57,7 +54,6 @@
 		(
 			'${doctor}',
 			'${classification}',
-			'${date}',
 			'${comment}',
 			'${photoUrl}',
 			'${name}',
@@ -70,15 +66,7 @@
 		
 	</insert>
 	<select id = "select_one" parameterType="photoinfo" resultType="photoinfo">
-		select 
-			id,
-			name,
-			thumbnailFilename,
-			newFilename,
-			size,
-			thumbnailSize,
-			contentType	,
-			NOW() AS date
+		select *
 		from PhotoInfo
 		<where>
 			id = ${id}
