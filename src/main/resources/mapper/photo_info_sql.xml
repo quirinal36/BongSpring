@@ -77,7 +77,8 @@
 			newFilename,
 			size,
 			thumbnailSize,
-			contentType	
+			contentType	,
+			NOW() AS date
 		from PhotoInfo
 		<where>
 			id = ${id}

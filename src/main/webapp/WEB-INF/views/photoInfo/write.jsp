@@ -117,7 +117,7 @@
 	            	console.log("index: " + index);
 	            	$("#uploaded-files").append(
 	                        $('<tr/>')
-	                        .append($('<td/>').append($('<img/>').attr('src', file.thumbnailUrl)))
+	                        .append($('<td/>').append($('<img/>').attr('src', file.url)))
 	                        .append($('<td/>').text(file.name))
 	                        .append($('<td/>').text(file.size))
 	                        .append($('<td/>').text(file.contentType))
