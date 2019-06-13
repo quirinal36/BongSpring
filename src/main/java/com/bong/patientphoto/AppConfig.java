@@ -151,7 +151,7 @@ public class AppConfig implements WebMvcConfigurer {
 		registry.addInterceptor(interceptor)
 				.addPathPatterns("/**")
 				.excludePathPatterns(
-						"/", "/login", "**/resources/**", "/member/join_step2", "/inc/**", "/j_spring_sercurity_check"
+						"/", "/login", "**/resources/**", "/member/join_step2", "/inc/**", "/j_spring_security_check"
 						);
 				
 	}

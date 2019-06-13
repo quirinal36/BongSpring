@@ -31,8 +31,8 @@
 			usr.id, 
 			usr.username, 
 			usr.password, 
-			role.role AS role
-		FROM users usr, user_roles role
+			role.user_role AS role
+		FROM users usr, roles role
 		<where>
 			usr.username = '${username}'
 			and usr.user_role = role.id
@@ -45,8 +45,8 @@
 			usr.username,
 			usr.user_phon,
 			usr.user_role,
-			role.role AS role
-		FROM users usr left join user_roles role on usr.user_role = role.id
+			role.user_role AS role
+		FROM users usr left join roles role on usr.user_role = role.id
 		<where>
 			
 			
