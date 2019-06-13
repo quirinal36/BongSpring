@@ -32,7 +32,9 @@
 		<!-- 컨텐츠 끝 -->
 		</div>
 	</div>
-<footer><c:import url="/inc/footer"></c:import></footer>
+<footer>
+	<c:import url="/inc/footer"></c:import>
+</footer>
 </div>
 </body>
 </html>

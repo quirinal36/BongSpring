@@ -12,6 +12,29 @@
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
 	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#searchPatientInfo").on('click', function(){
+			var url = $("input[name='searchPatientInfoUrl']").val();
+			var id = $("input[name='patientId']").val();
+			
+			$.ajax({
+				url : url+id,
+				type: "GET"
+			}).done(function(resp){
+				console.log(resp);
+			});
+		});
+	});
+	</script>
+	<style type="text/css">
+	.list {
+        height: expression( this.scrollHeight > 99 ? "100px" : "auto" );
+        max-height: 100px;
+        border: 1px solid #666;
+        overflow-y: auto;
+	}
+	</style>
 </head>
 <body>
 	<div class="wrap">
@@ -34,7 +57,25 @@
 						<tbody>
 							<tr>
 								<td>등록번호</td>
-								<td><input type="text" name="patientId" placeholder="등록번호" required/></td>
+								<td>
+									<input type="text" name="patientId" placeholder="등록번호" required/>
+									<input type="hidden" name="searchPatientInfoUrl" value="<c:url value="/search/patientInfo/"/>" />
+									<input type="button" value="검색" id="searchPatientInfo"/>
+									<div class="list">
+										<dl id="searchList">
+											<dd>검색결과가 없습니다.</dd>
+											<dd>검색결과가 없습니다.</dd>
+											<dd>검색결과가 없습니다.</dd>
+											<dd>검색결과가 없습니다.</dd>
+											<dd>검색결과가 없습니다.</dd>
+											<dd>검색결과가 없습니다.</dd>
+											<dd>검색결과가 없습니다.</dd>
+											<dd>검색결과가 없습니다.</dd>
+											<dd>검색결과가 없습니다.</dd>
+											
+										</dl>
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<td>주치의</td>
@@ -105,7 +146,6 @@
 		        previewCrop : true
 	    	}).on('progressall', function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
-	            console.log("progress: " + progress);
 	            
 	            $('#progress .bar').css(
 	                'width',

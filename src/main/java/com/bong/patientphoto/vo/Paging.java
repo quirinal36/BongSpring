@@ -17,7 +17,7 @@ public class Paging {
     private int to;
     
     public Paging() {
-    	
+    	this.pageSize = 10;
     }
     public Paging(int totalCount, int pageNo) {
     	this.pageNo = pageNo;

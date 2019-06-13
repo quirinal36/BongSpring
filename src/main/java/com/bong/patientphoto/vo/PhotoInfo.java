@@ -27,8 +27,6 @@ public class PhotoInfo implements Cloneable{
 	public PhotoInfo() {
 		
 	}
-
-
 	
 	public int getId() {
 		return id;
