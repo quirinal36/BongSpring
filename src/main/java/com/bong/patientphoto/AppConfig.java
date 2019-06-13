@@ -148,7 +148,12 @@ public class AppConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		BongInterceptor interceptor = new BongInterceptor();
-		registry.addInterceptor(interceptor);
+		registry.addInterceptor(interceptor)
+				.addPathPatterns("/**")
+				.excludePathPatterns(
+						"/", "/login", "**/resources/**", "/member/join_step2", "/inc/**", "/j_spring_sercurity_check"
+						);
+				
 	}
 
 	@Bean
