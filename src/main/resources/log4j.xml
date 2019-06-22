@@ -12,12 +12,12 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.bong.patientphoto">
-		<level value="debug" />
+		<level value="DEBUG" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="DEBUG" />
+		<level value="info" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
@@ -43,7 +43,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="DEBUG" />
 		<appender-ref ref="console" />
 	</root>
 	
