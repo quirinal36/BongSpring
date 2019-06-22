@@ -9,11 +9,12 @@
 			id,
 			patientId,
 			name,
+			doctor,
 			birth
 		FROM
 			PatientInfo
 		<where>
-			patientId like '%{patientId}%'
+			patientId like '%${patientId}%'
 		</where>
 	</select>
 
@@ -23,7 +24,7 @@
 		FROM
 			PatientInfo
 		<where>
-			patientId like '%{patientId}%'
+			patientId like '%${patientId}%'
 		</where>
 	</select>
 </mapper>

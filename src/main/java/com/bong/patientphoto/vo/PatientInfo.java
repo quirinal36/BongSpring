@@ -8,6 +8,7 @@ public class PatientInfo extends Paging{
 	int patientId;
 	String name;
 	String birth;
+	String doctor;
 	
 	public PatientInfo() {
 		
@@ -46,6 +47,12 @@ public class PatientInfo extends Paging{
 		this.birth = birth;
 	}
 	
+	public String getDoctor() {
+		return doctor;
+	}
+	public void setDoctor(String doctor) {
+		this.doctor = doctor;
+	}
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

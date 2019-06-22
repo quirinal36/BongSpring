@@ -29,7 +29,7 @@ public class PatientInfoController extends BacoderController {
 			PatientInfo input = PatientInfo.newInstance(patientId.get());
 			int total = patientInfoService.count(input);
 			input.setTotalCount(total);
-			
+			logger.info(input.toString());
 			result = patientInfoService.select(input);
 		}
 		

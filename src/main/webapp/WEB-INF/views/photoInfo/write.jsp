@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>사진올리기</title>
-	
+	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
 	<link href="<c:url value="/resources/css/bootstrap.css"/>" type="text/css" rel="stylesheet" />
 	<link href="<c:url value="/resources/css/dropzone.css"/>" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
@@ -19,10 +19,18 @@
 			var id = $("input[name='patientId']").val();
 			
 			$.ajax({
-				url : url+id,
+				url : url+"/"+id,
 				type: "GET"
 			}).done(function(resp){
+				console.log(resp.length);
 				console.log(resp);
+				for(var i=0;i<resp.length; i++){
+					var patientInfo = resp[i];
+					console.log("doctor:" + patientInfo.doctor);
+					//$("#searchList").append($("<dd>").html(patientInfo.name));
+					$("input[name='name']").val(patientInfo.name);
+					$("input[name='doctor']").val(patientInfo.doctor);
+				}
 			});
 		});
 	});
@@ -61,21 +69,12 @@
 									<input type="text" name="patientId" placeholder="등록번호" required/>
 									<input type="hidden" name="searchPatientInfoUrl" value="<c:url value="/search/patientInfo/"/>" />
 									<input type="button" value="검색" id="searchPatientInfo"/>
-									<div class="list">
-										<dl id="searchList">
-											<dd>검색결과가 없습니다.</dd>
-											<dd>검색결과가 없습니다.</dd>
-											<dd>검색결과가 없습니다.</dd>
-											<dd>검색결과가 없습니다.</dd>
-											<dd>검색결과가 없습니다.</dd>
-											<dd>검색결과가 없습니다.</dd>
-											<dd>검색결과가 없습니다.</dd>
-											<dd>검색결과가 없습니다.</dd>
-											<dd>검색결과가 없습니다.</dd>
-											
-										</dl>
-									</div>
+									
 								</td>
+							</tr>
+							<tr>
+								<td>환자명</td>
+								<td><input type="text" name="name" placeholder="환자명" required/></td>
 							</tr>
 							<tr>
 								<td>주치의</td>
@@ -197,7 +196,7 @@
 		});
 	}
 	</script>
-	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
+	
 	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
