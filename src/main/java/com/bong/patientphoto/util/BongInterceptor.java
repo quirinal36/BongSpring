@@ -14,15 +14,15 @@ public class BongInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {	
-		if(request.isUserInRole("ROLE_USER") || request.isUserInRole("ROLE_ADMIN"))
-		{
-			logger.info("preHandle : isUserInRole_True");
-			return true;
-		} else {
-			logger.info("preHandle : isUserInRole_False");
-			response.sendRedirect(request.getContextPath() + "/login");
-			
-		}
+//		if(request.isUserInRole("ROLE_USER") || request.isUserInRole("ROLE_ADMIN"))
+//		{
+//			logger.info("preHandle : isUserInRole_True");
+//			return true;
+//		} else {
+//			logger.info("preHandle : isUserInRole_False");
+//			response.sendRedirect(request.getContextPath() + "/login");
+//			
+//		}
 		return true;
 	}
 
