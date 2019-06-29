@@ -5,7 +5,7 @@ import java.sql.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class PhotoInfo implements Cloneable{
+public class PhotoInfo extends Paging implements Cloneable{
 	int id;
 	String patientId;
 	String doctor;
@@ -23,6 +23,8 @@ public class PhotoInfo implements Cloneable{
 	String url;
 	String thumbnailUrl;
 	String contentType;
+	String search;
+	private int orderById;
 	
 	public PhotoInfo() {
 		
@@ -237,7 +239,21 @@ public class PhotoInfo implements Cloneable{
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
 	}
 
+	public String getSearch() {
+		return search;
+	}
 
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public int getOrderById() {
+		return orderById;
+	}
+
+	public void setOrderById(int orderById) {
+		this.orderById = orderById;
+	}
 
 	@Override
 	public Object clone() throws CloneNotSupportedException {

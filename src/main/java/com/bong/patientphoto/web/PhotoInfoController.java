@@ -23,6 +23,21 @@ import com.bong.patientphoto.vo.UserVO;
 public class PhotoInfoController extends BacoderController{
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	
+	
+	@RequestMapping(value="/photoInfo/list")
+	public ModelAndView getListView(ModelAndView mv, PhotoInfo photoInfo) {
+		mv.addObject("info", photoInfo);
+		return mv;
+	}
+	/**
+	 * 
+	 * @param mv
+	 * @param info
+	 * @param resp
+	 * @param files
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping(value="/photoInfo/insert", method=RequestMethod.POST)
 	public ModelAndView memberInsert(ModelAndView mv, 
 			PhotoInfo info, HttpServletResponse resp,
