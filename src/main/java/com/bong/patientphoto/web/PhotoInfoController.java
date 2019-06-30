@@ -8,12 +8,15 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bong.patientphoto.vo.PhotoInfo;
@@ -23,10 +26,23 @@ import com.bong.patientphoto.vo.UserVO;
 public class PhotoInfoController extends BacoderController{
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	
-	
+	@ResponseBody
+	@RequestMapping(value="/photoInfo/save")
+	public String savePhotoInfo(PhotoInfo photoInfo) {
+		JSONObject json = new JSONObject();
+		json.put("result", 1);
+		JSONArray jsonarray = new JSONArray(photoInfo.getPhoto());
+		logger.info("length: "+jsonarray.length());
+		for(int i=0; i<jsonarray.length(); i++) {
+			logger.info(jsonarray.get(i).toString());
+		}
+		logger.info(photoInfo.toString());
+		return json.toString();
+	}
 	@RequestMapping(value="/photoInfo/list")
 	public ModelAndView getListView(ModelAndView mv, PhotoInfo photoInfo) {
 		mv.addObject("info", photoInfo);
+		mv.setViewName("/photoInfo/list");
 		return mv;
 	}
 	/**

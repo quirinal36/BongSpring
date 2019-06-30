@@ -25,7 +25,16 @@ public class PhotoInfo extends Paging implements Cloneable{
 	String contentType;
 	String search;
 	private int orderById;
+	String [] photo;
 	
+	public String[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String[] photo) {
+		this.photo = photo;
+	}
+
 	public PhotoInfo() {
 		
 	}
@@ -260,6 +269,5 @@ public class PhotoInfo extends Paging implements Cloneable{
 		// TODO Auto-generated method stub
 		return super.clone();
 	}
-	
 	
 }
