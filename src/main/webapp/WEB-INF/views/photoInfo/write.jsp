@@ -26,10 +26,11 @@
 				console.log(resp);
 				for(var i=0;i<resp.length; i++){
 					var patientInfo = resp[i];
-					console.log("doctor:" + patientInfo.doctor);
+					console.log(patientInfo);
 					//$("#searchList").append($("<dd>").html(patientInfo.name));
 					$("input[name='name']").val(patientInfo.name);
 					$("input[name='doctor']").val(patientInfo.doctor);
+					$("#write").find("input[name='id']").val(patientInfo.id);
 				}
 			});
 		});
@@ -58,7 +59,7 @@
 						<thead>
 							<tr>
 								<th colspan="2">
-									사진정보 업로드								
+									환자정보 찾기 / 입력							
 								</th>
 							</tr>
 						</thead>
@@ -67,6 +68,7 @@
 								<td>등록번호</td>
 								<td>
 									<input type="text" name="patientId" placeholder="등록번호" required/>
+									<input type="hidden" name="id"/>
 									<input type="hidden" name="searchPatientInfoUrl" value="<c:url value="/search/patientInfo/"/>" />
 									<input type="button" value="검색" id="searchPatientInfo"/>
 									
@@ -112,6 +114,7 @@
 					</table>
 					<input id="fileupload" type="file" name="files[]" 
 						accept="image/x-png,image/gif,image/jpeg" data-url="<c:url value="/upload"/>" multiple>
+				    </form>
 				    <div id="progress">
 				        <div style="width: 0%;"></div>
 				    </div>
@@ -140,7 +143,7 @@
 				    </table>
 					<input type="hidden" value="<c:url value="/upload/get"/>" name="uploadUrl">
 					<input type="button" value="글작성" onclick="javascript:insertPhoto();">
-				</form>
+				
 			</div>
 		</div>
 	</div>

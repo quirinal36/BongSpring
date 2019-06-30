@@ -35,7 +35,9 @@ public class PhotoInfoController extends BacoderController{
 		logger.info("length: "+jsonarray.length());
 		for(int i=0; i<jsonarray.length(); i++) {
 			logger.info(jsonarray.get(i).toString());
+			// 데이터베이스 PhotoInto 테이블 수정
 		}
+		
 		logger.info(photoInfo.toString());
 		return json.toString();
 	}
