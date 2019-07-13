@@ -7,10 +7,8 @@
 	<div>
 		<ul>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<li><a href="<c:url value="/admin"/>">관리자화면</a></li>
-			</sec:authorize>
-			<li><a href="<c:url value="/board/list"/>">사진업로드</a></li>
-			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<li><a href="<c:url value="/admin"/>">관리자화면</a></li>s
+				<li><a href="<c:url value="/photoInfo/list"/>">환자사진</a></li>
 				<li><a href="<c:url value="/oprecord/list"/>">수술기록지</a></li>
 			</sec:authorize>
 			

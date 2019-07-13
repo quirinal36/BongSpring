@@ -75,20 +75,10 @@ public class FileController extends BacoderController{
                 photo.setThumbnailSize((int)thumbnailFile.length());
                 photo.setContentType(contentType);
                 
-//                Image image = new Image();
-//                image.setName(mpf.getOriginalFilename());
-//                image.setThumbnailFilename(thumbnailFilename);
-//                image.setNewFilename(newFilename);
-//                image.setContentType(contentType);
-//                image.setSize(mpf.getSize());
-//                image.setThumbnailSize(thumbnailFile.length());
                 int result = photoInfoService.insert(photo);
-//                 image.setId(1l);
                 
                 photo.setUrl(getWebappDir(request) +"/picture/"+photo.getId());
                 photo.setThumbnailUrl(getWebappDir(request) + "/thumbnail/"+photo.getId());
-//                image.setDeleteUrl("/delete/"+image.getId());
-//                image.setDeleteType("DELETE");
                 
                 logger.info(photo.toString());
                 list.add(photo);

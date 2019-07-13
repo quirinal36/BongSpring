@@ -26,10 +26,11 @@
 				console.log(resp);
 				for(var i=0;i<resp.length; i++){
 					var patientInfo = resp[i];
-					console.log("doctor:" + patientInfo.doctor);
+					console.log(patientInfo);
 					//$("#searchList").append($("<dd>").html(patientInfo.name));
 					$("input[name='name']").val(patientInfo.name);
 					$("input[name='doctor']").val(patientInfo.doctor);
+					$("#write").find("input[name='id']").val(patientInfo.id);
 				}
 			});
 		});
@@ -58,7 +59,7 @@
 						<thead>
 							<tr>
 								<th colspan="2">
-									사진정보 업로드								
+									환자정보 찾기 / 입력							
 								</th>
 							</tr>
 						</thead>
@@ -67,6 +68,7 @@
 								<td>등록번호</td>
 								<td>
 									<input type="text" name="patientId" placeholder="등록번호" required/>
+									<input type="hidden" name="id"/>
 									<input type="hidden" name="searchPatientInfoUrl" value="<c:url value="/search/patientInfo/"/>" />
 									<input type="button" value="검색" id="searchPatientInfo"/>
 									
@@ -78,7 +80,14 @@
 							</tr>
 							<tr>
 								<td>주치의</td>
-								<td><input type="text" name="doctor" placeholder="주치의" required/></td>
+								<td>
+								<select name="doctor">
+									<option>--선택--</option>
+									<option value="봉황세">봉황세</option>
+									<option value="홍길동">홍길동</option>
+									<option value="이병호">이병호</option>
+								</select>
+								</td>
 							</tr>
 							<tr>
 								<td>등록담당자</td>
@@ -86,21 +95,26 @@
 							</tr>
 							<tr>
 								<td>분류</td>
-								<td><input type="text" name="classification" placeholder="분류"/></td>
+								<td>
+								<select name="classification">
+									<option>--선택--</option>
+									<option value="수술중" selected>수술중</option>
+									<option value="응급실">응급실</option>
+									
+								</select>
+								</td>
 							</tr>
 							<tr>
 								<td>촬영일</td>
 								<td><input type="text" name="date" placeholder="촬영일" value="${today }"/></td>
 							</tr>
-							<tr>
-								<td>코멘트</td>
-								<td><input type="text" name="comment" placeholder="코멘트"/></td>
-							</tr>
+							
 							
 						</tbody>
 					</table>
 					<input id="fileupload" type="file" name="files[]" 
 						accept="image/x-png,image/gif,image/jpeg" data-url="<c:url value="/upload"/>" multiple>
+				    </form>
 				    <div id="progress">
 				        <div style="width: 0%;"></div>
 				    </div>
@@ -122,14 +136,14 @@
 					        	<th>미리보기</th>
 					            <th>파일명</th>
 					            <th>Size</th>
-					            <th>Type</th>
+					            <th>코멘트</th>
 					            <th></th>
 					        </tr>
 				        </tbody>
 				    </table>
 					<input type="hidden" value="<c:url value="/upload/get"/>" name="uploadUrl">
-					<input type="button" value="글작성" onclick="javascript:insertBoard();">
-				</form>
+					<input type="button" value="글작성" onclick="javascript:insertPhoto();">
+				
 			</div>
 		</div>
 	</div>
@@ -159,7 +173,11 @@
 	                        .append($('<td/>').append($('<img/>').attr('src', file.url)))
 	                        .append($('<td/>').text(file.name))
 	                        .append($('<td/>').text(file.size))
-	                        .append($('<td/>').text(file.contentType))
+	                        .append(
+	                        		$('<td/>')
+	                        		.append($("<input/>").attr('name', 'comment').attr('type','text'))
+	                        		.append($("<input/>").attr('name', 'id').attr('type','hidden').val(file.id))
+	                        		)
 	                        .append($('<td/>').html(
 	                        		"<input type='button' value='삭제' onclick='deleteThis("+file.id+")'/>"
 	                        		))
@@ -184,8 +202,37 @@
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 	    
 	});
-	function insertBoard(){
-		$("#write").submit();
+	function insertPhoto(){
+		var patientInfo = $("#write").serializeArray();
+		var patientInfo2 = $("#write").serialize();
+		
+		//var arr = [];
+		
+		$("#uploaded-files > tbody").find("tr").each(function(){
+			var comment = $(this).find("input[name='comment']").val();
+			var id = $(this).find("input[name='id']").val();
+			
+			var photo = {
+				"id" : id,
+				"comment" : comment
+			};
+			var info = {'name':'photo', 'value':JSON.stringify(photo)};
+			if(parseInt(id) > 0){
+				//arr.push(photo);
+				patientInfo.push( info );
+			}
+		});
+		
+		//console.log(arr);
+		//patientInfo.push(arr);
+		console.log(patientInfo);
+		var url = "/photoInfo/save";
+		$.ajax({
+			url : url,
+			data: patientInfo
+		}).done(function(resp){
+			console.log(resp);
+		});
 	}
 	function deleteThis(id){
 		$.ajax({
