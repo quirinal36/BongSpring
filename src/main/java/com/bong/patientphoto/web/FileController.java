@@ -54,7 +54,9 @@ public class FileController extends BacoderController{
             String originalFileExtension = mpf.getOriginalFilename().substring(mpf.getOriginalFilename().lastIndexOf("."));
             String newFilename = newFilenameBase + originalFileExtension;
             
-            String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+            //String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+            String srcPath = Config.srcPath;
+
             logger.info("srcPath: " + srcPath);
 			String contentType = mpf.getContentType();
 			
@@ -97,7 +99,9 @@ public class FileController extends BacoderController{
 		param.setId(id);
 		
         PhotoInfo image = photoInfoService.selectOne(param);
-        String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+      //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+        String srcPath = Config.srcPath;
+
         File imageFile = new File(srcPath+"/"+image.getNewFilename());
         response.setContentType(image.getContentType());
         response.setContentLength(image.getSize());
@@ -113,7 +117,9 @@ public class FileController extends BacoderController{
     		HttpServletResponse response, @PathVariable int id) {
 		PhotoInfo param = new PhotoInfo();
 		param.setId(id);
-		String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+		//String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+        String srcPath = Config.srcPath;
+
         
 		
 		PhotoInfo image = photoInfoService.selectOne(param);
@@ -141,7 +147,7 @@ public class FileController extends BacoderController{
 		param.setId(id);
 		
         Image image = imageService.selectOne(param);
-        String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+        String srcPath = Config.srcPath;
         
         File imageFile = new File(srcPath+"/"+image.getNewFilename());
         imageFile.delete();
