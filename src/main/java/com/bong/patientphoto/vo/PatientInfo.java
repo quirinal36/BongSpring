@@ -4,11 +4,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class PatientInfo extends Paging{
-	int id;
-	int patientId;
-	String name;
-	String birth;
-	String doctor;
+	protected int id;
+	protected int patientId;
+	protected String name;
+	protected String birth;
+	protected String doctor;
 	
 	public PatientInfo() {
 		

@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bong.patientphoto.Config;
 import com.bong.patientphoto.vo.PatientInfo;
+import com.bong.patientphoto.vo.PatientPhotoInfo;
 
 @Controller
 public class PatientInfoController extends BacoderController {
@@ -34,5 +37,13 @@ public class PatientInfoController extends BacoderController {
 		}
 		
 		return result;
+	}
+	
+	@RequestMapping(value="/patient/detail", method = RequestMethod.GET)
+	public ModelAndView getDetailView(ModelAndView mv, PatientInfo patient) {
+		List<PatientPhotoInfo> list = patientInfoService.selectDetail(patient);
+		mv.addObject("list", list);
+		mv.addObject("info", patient);
+		return mv;
 	}
 }

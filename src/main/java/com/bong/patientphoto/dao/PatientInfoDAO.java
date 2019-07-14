@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.bong.patientphoto.service.DataService;
 import com.bong.patientphoto.vo.PatientInfo;
+import com.bong.patientphoto.vo.PatientPhotoInfo;
 
 @Repository("PatientInfoDAO")
 public class PatientInfoDAO implements DataService<PatientInfo> {
@@ -46,12 +47,14 @@ public class PatientInfoDAO implements DataService<PatientInfo> {
 
 	@Override
 	public PatientInfo selectOne(PatientInfo input) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace +".select_one", input);
 	}
 
 	@Override
 	public int count(PatientInfo input) {
 		return sqlSession.selectOne(namespace +".count", input);
+	}
+	public List<PatientPhotoInfo> selectDetail(PatientInfo input){
+		return sqlSession.selectList(namespace + ".select_detail", input);
 	}
 }

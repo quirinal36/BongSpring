@@ -27,4 +27,22 @@
 			patientId like '${patientId}'
 		</where>
 	</select>
+	
+	<select id="select_detail" parameterType="patientInfo" resultType="patientPhoto">
+		SELECT 
+			patient.*,
+			photo.id AS photoId,
+			photo.photoUrl,
+			photo.classification,
+			photo.date,
+			photo.accessLv,
+			photo.captureDate,
+			photo.updateDate
+		FROM 
+			PatientInfo patient LEFT JOIN PhotoInfo photo ON patient.patientId = photo.patientId
+		<where>
+			patient.patientId = ${patientId}
+		</where>
+		order by photo.id desc
+	</select>
 </mapper>

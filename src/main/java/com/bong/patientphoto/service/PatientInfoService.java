@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.bong.patientphoto.dao.PatientInfoDAO;
 import com.bong.patientphoto.vo.PatientInfo;
+import com.bong.patientphoto.vo.PatientPhotoInfo;
 
 @Component("patientInfoService")
 public class PatientInfoService implements DataService<PatientInfo> {
@@ -41,11 +42,12 @@ public class PatientInfoService implements DataService<PatientInfo> {
 	public List<PatientInfo> select(PatientInfo input) {
 		return dao.select(input);
 	}
-
+	public List<PatientPhotoInfo> selectDetail(PatientInfo input){
+		return dao.selectDetail(input);
+	}
 	@Override
 	public PatientInfo selectOne(PatientInfo input) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectOne(input);
 	}
 
 	@Override
