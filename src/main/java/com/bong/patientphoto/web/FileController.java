@@ -6,7 +6,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -43,18 +46,29 @@ public class FileController extends BacoderController{
 	
 	
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public @ResponseBody Map upload2(MultipartHttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody Map upload2(MultipartHttpServletRequest request, HttpServletResponse response) throws ParseException {
 		String patientId = request.getParameter("patientId");
 		logger.info("patientId: " + patientId);
 		
 		String date = request.getParameter("date");
 		logger.info("date: " + date);
-		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date parsed = format.parse(date);
+        java.sql.Date captureDate = new java.sql.Date(parsed.getTime());
+
 		String doctor = request.getParameter("doctor");
 		logger.info("doctor: " + doctor);
 		
 		String classification = request.getParameter("classification");
 		logger.info("classification: " + classification);
+		
+		String uploader = request.getParameter("uploader");
+		logger.info("uploader: " + uploader);
+
+		
+		SimpleDateFormat format1 = new SimpleDateFormat ("HHmmss");			
+		Date time = new Date();			
+		String time1 = format1.format(time);
 		
 		Iterator<String> itr = request.getFileNames();
         MultipartFile mpf;
@@ -62,7 +76,18 @@ public class FileController extends BacoderController{
         while (itr.hasNext()) {
             mpf = request.getFile(itr.next());
             logger.info("Uploading {}" + mpf.getOriginalFilename());
-            String newFilenameBase = UUID.randomUUID().toString();
+//            String newFilenameBase = UUID.randomUUID().toString();
+            
+            String url = "/volume1/@appstore/Tomcat7/src/webapps/storage";
+            File patientDir = new File(url + File.separator + patientId);
+            logger.info("url: "+url);
+            logger.info("patientDir: "+patientDir.getPath());
+
+            if(!patientDir.exists()) {
+            	patientDir.mkdir();
+            }
+            String newFilenameBase = patientId+"/"+patientId+"_"+date+"_"+time1;
+
             String originalFileExtension = mpf.getOriginalFilename().substring(mpf.getOriginalFilename().lastIndexOf("."));
             String newFilename = newFilenameBase + originalFileExtension;
             
@@ -82,12 +107,19 @@ public class FileController extends BacoderController{
                 ImageIO.write(thumbnail, "png", thumbnailFile);
                 
                 PhotoInfo photo = new PhotoInfo();
+                photo.setPatientId(patientId);
                 photo.setName(mpf.getOriginalFilename());
                 photo.setThumbnailFilename(thumbnailFilename);
                 photo.setNewFilename(newFilename);
                 photo.setSize((int)mpf.getSize());
                 photo.setThumbnailSize((int)thumbnailFile.length());
                 photo.setContentType(contentType);
+                photo.setClassification(classification);
+                photo.setSync(2);
+                photo.setPhotoUrl(newFilename);
+                photo.setDoctor(doctor);
+                photo.setCaptureDate(captureDate);
+                photo.setUploader(uploader);
                 
                 int result = photoInfoService.insert(photo);
                 

@@ -170,7 +170,8 @@
 	    		});
 	    		param['classification'] = $("select[name='classification']").val();
 	    		param['doctor'] = $("select[name='doctor']").val();
-	    		
+	    		param['uploader'] = $("select[name='uploader']").val();
+
 	    		console.log(param);
 				data.formData = param;   		
 	    	}).on('progressall', function (e, data) {
