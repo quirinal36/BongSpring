@@ -101,6 +101,8 @@
 	        dataType: 'json',
 	        done: function (e, data) {
 	        	var url = $("input[name='uploadUrl']").val();
+	        	
+	        	
 	            $("#uploaded-files tr:has(td)").remove();
 	            $.each(data.result, function (index, file) {
 	                $("#uploaded-files").append(
