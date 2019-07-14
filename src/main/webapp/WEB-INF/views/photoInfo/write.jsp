@@ -158,7 +158,10 @@
 		        imageMaxHeight: 100,
 		        previewCrop : true
 	    	}).on('fileuploadsubmit', function(e, data){
-				data.formData = {'patientId' : $("input[name='patientId']").val() };   		
+	    		console.log("fileuploadsubmit");
+	    		var patientId = $("#write").find("input[name='patientId']").val();
+	    		console.log("patientId: " + patientId);
+				data.formData = {'patientId' : patientId };   		
 	    	}).on('progressall', function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
 	            

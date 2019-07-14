@@ -44,6 +44,9 @@ public class FileController extends BacoderController{
 	
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody Map upload2(MultipartHttpServletRequest request, HttpServletResponse response) {
+		String patientId = request.getParameter("patientId");
+		logger.info("patientId: " + patientId);
+		
 		Iterator<String> itr = request.getFileNames();
         MultipartFile mpf;
         List<PhotoInfo> list = new LinkedList<>();
