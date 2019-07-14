@@ -47,6 +47,15 @@ public class FileController extends BacoderController{
 		String patientId = request.getParameter("patientId");
 		logger.info("patientId: " + patientId);
 		
+		String date = request.getParameter("date");
+		logger.info("date: " + date);
+		
+		String doctor = request.getParameter("doctor");
+		logger.info("doctor: " + doctor);
+		
+		String classification = request.getParameter("classification");
+		logger.info("classification: " + classification);
+		
 		Iterator<String> itr = request.getFileNames();
         MultipartFile mpf;
         List<PhotoInfo> list = new LinkedList<>();

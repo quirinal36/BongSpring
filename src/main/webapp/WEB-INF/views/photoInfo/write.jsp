@@ -22,11 +22,8 @@
 				url : url+"/"+id,
 				type: "GET"
 			}).done(function(resp){
-				console.log(resp.length);
-				console.log(resp);
 				for(var i=0;i<resp.length; i++){
 					var patientInfo = resp[i];
-					console.log(patientInfo);
 					//$("#searchList").append($("<dd>").html(patientInfo.name));
 					$("input[name='name']").val(patientInfo.name);
 					$("input[name='doctor']").val(patientInfo.doctor);
@@ -149,6 +146,15 @@
 	</div>
 	<script type="text/javascript">
 	$(function () {
+		$(window).bind("beforeunload", function(){
+			var patientId = $("#write").find("input[name='patientId']").val();
+			console.log("patientId: " + patientId);
+			
+			if(patientId != 'undefined' && patientId.length > 0){
+				return "작성중인 정보가 사라집니다. 창을 나가시겠습니까?";
+			}
+		});
+		
 	    $('#fileupload')
 	    	.fileupload({
 		        dataType: 'json',
@@ -158,13 +164,18 @@
 		        imageMaxHeight: 100,
 		        previewCrop : true
 	    	}).on('fileuploadsubmit', function(e, data){
-	    		console.log("fileuploadsubmit");
-	    		var patientId = $("#write").find("input[name='patientId']").val();
-	    		console.log("patientId: " + patientId);
-				data.formData = {'patientId' : patientId };   		
+	    		var param = new Object();
+	    		$("#write input").each(function(i, item){
+	    			param[$(item).attr('name')] = $(item).val();
+	    		});
+	    		param['classification'] = $("select[name='classification']").val();
+	    		param['doctor'] = $("select[name='doctor']").val();
+	    		
+	    		console.log(param);
+				data.formData = param;   		
 	    	}).on('progressall', function (e, data) {
 	            var progress = parseInt(data.loaded / data.total * 100, 10);
-	            
+	            console.log("progress: " + progress);
 	            $('#progress .bar').css(
 	                'width',
 	                progress + '%'
