@@ -40,17 +40,18 @@ public class PhotoInfoDAO implements DataAccess<PhotoInfo> {
 	}
 	@Override
 	public List<PhotoInfo> select(PhotoInfo input) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace +".select_list", input);
 	}
 	@Override
 	public PhotoInfo selectOne(PhotoInfo input) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + ".select_one", input);
 	}
 	@Override
 	public int count(PhotoInfo input) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	public int selectTotal(PhotoInfo input) {
+		return sqlSession.selectOne(namespace +".select_total", input);
 	}
 }

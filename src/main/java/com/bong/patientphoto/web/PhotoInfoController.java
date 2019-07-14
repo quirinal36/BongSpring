@@ -43,6 +43,12 @@ public class PhotoInfoController extends BacoderController{
 	}
 	@RequestMapping(value="/photoInfo/list")
 	public ModelAndView getListView(ModelAndView mv, PhotoInfo photoInfo) {
+		int totalCount = photoInfoService.selectTotal(photoInfo);
+		photoInfo.setTotalCount(totalCount);
+		
+		List<PhotoInfo> list = photoInfoService.select(photoInfo);
+		mv.addObject("list", list);
+		
 		mv.addObject("info", photoInfo);
 		mv.setViewName("/photoInfo/list");
 		return mv;
@@ -104,6 +110,13 @@ public class PhotoInfoController extends BacoderController{
 		mv.addObject("today", today);
 		
 		mv.setViewName("/photoInfo/write");
+		return mv;
+	}
+	
+	@RequestMapping(value="/photoInfo/detail", method=RequestMethod.GET)
+	public ModelAndView getDetailView(ModelAndView mv, PhotoInfo photo) {
+		photo = photoInfoService.selectOne(photo);
+		mv.addObject("info", photo);
 		return mv;
 	}
 }

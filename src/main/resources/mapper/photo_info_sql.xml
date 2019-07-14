@@ -71,6 +71,22 @@
 		<where>
 			id = ${id}
 		</where>
-		
+		limit 0, 1
+	</select>
+	
+	<select id="select_list" parameterType="photoinfo" resultType="photoinfo">
+		SELECT *
+		FROM PhotoInfo
+		<where>
+			
+		</where>
+		limit ${from}, ${pageSize}
+	</select>
+	
+	<select id="select_total" parameterType="photoinfo" resultType="int">
+	SELECT COUNT(*)
+	FROM PhotoInfo
+	<where>
+	</where>
 	</select>
 </mapper>
