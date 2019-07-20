@@ -44,6 +44,7 @@ public class PatientInfoController extends BacoderController {
 		List<PatientPhotoInfo> list = patientInfoService.selectDetail(patient);
 		mv.addObject("list", list);
 		mv.addObject("info", patient);
+		mv.setViewName("/patient/detail");
 		return mv;
 	}
 	@RequestMapping(value="/patient/myAdmList", method = RequestMethod.GET)
