@@ -109,9 +109,18 @@
 	<update id="update" parameterType="java.util.List">
 		UPDATE PhotoInfo
 		<set>
-			<foreach collection="list" item="item" separator=",">
-			size = (WHEN id = ${item.id} THEN ${item.size}),
-			contentType = (WHEN id = ${item.id} THEN ${item.contentType})
+			size = 
+			<foreach collection="list" item="item" open="CASE" close="END" separator=" ">
+			 	WHEN id = ${item.id} 
+			 	THEN 
+					 ${item.size}
+			</foreach>
+			,
+			contentType =
+			<foreach collection="list" item="item" open="CASE" close="END" separator=" ">
+			 	WHEN id = ${item.id} 
+			 	THEN 
+					 '${item.contentType}'
 			</foreach>
 		</set>
 	</update>
