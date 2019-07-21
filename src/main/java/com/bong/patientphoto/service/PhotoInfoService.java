@@ -26,7 +26,7 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 	@Override
 	public int update(PhotoInfo input) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.update(input);
 	}
 	public int update(List<PhotoInfo> list) {
 		return dao.update(list);
@@ -42,10 +42,10 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 		return dao.select();
 	}
 
-	@Override
-	public List<PhotoInfo> select(PhotoInfo input) {
-		return dao.select(input);
+	public List<PhotoInfo> selectAll(PhotoInfo input) {
+		return dao.selectAll(input);
 	}
+	
 
 	@Override
 	public PhotoInfo selectOne(PhotoInfo input) {
@@ -60,5 +60,11 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 	}
 	public int selectTotal(PhotoInfo input) {
 		return dao.selectTotal(input);
+	}
+
+	@Override
+	public List<PhotoInfo> select(PhotoInfo input) {
+		// TODO Auto-generated method stub
+		return dao.select(input);
 	}
 }

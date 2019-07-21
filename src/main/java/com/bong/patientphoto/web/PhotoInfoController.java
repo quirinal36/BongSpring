@@ -47,7 +47,7 @@ public class PhotoInfoController extends BacoderController{
 		photoInfo.setTotalCount(totalCount);
 		
 		List<PhotoInfo> list = photoInfoService.select(photoInfo);
-		logger.info(list.toString());
+		//logger.info(list.toString());
 		mv.addObject("list", list);
 		
 		mv.addObject("info", photoInfo);

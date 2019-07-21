@@ -100,20 +100,33 @@
 	</where>
 	</select>
 	
-	<select id="select_all" resultType="photoinfo">
+	<select id="select_all" parameterType="photoinfo" resultType="photoinfo">
 		SELECT *
 		FROM PhotoInfo
-		limit 0, 10
+	 	limit ${range}, 10000
 	</select>
+	
+	<update id="update_one" parameterType="photoinfo">
+		UPDATE PhotoInfo
+		<set>
+			 size = ${size}, contentType = '${contentType}'
+		</set>
+			<where> id = ${id} </where>
+	</update>
 	
 	<update id="update" parameterType="java.util.List">
 		UPDATE PhotoInfo
 		<set>
-			
-			<foreach collection="list" item="item" separator=",">
-			 	size = (CASE WHEN id = ${item.id} THEN ${item.size} END),    
-				contentType = (CASE WHEN id = ${item.id} THEN '${item.contentType}' END )
+			size = (CASE
+			<foreach collection="list" item="item">
+			 	 WHEN id = ${item.id} THEN ${item.size}
 			</foreach>
+			 	   END),    
+			contentType = (CASE
+			<foreach collection="list" item="item">
+				 WHEN id = ${item.id} THEN '${item.contentType}'
+			</foreach>
+				 END)
 			
 		</set>
 	</update>

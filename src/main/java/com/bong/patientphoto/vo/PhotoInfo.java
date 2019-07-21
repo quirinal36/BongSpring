@@ -27,6 +27,7 @@ public class PhotoInfo extends Paging implements Cloneable{
 	private int orderById;
 	String [] photo;
 	Date captureDate;
+	int range;
 	
 	public String[] getPhoto() {
 		return photo;
@@ -271,6 +272,14 @@ public class PhotoInfo extends Paging implements Cloneable{
 
 	public void setCaptureDate(Date captureDate) {
 		this.captureDate = captureDate;
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
 	}
 
 	@Override

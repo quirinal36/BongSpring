@@ -31,6 +31,7 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -296,15 +297,19 @@ public class FileController extends BacoderController{
 	
 	@ResponseBody
 	@RequestMapping(value="/upload/update", method=RequestMethod.GET)
-	public String updatePictures() {
+	public String updatePictures(HttpServletResponse response, @RequestParam(value="start")Integer start) {
 		JSONObject json = new JSONObject();
 		
-		final String photoUrlParent = Config.UPLOAD_DIR;
-		List<PhotoInfo> list = photoInfoService.select();
+		final String photoUrlParent = Config.srcPath;
+		logger.info("start : "+start);
+		PhotoInfo info = new PhotoInfo();
+		info.setRange(start);
+		
+		List<PhotoInfo> list = photoInfoService.selectAll(info);
 		logger.info("list size : " + list.size());
 		json.put("total", list.size());
 		
-		int i = 0;
+		//int i = 0;
 		Iterator<PhotoInfo> iter = list.iterator();
 		while(iter.hasNext()) {
 			PhotoInfo photo = iter.next();
@@ -314,14 +319,38 @@ public class FileController extends BacoderController{
 			final String type = "image/"+ext;
 			photo.setSize((int)size);
 			photo.setContentType(type);
-			if(i++ > 10) {
-				break;
-			}
-			logger.info(photo.toString());
+			
+			//logger.info(photo.toString());
 		}
 		
-//		int result = photoInfoService.update(list);
-//		json.put("update", result);
+		int result = photoInfoService.update(list);
+		json.put("update", result);
+		return json.toString();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/upload/updateOne", method=RequestMethod.GET)
+	public String updateOnePicture(HttpServletResponse response, @RequestParam(value="id")Integer id) {
+		JSONObject json = new JSONObject();
+		
+		final String photoUrlParent = Config.srcPath;
+		//logger.info("start : "+id);
+		PhotoInfo info = new PhotoInfo();
+		info.setId(id);
+		
+		info = photoInfoService.selectOne(info);
+		
+		File photoFile = new File(photoUrlParent + File.separator + info.getPhotoUrl());
+		final long size = photoFile.length();
+		final String ext = info.getPhotoUrl().substring(info.getPhotoUrl().lastIndexOf(".")+1);
+		final String type = "image/"+ext;
+		info.setSize((int)size);
+		info.setContentType(type);
+			
+		//logger.info(photo.toString());
+			
+		int result = photoInfoService.update(info);
+		json.put("update", result);
 		return json.toString();
 	}
 }

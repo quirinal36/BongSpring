@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <!doctype html>
-<title>환자정</title>
+<title>환자정보</title>
 <style>
 .grid { 
   display: grid;
@@ -65,7 +65,7 @@
 		<td colspan="2"> 
 		<div class="grid">		
 			<c:forEach items="${list}" var="item">
-				<img src="http://localhost:8081/picture/${item.photoId }"/>
+				<img src="http://hsbong.synology.me:7070/PatientPhoto/picture/${item.photoId }"/>
 			</c:forEach>
 		</div>
 		</td>

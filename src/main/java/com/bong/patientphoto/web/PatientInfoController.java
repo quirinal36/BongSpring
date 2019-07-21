@@ -44,6 +44,7 @@ public class PatientInfoController extends BacoderController {
 		List<PatientPhotoInfo> list = patientInfoService.selectDetail(patient);
 		mv.addObject("list", list);
 		mv.addObject("info", patient);
+		logger.info(list.toString());
 		mv.setViewName("/patient/detail");
 		return mv;
 	}
