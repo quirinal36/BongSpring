@@ -63,11 +63,11 @@
 	<tbody>
 	<tr>
 		<td colspan="2"> 
-		<main class="grid">		
+		<div class="grid">		
 			<c:forEach items="${list}" var="item">
-					<img src="http://hsbong.synology.me:7070/storage/${item.photoUrl}" alt="Sample photo">	
+					${item}<img src="http://hsbong.synology.me:7070/PatientPhoto/picture/${item.photoId}" alt="Sample photo">	
 			</c:forEach>
-		</main>
+		</div>
 		</td>
 	</tr>
 	</tbody> 
