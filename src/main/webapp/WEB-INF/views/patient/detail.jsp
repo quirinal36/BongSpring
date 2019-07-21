@@ -65,7 +65,7 @@
 		<td colspan="2"> 
 		<div class="grid">		
 			<c:forEach items="${list}" var="item">
-					${item}<img src="http://hsbong.synology.me:7070/PatientPhoto/picture/${item.photoId}" alt="Sample photo">	
+				<img src="http://localhost:8081/picture/${item.photoId }"/>
 			</c:forEach>
 		</div>
 		</td>

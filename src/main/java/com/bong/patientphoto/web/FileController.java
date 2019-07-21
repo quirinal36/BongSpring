@@ -136,17 +136,22 @@ public class FileController extends BacoderController{
         files.put("files", list);
         return files;
 	}
+	
 	@RequestMapping(value = "/picture/{id}", method = RequestMethod.GET)
     public void picture(HttpServletRequest request,
     		HttpServletResponse response, @PathVariable int id) {
 		PhotoInfo param = new PhotoInfo();
 		param.setId(id);
+		logger.info(param.toString());
 		
         PhotoInfo image = photoInfoService.selectOne(param);
       //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
         String srcPath = Config.srcPath;
 
-        File imageFile = new File(srcPath+"/"+image.getNewFilename());
+        logger.info(image.toString());
+        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+        logger.info(imageFile.getAbsolutePath());
+        
         response.setContentType(image.getContentType());
         response.setContentLength(image.getSize());
         try {
@@ -287,5 +292,36 @@ public class FileController extends BacoderController{
 		
 		JSONObject json = new JSONObject();
 		response.getWriter().append(json.toString());
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/upload/update", method=RequestMethod.GET)
+	public String updatePictures() {
+		JSONObject json = new JSONObject();
+		
+		final String photoUrlParent = Config.UPLOAD_DIR;
+		List<PhotoInfo> list = photoInfoService.select();
+		logger.info("list size : " + list.size());
+		json.put("total", list.size());
+		
+		int i = 0;
+		Iterator<PhotoInfo> iter = list.iterator();
+		while(iter.hasNext()) {
+			PhotoInfo photo = iter.next();
+			File photoFile = new File(photoUrlParent + File.separator + photo.getPhotoUrl());
+			final long size = photoFile.length();
+			final String ext = photo.getPhotoUrl().substring(photo.getPhotoUrl().lastIndexOf(".")+1);
+			final String type = "image/"+ext;
+			photo.setSize((int)size);
+			photo.setContentType(type);
+			if(i++ > 10) {
+				break;
+			}
+			logger.info(photo.toString());
+		}
+		
+//		int result = photoInfoService.update(list);
+//		json.put("update", result);
+		return json.toString();
 	}
 }
