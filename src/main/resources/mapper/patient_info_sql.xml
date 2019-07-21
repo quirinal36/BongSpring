@@ -30,7 +30,19 @@
 	
 	<select id="select_detail" parameterType="patientInfo" resultType="patientPhoto">
 		SELECT 
-			patient.*,
+			patient.id,
+			patient.patientId,
+			patient.name,
+			patient.birth,
+			patient.sex,
+			patient.phone,
+			patient.address,
+			patient.etc,
+			patient.doctor,
+			patient.room,
+			patient.admission,
+			patient.memo,
+			patient.memo_emr,
 			photo.id AS photoId,
 			photo.photoUrl,
 			photo.classification,
