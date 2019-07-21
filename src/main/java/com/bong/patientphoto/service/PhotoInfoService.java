@@ -28,7 +28,9 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	public int update(List<PhotoInfo> list) {
+		return dao.update(list);
+	}
 	@Override
 	public int delete(PhotoInfo input) {
 		// TODO Auto-generated method stub
@@ -37,8 +39,7 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 
 	@Override
 	public List<PhotoInfo> select() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select();
 	}
 
 	@Override
