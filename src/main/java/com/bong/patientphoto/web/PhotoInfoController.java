@@ -118,6 +118,8 @@ public class PhotoInfoController extends BacoderController{
 	public ModelAndView getDetailView(ModelAndView mv, PhotoInfo photo) {
 		photo = photoInfoService.selectOne(photo);
 		mv.addObject("info", photo);
+		
+		mv.setViewName("/photoInfo/detail");
 		return mv;
 	}
 }

@@ -2,6 +2,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+
+<!doctype html>
+<title>환자정</title>
+<style>
+.grid { 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  }
+.grid img {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+  max-width: 100%;
+}
+</style>
+
+
 <c:set value="${list[0] }" var="patientInfo"/>
 <table border="1">
 	<colgroup>
@@ -43,12 +61,14 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${list}" var="item">
-			<tr>
-				<td colspan="2">
-					${item }
-				</td>
-			</tr>
-		</c:forEach>
+	<tr>
+		<td colspan="2"> 
+		<main class="grid">		
+			<c:forEach items="${list}" var="item">
+					<img src="http://hsbong.synology.me:7070/storage/${item.photoUrl}" alt="Sample photo">	
+			</c:forEach>
+		</main>
+		</td>
+	</tr>
 	</tbody> 
 </table>

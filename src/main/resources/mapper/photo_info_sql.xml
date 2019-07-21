@@ -9,6 +9,7 @@
 			patientId,
 			doctor,
 			classification,
+			uploader,
 			comment,
 			photoUrl,
 			name,
@@ -24,6 +25,7 @@
 			${elem.patientId},
 			'${elem.doctor}',
 			'${elem.classification}',
+			'${elem.uploader}',
 			'${elem.comment}',
 			'${elem.photoUrl}',
 			'${elem.name}',
@@ -38,7 +40,11 @@
 	<insert id="insert" parameterType="photoinfo" useGeneratedKeys="true" keyProperty="id">
 		INSERT into PhotoInfo 
 		(
+			patientId,
+			uploader,
+			captureDate,
 			doctor,
+			sync,
 			classification,
 			comment,
 			photoUrl,
@@ -52,7 +58,11 @@
 		values
 		
 		(
+			${patientId},
+			'${uploader}',
+			'${captureDate}',
 			'${doctor}',
+			${sync},
 			'${classification}',
 			'${comment}',
 			'${photoUrl}',
