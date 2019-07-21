@@ -99,4 +99,20 @@
 	<where>
 	</where>
 	</select>
+	
+	<select id="select_all" resultType="photoinfo">
+		SELECT *
+		FROM PhotoInfo
+		limit 0, 10
+	</select>
+	
+	<update id="update" parameterType="java.util.List">
+		UPDATE PhotoInfo
+		<set>
+			<foreach collection="list" item="item" separator=",">
+			size = (WHEN id = ${item.id} THEN ${item.size}),
+			contentType = (WHEN id = ${item.id} THEN ${item.contentType})
+			</foreach>
+		</set>
+	</update>
 </mapper>

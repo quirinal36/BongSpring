@@ -28,6 +28,9 @@ public class PhotoInfoDAO implements DataAccess<PhotoInfo> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public int update(List<PhotoInfo> list) {
+		return sqlSession.update(namespace+".update", list);
+	}
 	@Override
 	public int delete(PhotoInfo input) {
 		// TODO Auto-generated method stub
@@ -35,8 +38,7 @@ public class PhotoInfoDAO implements DataAccess<PhotoInfo> {
 	}
 	@Override
 	public List<PhotoInfo> select() {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace +".select_all");
 	}
 	@Override
 	public List<PhotoInfo> select(PhotoInfo input) {
