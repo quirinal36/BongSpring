@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -37,6 +38,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bong.patientphoto.Config;
+import com.bong.patientphoto.util.Token;
 import com.bong.patientphoto.vo.FileMeta;
 import com.bong.patientphoto.vo.Image;
 import com.bong.patientphoto.vo.PhotoInfo;
@@ -140,55 +142,108 @@ public class FileController extends BacoderController{
 	
 	@RequestMapping(value = "/picture/{id}", method = RequestMethod.GET)
     public void picture(HttpServletRequest request,
-    		HttpServletResponse response, @PathVariable int id) {
+    		HttpServletResponse response, @PathVariable int id, @RequestParam(value="token")Optional<String> tokenStr) {
 		PhotoInfo param = new PhotoInfo();
 		param.setId(id);
-		logger.info(param.toString());
-		
-        PhotoInfo image = photoInfoService.selectOne(param);
-      //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
-        String srcPath = Config.srcPath;
-
-        logger.info(image.toString());
-        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
-        logger.info(imageFile.getAbsolutePath());
-        
-        response.setContentType(image.getContentType());
-        response.setContentLength(image.getSize());
-        try {
-            InputStream is = new FileInputStream(imageFile);
-            IOUtils.copy(is, response.getOutputStream());
-        } catch(IOException e) {
-            logger.info("Could not show picture "+id +"/" + e.getLocalizedMessage());
-        }
+		logger.info(param.toString());	
+		if(request.isUserInRole("ROLE_USER") || request.isUserInRole("ROLE_ADMIN"))
+		{
+				PhotoInfo image = photoInfoService.selectOne(param);
+			      //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+			        String srcPath = Config.srcPath;
+	
+			        logger.info(image.toString());
+			        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+			        logger.info(imageFile.getAbsolutePath());
+			        
+			        response.setContentType(image.getContentType());
+			        response.setContentLength(image.getSize());
+			        try {
+			            InputStream is = new FileInputStream(imageFile);
+			            IOUtils.copy(is, response.getOutputStream());
+			        } catch(IOException e) {
+			            logger.info("Could not show picture "+id +"/" + e.getLocalizedMessage());
+			        }
+		}
+		if(tokenStr.isPresent()) {
+			Token token = new Token();
+			if(token.IsValidPhotoToken(tokenStr.get())) {
+				PhotoInfo image = photoInfoService.selectOne(param);
+			      //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+			        String srcPath = Config.srcPath;
+	
+			        logger.info(image.toString());
+			        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+			        logger.info(imageFile.getAbsolutePath());
+			        
+			        response.setContentType(image.getContentType());
+			        response.setContentLength(image.getSize());
+			        try {
+			            InputStream is = new FileInputStream(imageFile);
+			            IOUtils.copy(is, response.getOutputStream());
+			        } catch(IOException e) {
+			            logger.info("Could not show picture "+id +"/" + e.getLocalizedMessage());
+			        }
+			} else {
+				logger.info("picture :Invalid token");
+			}
+		} else {
+			logger.info("picture : token not found");
+		}
     }
+	
+	
 	@RequestMapping(value = "/thumbnail/{id}", method = RequestMethod.GET)
-    public void thumbnail(HttpServletRequest request,
-    		HttpServletResponse response, @PathVariable int id) {
-		PhotoInfo param = new PhotoInfo();
-		param.setId(id);
-		//String srcPath = request.getSession().getServletContext().getRealPath("/upload");
-        String srcPath = Config.srcPath;
-
-        
+	   public void thumbnail(HttpServletRequest request,
+	    		HttpServletResponse response, @PathVariable int id, @RequestParam(value="token")Optional<String> tokenStr) {
+			PhotoInfo param = new PhotoInfo();
+			param.setId(id);
+			logger.info(param.toString());	
+			if(request.isUserInRole("ROLE_USER") || request.isUserInRole("ROLE_ADMIN"))
+			{
+					PhotoInfo image = photoInfoService.selectOne(param);
+				      //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+				        String srcPath = Config.srcPath;
 		
-		PhotoInfo image = photoInfoService.selectOne(param);
-        File imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
-        response.setContentType(image.getContentType());
-        response.setContentLength(image.getSize());
-        
+				        logger.info(image.toString());
+				        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+				        logger.info(imageFile.getAbsolutePath());
+				        
+				        response.setContentType(image.getContentType());
+				        response.setContentLength(image.getThumbnailSize());
+				        try {
+				            InputStream is = new FileInputStream(imageFile);
+				            IOUtils.copy(is, response.getOutputStream());
+				        } catch(IOException e) {
+				            logger.info("Could not show thumbnail "+id +"/" + e.getLocalizedMessage());
+				        }
+			}
+			if(tokenStr.isPresent()) {
+				Token token = new Token();
+				if(token.IsValidPhotoToken(tokenStr.get())) {
+					PhotoInfo image = photoInfoService.selectOne(param);
+				      //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+				        String srcPath = Config.srcPath;
 		
-//		File imageFile = new File(srcPath + "/90eb2393-ebbc-4766-a30c-4936f60837f8.png");
-//		response.setContentType("image/png"); 
-//		response.setContentLength(8898);
-		
-        try {
-            InputStream is = new FileInputStream(imageFile);
-            IOUtils.copy(is, response.getOutputStream());
-        } catch(IOException e) {
-            logger.info("Could not show picture "+id +"/" + e.getLocalizedMessage());
-        }
-    }
+				        logger.info(image.toString());
+				        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+				        logger.info(imageFile.getAbsolutePath());
+				        
+				        response.setContentType(image.getContentType());
+				        response.setContentLength(image.getThumbnailSize());
+				        try {
+				            InputStream is = new FileInputStream(imageFile);
+				            IOUtils.copy(is, response.getOutputStream());
+				        } catch(IOException e) {
+				            logger.info("Could not show thumbnail "+id +"/" + e.getLocalizedMessage());
+				        }
+				} else {
+					logger.info("thumbnail :Invalid token");
+				}
+			} else {
+				logger.info("thumbnail : token not found");
+			}
+	}
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id,
@@ -333,7 +388,7 @@ public class FileController extends BacoderController{
 	public String updateOnePicture(HttpServletResponse response, @RequestParam(value="id")Integer id) {
 		JSONObject json = new JSONObject();
 		
-		final String photoUrlParent = Config.srcPath;
+		final String photoUrlParent = Config.srcPath;  // .../storage
 		//logger.info("start : "+id);
 		PhotoInfo info = new PhotoInfo();
 		info.setId(id);
@@ -343,12 +398,40 @@ public class FileController extends BacoderController{
 		File photoFile = new File(photoUrlParent + File.separator + info.getPhotoUrl());
 		final long size = photoFile.length();
 		final String ext = info.getPhotoUrl().substring(info.getPhotoUrl().lastIndexOf(".")+1);
-		final String type = "image/"+ext;
+		String extType = "";
+		if(ext == "JPG") {
+			extType = "JPEG";
+		} else {
+			extType = "JPEG";
+		}
+		final String type = "image/"+extType;
 		info.setSize((int)size);
 		info.setContentType(type);
 			
 		//logger.info(photo.toString());
-			
+        File patientDir = new File(photoUrlParent + File.separator + info.getPatientId());
+		 if(!patientDir.exists()) {
+         	patientDir.mkdir();
+         }
+		 
+		String fileName = info.getPhotoUrl();
+		int Idx = fileName .lastIndexOf(".");
+		String baseFileName = fileName.substring(0, Idx );
+
+        try {         
+            BufferedImage thumbnail = Scalr.resize(ImageIO.read(photoFile), 290);
+           // photoFile = null;
+            String thumbnailFilename = baseFileName + "-thumbnail.jpg";
+            File thumbnailFile = new File(photoUrlParent + "/" + thumbnailFilename);
+            ImageIO.write(thumbnail, "jpg", thumbnailFile);
+         //   thumbnail = null;
+            info.setThumbnailFilename(thumbnailFilename);
+            info.setThumbnailSize((int)thumbnailFile.length());
+
+        } catch(IOException e) {
+            logger.info("Could not upload file " + e.getLocalizedMessage());
+        }
+		
 		int result = photoInfoService.update(info);
 		json.put("update", result);
 		return json.toString();

@@ -92,6 +92,31 @@ public class JWTController extends BacoderController {
 		}
 		
 	}
+	
+	@RequestMapping(value="/auth/checkPToken", method=RequestMethod.GET)
+	public void isPhotoTokenValid(HttpServletResponse resp,
+			@RequestParam(value="token")Optional<String> token) throws IOException {
+		//logger.info("is token");
+		resp.setCharacterEncoding("UTF-8");
+		if(token.isPresent()) {
+			logger.info("token:" + token.get());
+			//resp.getWriter().append(token.get());
+			
+			Token auth = new Token();
+			if(auth.IsValidPhotoToken(token.get())) {
+				resp.getWriter().append("valid token");
+				logger.info("token OK");
+			} else {
+				logger.info("Invalid token");
+			}
+			
+		}
+		else {
+			resp.setCharacterEncoding("UTF-8");
+			resp.getWriter().append("token not found!");
+		}
+		
+	}
 	@RequestMapping(value="/auth/getToken", method=RequestMethod.GET)
 	public void getToken(HttpServletResponse resp,
 				@RequestParam(value="id")Optional<String> id,

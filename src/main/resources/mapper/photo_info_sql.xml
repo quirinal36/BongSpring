@@ -109,7 +109,7 @@
 	<update id="update_one" parameterType="photoinfo">
 		UPDATE PhotoInfo
 		<set>
-			 size = ${size}, contentType = '${contentType}'
+			 size = ${size}, contentType = '${contentType}', thumbnailFilename = '${thumbnailFilename}', thumbnailSize = ${thumbnailSize}
 		</set>
 			<where> id = ${id} </where>
 	</update>
