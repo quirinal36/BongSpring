@@ -389,17 +389,18 @@ public class FileController extends BacoderController{
 		JSONObject json = new JSONObject();
 		
 		final String photoUrlParent = Config.srcPath;  // .../storage
-		//logger.info("start : "+id);
+		
 		PhotoInfo info = new PhotoInfo();
 		info.setId(id);
 		
 		info = photoInfoService.selectOne(info);
 		
 		File photoFile = new File(photoUrlParent + File.separator + info.getPhotoUrl());
+		
 		final long size = photoFile.length();
 		final String ext = info.getPhotoUrl().substring(info.getPhotoUrl().lastIndexOf(".")+1);
 		String extType = "";
-		if(ext == "JPG") {
+		if(ext.equalsIgnoreCase("JPG")) {
 			extType = "JPEG";
 		} else {
 			extType = "JPEG";
@@ -416,24 +417,22 @@ public class FileController extends BacoderController{
 		 
 		String fileName = info.getPhotoUrl();
 		int Idx = fileName .lastIndexOf(".");
-		String baseFileName = fileName.substring(0, Idx );
+		String baseFileName = fileName.substring(0, Idx);
 
         try {         
             BufferedImage thumbnail = Scalr.resize(ImageIO.read(photoFile), 290);
-           // photoFile = null;
-            String thumbnailFilename = baseFileName + "-thumbnail.jpg";
-            File thumbnailFile = new File(photoUrlParent + "/" + thumbnailFilename);
-            ImageIO.write(thumbnail, "jpg", thumbnailFile);
-         //   thumbnail = null;
+            
+            String thumbnailFilename = baseFileName + "-thumbnail.png";
+            File thumbnailFile = new File(photoUrlParent + File.separator + thumbnailFilename);
+            ImageIO.write(thumbnail, "png", thumbnailFile);
+
             info.setThumbnailFilename(thumbnailFilename);
             info.setThumbnailSize((int)thumbnailFile.length());
-
         } catch(IOException e) {
             logger.info("Could not upload file " + e.getLocalizedMessage());
         }
-		
-		int result = photoInfoService.update(info);
-		json.put("update", result);
+		//int result = photoInfoService.update(info);
+		//json.put("update", result);
 		return json.toString();
 	}
 }
