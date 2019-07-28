@@ -206,7 +206,14 @@ public class FileController extends BacoderController{
 				        String srcPath = Config.srcPath;
 		
 				        logger.info(image.toString());
-				        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+				        
+				        File imageFile = null;
+				        if(image.getThumbnailFilename() != null && image.getThumbnailFilename().length() > 0) {
+					        imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
+				        } else {
+					        imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
+				        }
+				        
 				        logger.info(imageFile.getAbsolutePath());
 				        
 				        response.setContentType(image.getContentType());
@@ -226,8 +233,13 @@ public class FileController extends BacoderController{
 				        String srcPath = Config.srcPath;
 		
 				        logger.info(image.toString());
-				        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
-				        logger.info(imageFile.getAbsolutePath());
+				        
+				        File imageFile = null;
+				        if(image.getThumbnailFilename() != null && image.getThumbnailFilename().length() > 0) {
+					        imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
+				        } else {
+					        imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
+				        }				        logger.info(imageFile.getAbsolutePath());
 				        
 				        response.setContentType(image.getContentType());
 				        response.setContentLength(image.getThumbnailSize());
