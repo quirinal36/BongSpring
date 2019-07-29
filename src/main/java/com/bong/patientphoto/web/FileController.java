@@ -210,14 +210,14 @@ public class FileController extends BacoderController{
 				        File imageFile = null;
 				        if(image.getThumbnailFilename() != null && image.getThumbnailFilename().length() > 0) {
 					        imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
+					        response.setContentLength(image.getThumbnailSize());
 				        } else {
-					        imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
-				        }
-				        
-				        logger.info(imageFile.getAbsolutePath());
-				        
+					        imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+					        response.setContentLength(image.getSize());
+				        }				       
+				        logger.info(imageFile.getAbsolutePath());			        
 				        response.setContentType(image.getContentType());
-				        response.setContentLength(image.getThumbnailSize());
+				        
 				        try {
 				            InputStream is = new FileInputStream(imageFile);
 				            IOUtils.copy(is, response.getOutputStream());
@@ -237,12 +237,14 @@ public class FileController extends BacoderController{
 				        File imageFile = null;
 				        if(image.getThumbnailFilename() != null && image.getThumbnailFilename().length() > 0) {
 					        imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
+					        response.setContentLength(image.getThumbnailSize());
 				        } else {
-					        imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
-				        }				        logger.info(imageFile.getAbsolutePath());
-				        
+					        imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+					        response.setContentLength(image.getSize());
+				        }				       
+				        logger.info(imageFile.getAbsolutePath());			        
 				        response.setContentType(image.getContentType());
-				        response.setContentLength(image.getThumbnailSize());
+				        
 				        try {
 				            InputStream is = new FileInputStream(imageFile);
 				            IOUtils.copy(is, response.getOutputStream());
@@ -434,17 +436,17 @@ public class FileController extends BacoderController{
         try {         
             BufferedImage thumbnail = Scalr.resize(ImageIO.read(photoFile), 290);
             
-            String thumbnailFilename = baseFileName + "-thumbnail.png";
+            String thumbnailFilename = baseFileName + "-thumbnail.jpg";
             File thumbnailFile = new File(photoUrlParent + File.separator + thumbnailFilename);
-            ImageIO.write(thumbnail, "png", thumbnailFile);
+            ImageIO.write(thumbnail, "jpg", thumbnailFile);
 
             info.setThumbnailFilename(thumbnailFilename);
             info.setThumbnailSize((int)thumbnailFile.length());
         } catch(IOException e) {
             logger.info("Could not upload file " + e.getLocalizedMessage());
         }
-		//int result = photoInfoService.update(info);
-		//json.put("update", result);
+		int result = photoInfoService.update(info);
+		json.put("update", result);
 		return json.toString();
 	}
 }
