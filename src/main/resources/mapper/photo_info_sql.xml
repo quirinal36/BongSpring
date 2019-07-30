@@ -106,6 +106,15 @@
 	 	limit ${range}, 10000
 	</select>
 	
+	<select id="select_thumbnail" parameterType="photoinfo" resultType="photoinfo">
+		SELECT *
+		FROM PhotoInfo
+		<where>
+			thumbnailFilename IS NULL OR size IS NULL OR size = 0
+		</where>
+	 	limit ${range}, 10000
+	</select>
+	
 	<update id="update_one" parameterType="photoinfo">
 		UPDATE PhotoInfo
 		<set>

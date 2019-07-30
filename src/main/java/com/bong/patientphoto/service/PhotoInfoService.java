@@ -45,7 +45,9 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 	public List<PhotoInfo> selectAll(PhotoInfo input) {
 		return dao.selectAll(input);
 	}
-	
+	public List<PhotoInfo> selectThumbnail(PhotoInfo input) {
+		return dao.selectThumbnail(input);
+	}	
 
 	@Override
 	public PhotoInfo selectOne(PhotoInfo input) {

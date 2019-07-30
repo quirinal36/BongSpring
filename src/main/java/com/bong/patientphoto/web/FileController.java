@@ -430,7 +430,7 @@ public class FileController extends BacoderController{
          }
 		 
 		String fileName = info.getPhotoUrl();
-		int Idx = fileName .lastIndexOf(".");
+		int Idx = fileName.lastIndexOf(".");
 		String baseFileName = fileName.substring(0, Idx);
 
         try {         
@@ -449,4 +449,74 @@ public class FileController extends BacoderController{
 		json.put("update", result);
 		return json.toString();
 	}
+	
+	//db에서 thumbnailFilename IS NULL OR size IS NULL OR size = 0  리스트 조회해서
+	//contentType, size, thumbnail 비어있는 곳 업데이트 (thumbnail file 폴더에 있어야함)
+	@ResponseBody
+	@RequestMapping(value="/updateThumbnail", method=RequestMethod.GET)
+	public String updateThumbnails(HttpServletResponse response, @RequestParam(value="start")Optional<Integer> start) {
+		JSONObject json = new JSONObject();
+		
+		final String photoUrlParent = Config.srcPath;
+		logger.info("start : "+start);
+		PhotoInfo info = new PhotoInfo();
+		if(start.isPresent()) {
+			info.setRange(start.get());
+		} else {
+			info.setRange(0);
+		}
+			
+		List<PhotoInfo> list = photoInfoService.selectThumbnail(info);
+		List<PhotoInfo> updateList;
+		logger.info("list size : " + list.size());
+		json.put("total", list.size());
+		
+		int i = 0;
+		Iterator<PhotoInfo> iter = list.iterator();
+		while(iter.hasNext()) {
+			PhotoInfo photo = iter.next();
+			if(photo.getPhotoUrl() != null && photo.getPhotoUrl().length() > 0) {
+				
+				//size, contentType 없으면 update
+				if(photo.getContentType() == null || photo.getSize() == 0 || photo.getThumbnailFilename() == null || photo.getThumbnailSize() == 0) {
+
+					File photoFile = new File(photoUrlParent + File.separator + photo.getPhotoUrl());
+					final long size = photoFile.length();
+					final String ext = photo.getPhotoUrl().substring(photo.getPhotoUrl().lastIndexOf(".")+1);
+					String extType = "";
+					if(ext.equalsIgnoreCase("JPG")) {
+						extType = "JPEG";
+					} else {
+						extType = "JPEG";
+					}
+					final String type = "image/"+extType;
+					photo.setSize((int)size);
+					photo.setContentType(type);
+				
+					String fileName = photo.getPhotoUrl();
+					int Idx = fileName.lastIndexOf(".");
+					String baseFileName = fileName.substring(0, Idx);
+					String thumbnailFilename = baseFileName + "-thumbnail.JPG";
+					File thumbnailFile = new File(photoUrlParent + File.separator + thumbnailFilename);
+					//logger.info("thumbnailFilename : "+ thumbnailFile.getAbsolutePath());
+
+					if(thumbnailFile.exists()) {
+						//logger.info("thumbnail exist");
+						final long thumbnailsize = thumbnailFile.length();
+						//final String ext = photo.getPhotoUrl().substring(photo.getPhotoUrl().lastIndexOf(".")+1);
+						//final String type = "image/JPEG";
+						photo.setThumbnailSize((int)thumbnailsize);
+						photo.setThumbnailFilename(thumbnailFilename);
+						//photo.setContentType(type);
+					}
+					logger.info("id/size/type/thumbnailsize : "+ photo.getId()+"/"+photo.getSize()+"/"+photo.getContentType()+"/"+photo.getThumbnailSize());
+					int result = photoInfoService.update(photo);
+					i = i + result;
+				}
+			}
+		}
+		json.put("update", i);
+		return json.toString();
+	}
+	
 }

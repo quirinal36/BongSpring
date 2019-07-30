@@ -40,6 +40,11 @@ public class PhotoInfoDAO implements DataAccess<PhotoInfo> {
 	public List<PhotoInfo> selectAll(PhotoInfo input) {
 		return sqlSession.selectList(namespace +".select_all", input);
 	}
+	
+	public List<PhotoInfo> selectThumbnail(PhotoInfo input) {
+			return sqlSession.selectList(namespace +".select_thumbnail", input);
+	
+	}
 	@Override
 	public List<PhotoInfo> select(PhotoInfo input) {
 		return sqlSession.selectList(namespace +".select_list", input);
