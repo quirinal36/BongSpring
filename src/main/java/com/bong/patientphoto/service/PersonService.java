@@ -15,8 +15,7 @@ public class PersonService implements DataService<Person> {
 	
 	@Override
 	public int insert(Person input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(input);
 	}
 
 	@Override

@@ -16,8 +16,7 @@ public class PersonDAO implements DataAccess<Person> {
 	private String namespace = "person_sql";
 	@Override
 	public int insert(Person input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(namespace+".insert", input);
 	}
 
 	@Override

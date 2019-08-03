@@ -9,4 +9,24 @@
 			uniqueId = '${uniqueId}'
 		</where>
 	</select>
+	<insert id="insert" parameterType="person">
+		INSERT INTO Person
+		(
+		name,
+		birth,
+		phone,
+		password,
+		uniqueId,
+		department_id
+		)
+		values
+		(
+		'${name}',
+		${birth},
+		'${phone}',
+		'${password}',
+		'${uniqueId}',
+		${department_id}
+		}
+	</insert>
 </mapper>

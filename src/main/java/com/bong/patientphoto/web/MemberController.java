@@ -70,7 +70,7 @@ public class MemberController  {
 	public ModelAndView memberInsert(ModelAndView mv, 
 			Person person, HttpServletResponse resp) throws IOException {
 		logger.info(person.toString());
-		
+		personService.insert(person);
 		/*
 		mv.addObject("user", user);
 		if(result > 0) {
