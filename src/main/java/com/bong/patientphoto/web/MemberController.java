@@ -2,19 +2,28 @@ package com.bong.patientphoto.web;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bong.patientphoto.service.DepartmentService;
+import com.bong.patientphoto.service.PersonService;
 import com.bong.patientphoto.service.UserService;
+import com.bong.patientphoto.vo.Department;
+import com.bong.patientphoto.vo.Person;
 import com.bong.patientphoto.vo.UserVO;
 
 import javax.annotation.Resource;
@@ -23,17 +32,35 @@ import javax.annotation.Resource;
 public class MemberController  {
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	
+	@Autowired
+	DepartmentService departmentService;
+	@Autowired
+	PersonService personService;
+	
 	@Resource(name="userService")
 	protected UserService userService;
 	
 	/**
-	 * 회원가입 - 정보입력
+	 * 회원가입 화면
+	 * 
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping(value="/member/join_step1", method=RequestMethod.GET)
+	public ModelAndView getJoinStep1View(ModelAndView mv) {
+		
+		mv.setViewName("/member/join_step1");
+		return mv;
+	}
+	/**
+	 * 회원가입 프로세스
 	 * @param mv
 	 * @return
 	 */
 	@RequestMapping(value="/member/join_step2", method=RequestMethod.GET)
 	public ModelAndView getJoinStep2View(ModelAndView mv, UserVO user) {
-		user.setUsername("이형구");
+		List<Department> departmentList = departmentService.select();
+		mv.addObject("departmentList", departmentList);
 		mv.addObject("user", user);
 		mv.setViewName("/member/join_step2");
 		return mv;
@@ -41,16 +68,17 @@ public class MemberController  {
 	
 	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
 	public ModelAndView memberInsert(ModelAndView mv, 
-			UserVO user, HttpServletResponse resp) throws IOException {
-		int result = userService.insert(user);
+			Person person, HttpServletResponse resp) throws IOException {
+		logger.info(person.toString());
 		
+		/*
 		mv.addObject("user", user);
 		if(result > 0) {
 			mv.setViewName("redirect:/member/join_complete");	
 		}else {
 			mv.setViewName("redirect:/member/join_step2");
 		}
-		
+		*/
 		return mv;
 	}
 	/**
@@ -114,5 +142,17 @@ public class MemberController  {
 			int result = userService.update(user);
 			resp.getWriter().append("{\"result\":" + result +"}");
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/member/get/{uniqueId}")
+	public Person isExistMember(@PathVariable(value="uniqueId")Optional<String> uniqueId) {
+		Person person = new Person();
+		if(uniqueId.isPresent()) {
+			person.setUniqueId(uniqueId.get());
+			person = personService.selectOne(person);
+		}
+		
+		return person;
 	}
 }

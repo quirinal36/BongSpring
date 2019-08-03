@@ -11,6 +11,7 @@
 		<typeAlias type="com.bong.patientphoto.vo.Image" alias="image"/>
 		<typeAlias type="com.bong.patientphoto.vo.PatientInfo" alias="patientInfo"/>
 		<typeAlias type="com.bong.patientphoto.vo.PatientPhotoInfo" alias="patientPhoto"/>
-		
+		<typeAlias type="com.bong.patientphoto.vo.Department" alias="department"/>
+		<typeAlias type="com.bong.patientphoto.vo.Person" alias="person"/>
     </typeAliases>
 </configuration>
