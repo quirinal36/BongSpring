@@ -82,11 +82,17 @@ public class Token {
 		    String sub = jws.getBody().getSubject();
 		    String exp = jws.getBody().getExpiration().toString();
 		    String scope = jws.getBody().get("scope").toString();
+		    int role = (int) jws.getBody().get("role");
 		    logger.info("authorized Token : " + sub + "/" + exp + "/" + scope);
 		   
 		    // we can safely trust the JWT
 		    if(!sub.equals("RefreshToken")) { //refresh token은 사진조회 불가
-		    	return true;
+		    	if(role > 0 || scope.equals("photo")) {
+		    		return true;
+		    	} else {
+		    		logger.info("사진 정보에 접근이 불가능한 토큰입니다.");
+			    	return false;
+		    	}
 		    } else {
 		    	logger.info("refresh token은 사진조회 불가");
 		    	return false;
