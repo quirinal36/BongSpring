@@ -105,9 +105,9 @@ public class FileController extends BacoderController{
                 mpf.transferTo(newFile);
                 
                 BufferedImage thumbnail = Scalr.resize(ImageIO.read(newFile), 290);
-                String thumbnailFilename = newFilenameBase + "-thumbnail.png";
+                String thumbnailFilename = newFilenameBase + "-thumbnail.JPG";
                 File thumbnailFile = new File(srcPath + "/" + thumbnailFilename);
-                ImageIO.write(thumbnail, "png", thumbnailFile);
+                ImageIO.write(thumbnail, "jpg", thumbnailFile);
                 
                 PhotoInfo photo = new PhotoInfo();
                 photo.setPatientId(patientId);
@@ -238,7 +238,7 @@ public class FileController extends BacoderController{
 				        if(image.getThumbnailFilename() != null && image.getThumbnailFilename().length() > 0) {
 					        imageFile = new File(srcPath+"/"+image.getThumbnailFilename());
 					        response.setContentLength(image.getThumbnailSize());
-				        } else {
+				        } else { //thumbnail 없으면 원본이미지 
 					        imageFile = new File(srcPath+"/"+image.getPhotoUrl());
 					        response.setContentLength(image.getSize());
 				        }				       
