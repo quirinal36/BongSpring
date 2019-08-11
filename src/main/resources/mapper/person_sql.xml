@@ -4,10 +4,14 @@
 
 <mapper namespace="person_sql">
 	<select id="select_one" resultType="person">
-		SELECT * FROM Person
+		SELECT 
+			person.*,
+			rs.user_role AS role
+		FROM Person person LEFT JOIN roles rs on person.userLevel = rs.id
 		<where>
 			uniqueId = '${uniqueId}'
 		</where>
+		limit 0,1
 	</select>
 	<insert id="insert" parameterType="person">
 		INSERT INTO Person
@@ -27,6 +31,6 @@
 		'${password}',
 		'${uniqueId}',
 		${department_id}
-		}
+		)
 	</insert>
 </mapper>

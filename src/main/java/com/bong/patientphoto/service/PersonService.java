@@ -3,6 +3,7 @@ package com.bong.patientphoto.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.bong.patientphoto.dao.PersonDAO;
@@ -12,9 +13,13 @@ import com.bong.patientphoto.vo.Person;
 public class PersonService implements DataService<Person> {
 	@Autowired
 	PersonDAO dao;
+	@Autowired
+	PasswordEncoder pwdEncoder;
 	
 	@Override
 	public int insert(Person input) {
+		String pwd = input.getPassword();
+		input.setPassword(pwdEncoder.encode(pwd));
 		return dao.insert(input);
 	}
 

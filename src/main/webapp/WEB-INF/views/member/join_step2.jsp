@@ -66,7 +66,21 @@
 		}
 		
 		if(confirm("회원가입 하시겠습니까?")){
-			$("form").submit();
+			// $("form").submit();
+			var url = $("form").attr("action");
+			var param = $("form").serialize();
+			$.ajax({
+				url : url,
+				data: param,
+				type: "POST"
+			}).done(function(resp){
+				var callback = JSON.parse(resp);
+				if(callback.result > 0){
+					if(confirm("회원가입이 완료되었습니다. 로그인화면으로 이동합니다.")){
+						window.location.replace("/member/login?loginid="+$("input[name='uniqueId']").val());
+					}
+				}
+			});
 		}
 	}
 	</script>
@@ -109,7 +123,13 @@
 				<dl>
 					<dt>생년월일 *</dt>
 					<dd>
-						<input type="password" name="birth" placeholder="19901201" required/>
+						<input type="text" name="birth" placeholder="19901201" required/>
+					</dd>
+				</dl>
+				<dl>
+					<dt>이름 *</dt>
+					<dd>
+						<input type="text" name="name" placeholder="이름을 입력하세요." required/>
 					</dd>
 				</dl>
 				<dl>

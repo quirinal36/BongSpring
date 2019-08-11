@@ -13,7 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.bong.patientphoto.dao.PersonDAO;
 import com.bong.patientphoto.dao.UserDAO;
+import com.bong.patientphoto.vo.Person;
 import com.bong.patientphoto.vo.UserVO;
 
 
@@ -23,20 +25,20 @@ public class UserDetailService implements UserDetailsService {
 	Logger logger = LoggerFactory.getLogger(UserDetailsService.class);
 	
 	@Autowired
-	private UserDAO dao;
+	private PersonDAO dao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserVO user = new UserVO();
+		Person person = new Person();
 		logger.info("username:" + username);
-		user.setUsername(username);
-		user = dao.login(user);
+		person.setUniqueId(username);
+		person = dao.selectOne(person);
 		
-		logger.info(user.toString());
+		logger.info(person.toString());
 		
-		GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
-		UserDetails userDetails = (UserDetails)new User(user.getUsername()
-				,user.getPassword(), Arrays.asList(authority));
+		GrantedAuthority authority = new SimpleGrantedAuthority(person.getRole());
+		UserDetails userDetails = (UserDetails)new User(person.getUniqueId()
+				,person.getPassword(), Arrays.asList(authority));
 		return userDetails;
 	}
 	

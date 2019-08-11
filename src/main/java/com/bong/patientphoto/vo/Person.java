@@ -17,6 +17,8 @@ public class Person {
 	String department;
 	Date signupDate;
 	Date mDate;
+	String role;
+	
 	public int getNUM() {
 		return NUM;
 	}
@@ -83,7 +85,12 @@ public class Person {
 	public void setmDate(Date mDate) {
 		this.mDate = mDate;
 	}
-	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

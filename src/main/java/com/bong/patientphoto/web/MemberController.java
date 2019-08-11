@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.annotations.Param;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,28 +59,26 @@ public class MemberController  {
 	 * @return
 	 */
 	@RequestMapping(value="/member/join_step2", method=RequestMethod.GET)
-	public ModelAndView getJoinStep2View(ModelAndView mv, UserVO user) {
-		List<Department> departmentList = departmentService.select();
-		mv.addObject("departmentList", departmentList);
-		mv.addObject("user", user);
-		mv.setViewName("/member/join_step2");
+	public ModelAndView getJoinStep2View(ModelAndView mv, UserVO user, HttpServletRequest req) {
+		if(req.isUserInRole("ROLE_USER") || req.isUserInRole("ROLE_ADMIN")) {
+			mv.setViewName("redirect:/");
+		}else {
+			List<Department> departmentList = departmentService.select();
+			mv.addObject("departmentList", departmentList);
+			mv.addObject("user", user);
+			mv.setViewName("/member/join_step2");
+		}
 		return mv;
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
-	public ModelAndView memberInsert(ModelAndView mv, 
+	public String memberInsert(ModelAndView mv, 
 			Person person, HttpServletResponse resp) throws IOException {
-		logger.info(person.toString());
-		personService.insert(person);
-		/*
-		mv.addObject("user", user);
-		if(result > 0) {
-			mv.setViewName("redirect:/member/join_complete");	
-		}else {
-			mv.setViewName("redirect:/member/join_step2");
-		}
-		*/
-		return mv;
+		int result = personService.insert(person);
+		JSONObject json = new JSONObject();
+		json.put("result", result);
+		return json.toString();
 	}
 	/**
 	 * 회원가입 - 정보입력
