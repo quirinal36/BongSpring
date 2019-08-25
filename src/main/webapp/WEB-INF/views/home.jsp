@@ -17,6 +17,7 @@
 		</div>
 		<footer>
 			<p>ⓒ 회사명.</p>
+			<a href="<c:url value="privacypolicy"/>">개인정보관리방침 (privacy)</a>
 		</footer>
 	</div>
 </body>

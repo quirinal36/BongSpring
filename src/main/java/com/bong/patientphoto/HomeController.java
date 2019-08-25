@@ -59,4 +59,9 @@ public class HomeController {
 		mv.setViewName("/inc/header");
 		return mv;
 	}
+	@RequestMapping(value="/privacypolicy")
+	public ModelAndView getPrivacyView(ModelAndView mv) {
+		mv.setViewName("privacy");
+		return mv;
+	}
 }

@@ -75,6 +75,7 @@ public class MemberController  {
 	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
 	public String memberInsert(ModelAndView mv, 
 			Person person, HttpServletResponse resp) throws IOException {
+		logger.info(person.toString());
 		int result = personService.insert(person);
 		JSONObject json = new JSONObject();
 		json.put("result", result);
