@@ -12,6 +12,11 @@ public class Config {
 	public final static String SESSION_LOGIN_FAIL = "다른 장소에서 같은 아이디로 로그인 되어 있습니다.";
 	
 	public final static String UPLOAD_DIR = "/upload/com.bong.patientphoto/";
+<<<<<<< HEAD
+=======
+    //public final static String srcPath = "/volume1/@appstore/Tomcat7/src/webapps/storage";
+>>>>>>> branch 'master' of https://github.com/quirinal36/BongSpring.git
     public final static String srcPath = "/home/phbong31/storage";
 
+    
 }

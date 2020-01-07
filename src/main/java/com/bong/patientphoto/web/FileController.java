@@ -83,6 +83,10 @@ public class FileController extends BacoderController{
             
 //            String url = "/volume1/@appstore/Tomcat7/src/webapps/storage";
             String url = "/home/phbong31/storage";
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/quirinal36/BongSpring.git
             File patientDir = new File(url + File.separator + patientId);
             logger.info("url: "+url);
             logger.info("patientDir: "+patientDir.getPath());
