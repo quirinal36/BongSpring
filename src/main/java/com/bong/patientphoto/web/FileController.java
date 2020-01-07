@@ -81,7 +81,8 @@ public class FileController extends BacoderController{
             logger.info("Uploading {}" + mpf.getOriginalFilename());
 //            String newFilenameBase = UUID.randomUUID().toString();
             
-            String url = "/volume1/@appstore/Tomcat7/src/webapps/storage";
+//            String url = "/volume1/@appstore/Tomcat7/src/webapps/storage";
+            String url = "/home/phbong31/storage";
             File patientDir = new File(url + File.separator + patientId);
             logger.info("url: "+url);
             logger.info("patientDir: "+patientDir.getPath());
