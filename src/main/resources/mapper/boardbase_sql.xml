@@ -2,23 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="boardreply_sql">
+<mapper namespace="boardbase_sql">
 	
-	<select id="select_all" resultType="board">
+	<select id="select_all" resultType="boardbase">
 		select 
 			board.id, 
-			board.title, 
-			board.writer, 
-			board.content, 
-			board.wdate,
+			board.creatorId, 
+			board.text, 
+			board.createdTime,
+			board.updatedTime,
+			board.patientId,
+			board.status,
+			board.type,
+			board.expireDate,
+			board.replyCount,
 			user.username AS username,
-			board.photoUrl
 		from Board board, users user 
 		<where>
-			board.writer = user.id
+			board.status = 1
 		</where>
 	</select>
-	<select id="count" parameterType="board" resultType="java.lang.Integer">
+	
+	<select id="count" parameterType="boardbase" resultType="java.lang.Integer">
 		select 
 			count(*)
 		from Board board left join users user on board.writer = user.id
@@ -31,6 +36,7 @@
 			</if>
 		</where>
 	</select>
+	
 	<select id="select" parameterType="board" resultType="board">
 		select 
 			board.id, 

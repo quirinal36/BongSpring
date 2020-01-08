@@ -48,9 +48,9 @@ public class BoardBaseController extends BacoderController {
 	//	board.setSearch(search);
 		mv.addObject("pageNum", board.getPageNo());
 		
-		board.setTotalCount(boardService.count(board));
+		board.setTotalCount(boardBaseService.count(board));
 		
-		list = boardbaseService.select(board);
+		list = boardBaseService.select(board);
 		mv.addObject("board", board);
 		mv.addObject("list", list);
 		mv.setViewName("/board2/list");

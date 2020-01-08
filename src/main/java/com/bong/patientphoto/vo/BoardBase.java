@@ -15,6 +15,7 @@ public class BoardBase extends Paging {
 	private String text;
 	private int type;
 	private Date expireDate;
+	private int replyCount;
 	
 	public BoardBase(int totalCount, int pageNo) {
 		super(totalCount, pageNo);
@@ -74,7 +75,13 @@ public class BoardBase extends Paging {
 	public void setExpireDate(Date expireDate) {
 		this.expireDate = expireDate;
 	}
-	
+	public int getReplyCount() {
+		return replyCount;
+	}
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
