@@ -4,7 +4,7 @@ import java.sql.Date;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class BoardBase {
+public class BoardBase extends Paging {
 	
 	private int id;
 	private int createrId;
@@ -15,6 +15,10 @@ public class BoardBase {
 	private String text;
 	private int type;
 	private Date expireDate;
+	
+	public BoardBase(int totalCount, int pageNo) {
+		super(totalCount, pageNo);
+	}
 	
 	public int getId() {
 		return id;
