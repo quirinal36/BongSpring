@@ -5,55 +5,59 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.bong.patientphoto.dao.AppUserDAO;
 import com.bong.patientphoto.dao.BoardBaseDAO;
+import com.bong.patientphoto.vo.AppUser;
 import com.bong.patientphoto.vo.BoardBase;
 
-@Component("boardbaseService")
-public class BoardBaseService implements DataService<BoardBase> {
+@Component("appUserService")
+public class AppUserService implements DataService<AppUser> {
 
 	@Autowired
-	BoardBaseDAO dao;
-	
+	AppUserDAO dao;
+
 	@Override
-	public int insert(BoardBase input) {
+	public int insert(AppUser input) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int update(BoardBase input) {
+	public int update(AppUser input) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int delete(BoardBase input) {
+	public int delete(AppUser input) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public List<BoardBase> select() {
+	public List<AppUser> select() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<BoardBase> select(BoardBase input) {
+	public List<AppUser> select(AppUser input) {
 		// TODO Auto-generated method stub
-		return dao.select(input);
+		return null;
 	}
 
 	@Override
-	public BoardBase selectOne(BoardBase input) {
+	public AppUser selectOne(AppUser input) {
 		// TODO Auto-generated method stub
-		return dao.selectOne(input);
+		return null;
 	}
 
 	@Override
-	public int count(BoardBase input) {
+	public int count(AppUser input) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+
 
 }

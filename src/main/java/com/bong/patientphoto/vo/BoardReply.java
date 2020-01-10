@@ -13,6 +13,8 @@ public class BoardReply {
 	private int status;
 	private Date createdTime;
 	private Date updatedTime;
+	private int writerId;
+	
 	public int getId() {
 		return id;
 	}
@@ -54,6 +56,12 @@ public class BoardReply {
 	}
 	public void setUpdatedTime(Date updatedTime) {
 		this.updatedTime = updatedTime;
+	}
+	public int getWriterId() {
+		return writerId;
+	}
+	public void setWriterId(int writerId) {
+		this.writerId = writerId;
 	}
 	
 	@Override

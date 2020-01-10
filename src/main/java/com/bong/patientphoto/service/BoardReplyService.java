@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.bong.patientphoto.dao.BoardReplyDAO;
 import com.bong.patientphoto.vo.BoardReply;
 
-@Component("boardreplyService")
+@Component("boardReplyService")
 public class BoardReplyService implements DataService<BoardReply> {
 
 	@Autowired
@@ -40,8 +40,7 @@ public class BoardReplyService implements DataService<BoardReply> {
 
 	@Override
 	public List<BoardReply> select(BoardReply input) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.select(input);
 	}
 
 	@Override

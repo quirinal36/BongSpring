@@ -2,17 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="boardbase_sql">
+<mapper namespace="appuser_sql">
 	
-	<select id="select_all" resultType="boardbase">
-		SELECT 
+	<select id="select_all" resultType="appuser">
+		select 
 			board.id, 
-			board.creatorId,
-			user.name as writerName,
-			user.kImageUrl as writerPhotoUrl, 
-			user.patientId as patientId,
-			user.userType as userType,
-			user.userLevel as userLevel,
+			board.creatorId, 
 			board.text, 
 			board.createdTime,
 			board.updatedTime,
@@ -20,17 +15,14 @@
 			board.status,
 			board.type,
 			board.expireDate,
-			board.accessLevel,
 			Count(reply.id) AS replyCount
-		FROM Board_main board
-		LEFT JOIN Board_reply AS reply ON reply.boardId = board.id
-		LEFT JOIN User AS user ON user.id = board.creatorId
+		from Board_main board
+		left join Board_reply as reply on reply.boardId = board.id
 		<where>
-			user.userLevel >= board.accessLevel
+			board.status = 1
 		</where>
-		GROUP BY board.id
+		group by board.id
 	</select>
-	
 	<select id="select_one" parameterType="boardbase" resultType="boardbase">
 		select 
 			board.id, 

@@ -5,6 +5,7 @@
 <configuration>
     <typeAliases>
 		<typeAlias type="com.bong.patientphoto.vo.UserVO" alias="user"/>
+		<typeAlias type="com.bong.patientphoto.vo.AppUser" alias="appuser"/>
 		<typeAlias type="com.bong.patientphoto.vo.Board" alias="board"/>
 		<typeAlias type="com.bong.patientphoto.vo.BoardBase" alias="boardbase"/>
 		<typeAlias type="com.bong.patientphoto.vo.BoardReply" alias="boardreply"/>

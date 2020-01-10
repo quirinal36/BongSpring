@@ -42,8 +42,7 @@ public class BoardReplyDAO implements DataAccess<BoardReply> {
 
 	@Override
 	public List<BoardReply> select(BoardReply input) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(namespace +".select_all", input);
 	}
 
 	@Override

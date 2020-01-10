@@ -23,14 +23,14 @@ import com.bong.patientphoto.vo.BoardReply;
 import com.bong.patientphoto.vo.UserVO;
 
 @Controller
-public class BoardBaseController extends BacoderController {
+public class AppUserController extends BacoderController {
 	/**
 	 * 게시판 리스트뷰
 	 * @param mv
 	 * @param writer
 	 * @return
 	 */
-	@RequestMapping(value= {"/board2/list","/board2"}, method=RequestMethod.GET)
+	@RequestMapping(value= {"/user/list","/user"}, method=RequestMethod.GET)
 	public ModelAndView getBoardList(ModelAndView mv, 
 			@RequestParam(value="search", required=false)String search,
 			@RequestParam(value="page", required=false)Optional<Integer> pageNum,
@@ -62,24 +62,5 @@ public class BoardBaseController extends BacoderController {
 		return mv;
 	}
 	
-	@RequestMapping(value= {"/board2/detail","/board2"}, method=RequestMethod.GET)
-	public ModelAndView getBoardList(ModelAndView mv, BoardBase boardInput, BoardBase board, BoardReply reply, @RequestParam(value="boardId", required=true)int boardId ) {
-		
-		logger.info("boardId : "+ boardId);
-		boardInput.setId(boardId);
-		reply.setBoardId(boardId);
-		
-		List<BoardReply> replyList;
-		
-		board = boardBaseService.selectOne(boardInput);
-		replyList = boardReplyService.select(reply);
-		
-		logger.info("detail : "+ board.toString());
-		logger.info("replyList : "+ replyList.toString());
 
-
-		mv.addObject("board", board);
-		mv.setViewName("/board2/detail");
-		return mv;
-	}
 }

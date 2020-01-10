@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import com.bong.patientphoto.security.AuthenticationFacade;
+import com.bong.patientphoto.service.AppUserService;
 import com.bong.patientphoto.service.BoardBaseService;
+import com.bong.patientphoto.service.BoardReplyService;
 import com.bong.patientphoto.service.BoardService;
 import com.bong.patientphoto.service.ImageService;
 import com.bong.patientphoto.service.OPRecordService;
@@ -30,6 +32,12 @@ public class BacoderController {
 	
 	@Resource(name="boardbaseService")
 	protected BoardBaseService boardBaseService;
+	
+	@Resource(name="boardReplyService")
+	protected BoardReplyService boardReplyService;
+	
+	@Resource(name="appUserService")
+	protected AppUserService appUserService;
 	
 	@Resource(name="userService")
 	protected UserService userService;
