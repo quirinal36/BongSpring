@@ -53,7 +53,7 @@ public class BoardBaseService implements DataService<BoardBase> {
 	@Override
 	public int count(BoardBase input) {
 		// TODO Auto-generated method stub
-		return 0;
+		return dao.count(input);
 	}
 
 }

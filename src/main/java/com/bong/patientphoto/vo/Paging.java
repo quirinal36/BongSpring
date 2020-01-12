@@ -4,7 +4,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Paging {
-    private int pageSize; 		// 게시 글 수
+	public static final int PAGE_SIZE_LIST = 10;
+	public static final int PAGE_SIZE_CARD = 3;
+	private String query;		// 검색어
+	private int pageSize; 		// 게시 글 수
     private int firstPageNo; 	// 첫 번째 페이지 번호
     private int prevPageNo; 	// 이전 페이지 번호
     private int startPageNo; 	// 시작 페이지 (페이징 네비 기준)
@@ -14,31 +17,30 @@ public class Paging {
     private int finalPageNo; 	// 마지막 페이지 번호
     private int totalCount; 	// 게시 글 전체 수
     private int from;
-    private int to;
-    
-    public Paging() {
-    	this.pageSize = 10;
-    }
     public Paging(int totalCount, int pageNo) {
     	this.pageNo = pageNo;
-    	this.pageSize = 10;
-    	this.totalCount = totalCount;
+    	this.pageSize = PAGE_SIZE_CARD;
+    	
+    	//this.makePaging();
+    }
+    public Paging() {
     	this.makePaging();
     }
-    public int getFrom() {
+    
+    public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
+	public int getFrom() {
 		return from;
 	}
 
 	public void setFrom(int from) {
 		this.from = from;
-	}
-
-	public int getTo() {
-		return to;
-	}
-
-	public void setTo(int to) {
-		this.to = to;
 	}
 
 	/**
@@ -165,6 +167,10 @@ public class Paging {
      */
     public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;
+        if(this.totalCount < this.pageSize) {
+        	this.pageNo = 1;
+        }
+        
         this.makePaging();
     }
 
@@ -174,7 +180,7 @@ public class Paging {
     private void makePaging() {
         if (this.totalCount == 0) return; // 게시 글 전체 수가 없는 경우
         if (this.pageNo == 0) this.setPageNo(1); // 기본 값 설정
-        if (this.pageSize == 0) this.setPageSize(10); // 기본 값 설정
+        if (this.pageSize == 0) this.setPageSize(9); // 기본 값 설정
 
         int finalPage = (totalCount + (pageSize - 1)) / pageSize; // 마지막 페이지
         if (this.pageNo > finalPage) this.setPageNo(finalPage); // 기본 값 설정
@@ -203,15 +209,6 @@ public class Paging {
         this.setEndPageNo(endPage); // 끝 페이지 (페이징 네비 기준)
 
         this.setFrom((this.getPageNo()-1) * this.getPageSize());
-        if(isNowFinal) {
-        	if(totalCount < 10) {
-        		this.setTo(totalCount);
-        	}else {
-        		this.setTo(this.getFrom() + (this.getTotalCount() - ((this.getPageSize()) * (this.getPageNo()-1))));
-        	}
-        }else {
-        	this.setTo(this.getFrom() + this.getPageSize());
-        }
         
         if (isNowFinal) {
             this.setNextPageNo(finalPage); // 다음 페이지 번호

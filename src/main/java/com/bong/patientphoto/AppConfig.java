@@ -110,8 +110,11 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
+		long maxSize = 1024 * 1024 * 500;
+		
 	    CommonsMultipartResolver resolver=new CommonsMultipartResolver();
 	    resolver.setDefaultEncoding("utf-8");
+	    resolver.setMaxUploadSize(maxSize);
 	    return resolver;
 	}
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,11 +31,16 @@ public class BoardBaseController extends BacoderController {
 	 * @param writer
 	 * @return
 	 */
+	
 	@RequestMapping(value= {"/board2/list","/board2"}, method=RequestMethod.GET)
 	public ModelAndView getBoardList(ModelAndView mv, 
 			@RequestParam(value="search", required=false)String search,
 			@RequestParam(value="page", required=false)Optional<Integer> pageNum,
-			@RequestParam(value="orderById", required=false)Optional<Integer> orderById ) {
+			@RequestParam(value="orderById", required=false)Optional<Integer> orderById,
+			HttpServletRequest request) {
+		if(request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
+			
+		}
 		List<BoardBase> list;
 		
 		BoardBase board;
@@ -48,21 +54,23 @@ public class BoardBaseController extends BacoderController {
 	//	}
 		
 	//	board.setSearch(search);
-		
+	//	logger.info("param :" + pageNum.get());
+
 		mv.addObject("pageNum", board.getPageNo());
-		
+		logger.info("param :" + board.getPageNo());
+		logger.info("board :" + board.toString());
 		board.setTotalCount(boardBaseService.count(board));
 		
 		list = boardBaseService.select(board);
 		logger.info("list : "+ list.toString());
 
-		mv.addObject("board", board);
+	//	mv.addObject("board", board);
 		mv.addObject("list", list);
 		mv.setViewName("/board2/list");
 		return mv;
 	}
 	
-	@RequestMapping(value= {"/board2/detail","/board2"}, method=RequestMethod.GET)
+	@RequestMapping(value= "/board2/detail", method=RequestMethod.GET)
 	public ModelAndView getBoardList(ModelAndView mv, BoardBase boardInput, BoardBase board, BoardReply reply, @RequestParam(value="boardId", required=true)int boardId ) {
 		
 		logger.info("boardId : "+ boardId);
@@ -79,7 +87,25 @@ public class BoardBaseController extends BacoderController {
 
 
 		mv.addObject("board", board);
+		mv.addObject("reply", replyList);
 		mv.setViewName("/board2/detail");
+		return mv;
+	}
+	
+	/**
+	 * 게시판 글 입력 뷰
+	 * 
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping(value="/board2/write", method=RequestMethod.GET)
+	public ModelAndView getWriteView(ModelAndView mv) {
+		//UserVO user = getUser();
+		//mv.addObject("user", user);
+		LocalDate today = LocalDate.now();
+		mv.addObject("today", today);
+		
+		mv.setViewName("/board2/write");
 		return mv;
 	}
 }

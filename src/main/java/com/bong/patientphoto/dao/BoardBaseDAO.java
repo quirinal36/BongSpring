@@ -55,7 +55,7 @@ public class BoardBaseDAO implements DataAccess<BoardBase> {
 	@Override
 	public int count(BoardBase input) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne(namespace +".count", input);
 	}
 
 }

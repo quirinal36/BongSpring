@@ -12,5 +12,13 @@
 			reply.boardId = ${boardId}
 		</where>
 	</select>
-
+	
+	<select id="select_all_recent" parameterType = "boardreply" resultType="boardreply">
+		select 
+			*
+		from Board_reply reply
+		<where>
+			reply.createdTime = ${boardId}
+		</where>
+	</select>
 </mapper>

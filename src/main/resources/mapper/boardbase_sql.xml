@@ -29,24 +29,27 @@
 			user.userLevel >= board.accessLevel
 		</where>
 		GROUP BY board.id
+		limit ${from}, ${pageSize}
+		
 	</select>
 	
 	<select id="select_one" parameterType="boardbase" resultType="boardbase">
 		select 
-			board.id, 
-			board.creatorId, 
-			board.text, 
-			board.createdTime,
-			board.updatedTime,
-			board.patientId,
-			board.status,
-			board.type,
-			board.expireDate,
-			board.replyCount
+			*
 		from Board_main board
 		<where>
 			board.id = ${id}
 		</where>
 	</select>
+	<select id="count" parameterType="boardbase" resultType="int">
+		select
+			count(*)
+		FROM Board_main board
+
+		LEFT JOIN User AS user ON user.id = board.creatorId
+		<where>
+			user.userLevel >= board.accessLevel
+		</where>
 	
+	</select>
 </mapper>
