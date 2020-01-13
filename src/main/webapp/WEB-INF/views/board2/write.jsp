@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
@@ -8,10 +8,37 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
+	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+	<script>
+$(document).ready(function(){
+    $(function() {
+   $('#submit1').click(function(e) {
+        e.preventDefault();
+        $("#writeboard").submit();
+        console.log("submit");
+    });
+
+   $('#submit2').click(function(e) {
+        e.preventDefault();
+        $("#writeboard").submit();
+    });
+});
+});
+</script>
+
 </head>
 <body>
-		<div class="container">
-				<form id="write" action="<c:url value="/board2/insert"/>" method="post">
+	<div class="wrap">
+		<c:import url="/inc/header"></c:import>
+		<div class="container_wrap">
+			<div class="container">
+				<form id="writeboard" action="/board2/insert" method="post" >
 					<table>
 						<colgroup>
 							<col width="30%">
@@ -20,7 +47,7 @@
 						<thead>
 							<tr>
 								<th colspan="2">
-									사진정보 업로드								
+									글쓰기								
 								</th>
 							</tr>
 						</thead>
@@ -54,21 +81,13 @@
 						</tbody>
 					</table>
 					
-					<input type="button" value="글작성" onclick="javascript:insertBoard();">
-				</form>
-			</div>
-			
-	<script type="text/javascript">
-	function insertBoard(){
-		if(confirm("저장하시겠습니까?")){
-			$("form").submit();
-		}
-	}
-	</script>
-	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
-	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+						<input type="submit" name="submitme" value="Submit1" id="submit1" />
+ 					   <p><a href="#" id="submit2">Submit</a></p>
+    				</form>
+	</div>
+	</div>
+	</div>
+	
+
 </body>
 </html>

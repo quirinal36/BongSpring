@@ -25,6 +25,10 @@ public class BoardBase extends Paging {
 	
 	public BoardBase() {}
 	
+	public BoardBase(int id) {
+		this.id = id;
+	}
+	
 	public BoardBase(int totalCount, int pageNo) {
 		super(totalCount, pageNo);
 	}

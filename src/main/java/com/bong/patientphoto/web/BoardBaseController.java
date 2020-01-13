@@ -120,9 +120,10 @@ public class BoardBaseController extends BacoderController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value="/board2/insert", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView writeBoard (ModelAndView mv, 
+	public ModelAndView writeBoard2 (ModelAndView mv, 
 			BoardBase board, HttpServletResponse response,
 			HttpServletRequest request) throws IOException {
+		logger.info("/board2/insert");
 		logger.info(board.toString());
 		
 		int result = boardBaseService.insert(board);
@@ -130,8 +131,11 @@ public class BoardBaseController extends BacoderController {
 		if(result == 1) {
 			// 글 작성에 성공
 			mv.setViewName("redirect:/board2");
+			logger.info("success!! : redirect");
+
 		}else {
 			// 글 작성에 실패
+			logger.info("failed!! : redirect");
 			mv.setViewName("redirect:/board2/write");
 		}
 		
