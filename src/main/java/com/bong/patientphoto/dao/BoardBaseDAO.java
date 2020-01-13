@@ -18,8 +18,7 @@ public class BoardBaseDAO implements DataAccess<BoardBase> {
 	
 	@Override
 	public int insert(BoardBase input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(namespace + ".insert", input);
 	}
 
 	@Override

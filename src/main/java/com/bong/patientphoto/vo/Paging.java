@@ -17,6 +17,7 @@ public class Paging {
     private int finalPageNo; 	// 마지막 페이지 번호
     private int totalCount; 	// 게시 글 전체 수
     private int from;
+    
     public Paging(int totalCount, int pageNo) {
     	this.pageNo = pageNo;
     	this.pageSize = PAGE_SIZE_CARD;

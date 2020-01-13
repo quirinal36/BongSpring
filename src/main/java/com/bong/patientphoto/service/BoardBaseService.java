@@ -16,8 +16,7 @@ public class BoardBaseService implements DataService<BoardBase> {
 	
 	@Override
 	public int insert(BoardBase input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(input);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.bong.patientphoto.web;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bong.patientphoto.vo.Board;
 import com.bong.patientphoto.vo.BoardBase;
 import com.bong.patientphoto.vo.BoardReply;
+import com.bong.patientphoto.vo.PhotoInfo;
 import com.bong.patientphoto.vo.UserVO;
 
 @Controller
@@ -106,6 +108,33 @@ public class BoardBaseController extends BacoderController {
 		mv.addObject("today", today);
 		
 		mv.setViewName("/board2/write");
+		return mv;
+	}
+	
+	/**
+	 * 게시판 글 입력 프로시져
+	 * 
+	 * @param board : form 에 있는 정보를 맵핑해 전달한다
+	 * @param response
+	 * @param request
+	 * @throws IOException
+	 */
+	@RequestMapping(value="/board2/insert", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView writeBoard (ModelAndView mv, 
+			BoardBase board, HttpServletResponse response,
+			HttpServletRequest request) throws IOException {
+		logger.info(board.toString());
+		
+		int result = boardBaseService.insert(board);
+		
+		if(result == 1) {
+			// 글 작성에 성공
+			mv.setViewName("redirect:/board2");
+		}else {
+			// 글 작성에 실패
+			mv.setViewName("redirect:/board2/write");
+		}
+		
 		return mv;
 	}
 }

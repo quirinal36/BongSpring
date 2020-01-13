@@ -50,6 +50,13 @@
 		<where>
 			user.userLevel >= board.accessLevel
 		</where>
-	
 	</select>
+	
+	<insert id="insert" parameterType="boardbase">
+		INSERT INTO Board_main 
+			(creatorId, patientId, status, text, type, accessLevel)
+		values
+			(${creatorId}, ${patientId}, ${status},'${text}', ${type}, ${accessLevel})
+	</insert>
+	
 </mapper>

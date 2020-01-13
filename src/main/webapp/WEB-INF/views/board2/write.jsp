@@ -11,7 +11,7 @@
 </head>
 <body>
 		<div class="container">
-				<form id="write" action="<c:url value="/board2/write"/>" method="post">
+				<form id="write" action="<c:url value="/board2/insert"/>" method="post">
 					<table>
 						<colgroup>
 							<col width="30%">
@@ -26,51 +26,49 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>등록번호</td>
-								<td><input type="text" name="regNo" placeholder="등록번호" required/></td>
+								<td>글쓴이Id</td>
+								<td><input type="text" name="creatorId" placeholder="글쓴이Id" required/></td>
 							</tr>
 							<tr>
-								<td>환자이름</td>
-								<td><input type="text" name="patientName" placeholder="환자이름" required/></td>
+								<td>환자번호</td>
+								<td><input type="text" name="patientId" placeholder="환자번호" required/></td>
 							</tr>
 							<tr>
-								<td>등록담당자</td>
-								<td><input type="text" name="uploader" placeholder="등록담당자" value="${user.username }" required/></td>
+								<td>status</td>
+								<td><input type="text" name="status" placeholder="글상태" required/></td>
 							</tr>
 							<tr>
-								<td>분류</td>
-								<td><input type="text" name="specification" placeholder="분류"/></td>
+								<td>text</td>
+								<td><input type="text" name="text" placeholder="내용"/></td>
 							</tr>
 							<tr>
-								<td>찍은날짜</td>
-								<td><input type="text" name="issuedAt" placeholder="찍은날짜" value="${today }"/></td>
+								<td>type</td>
+								<td><input type="text" name="type" placeholder="종류"/></td>
 							</tr>
+							<tr>
+								<td>accessLevel</td>
+								<td><input type="text" name="accessLevel" placeholder="열람등급"/></td>
+							</tr>
+							
 							
 						</tbody>
 					</table>
-					<input id="fileupload" type="file" name="files[]" 
-						accept="image/x-png,image/gif,image/jpeg" data-url="<c:url value="/upload"/>" multiple>
-				    <div id="progress">
-				        <div style="width: 0%;"></div>
-				    </div>
-				    <table id="uploaded-files">
-				    	<thead>
-				    		<tr>
-								<th colspan="3">사진업로드</th>
-							</tr>
-						</thead>
-						<tbody>
-					        <tr>
-					            <th>파일명</th>
-					            <th>Size</th>
-					            <th>Type</th>
-					        </tr>
-				        </tbody>
-				    </table>
-					<input type="hidden" value="<c:url value="/upload/get"/>" name="uploadUrl">
-					<input type="hidden" value="<c:url value="/upload/clear"/>" name="clearUrl">
+					
 					<input type="button" value="글작성" onclick="javascript:insertBoard();">
 				</form>
 			</div>
+			
+	<script type="text/javascript">
+	function insertBoard(){
+		if(confirm("저장하시겠습니까?")){
+			$("form").submit();
+		}
+	}
+	</script>
+	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 </body>
 </html>
