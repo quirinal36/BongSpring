@@ -52,7 +52,7 @@
 		</where>
 	</select>
 	
-	<insert id="insert" parameterType="boardbase">
+	<insert id="insert" parameterType="boardbase" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Board_main 
 			(creatorId, patientId, status, text, type, accessLevel)
 		values

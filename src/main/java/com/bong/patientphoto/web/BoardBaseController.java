@@ -115,30 +115,11 @@ public class BoardBaseController extends BacoderController {
 	 * 게시판 글 입력 프로시져
 	 * 
 	 * @param board : form 에 있는 정보를 맵핑해 전달한다
-	 * @param response
-	 * @param request
-	 * @throws IOException
 	 */
-	@RequestMapping(value="/board2/insert", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView writeBoard2 (ModelAndView mv, 
-			BoardBase board, HttpServletResponse response,
-			HttpServletRequest request) throws IOException {
-		logger.info("/board2/insert");
-		logger.info(board.toString());
-		
+	@ResponseBody
+	@RequestMapping(value="/board2/insert", method= RequestMethod.POST, produces = "application/json; charset=utf8")
+	public String writeBoard2 (BoardBase board) {
 		int result = boardBaseService.insert(board);
-		
-		if(result == 1) {
-			// 글 작성에 성공
-			mv.setViewName("redirect:/board2");
-			logger.info("success!! : redirect");
-
-		}else {
-			// 글 작성에 실패
-			logger.info("failed!! : redirect");
-			mv.setViewName("redirect:/board2/write");
-		}
-		
-		return mv;
+		return board.toString();
 	}
 }

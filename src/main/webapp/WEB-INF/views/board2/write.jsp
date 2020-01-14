@@ -17,18 +17,27 @@
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<script>
 $(document).ready(function(){
-    $(function() {
-   $('#submit1').click(function(e) {
-        e.preventDefault();
-        $("#writeboard").submit();
-        console.log("submit");
-    });
-
-   $('#submit2').click(function(e) {
-        e.preventDefault();
-        $("#writeboard").submit();
-    });
-});
+   $("#submitBtn").on("click", function(){
+	  var param = $("form").serialize();	// 넘길 정보
+	  var url = $("form").attr("action");	// 처리할 URL
+	  console.log(url+"?"+param);
+	  
+	  /*
+	  * AJAX 문법으로 처리
+	  */
+	  $.ajax({
+		  url : url,
+		  data: param,
+		  type: "POST",
+		  dataType: "json"
+	  }).done(function(json){
+		 console.log(json);	// 작성 완료
+		 
+		 if(json.id > 1){ // 글작성 성공
+			 window.location.replace("/board2");
+		 }
+	  });
+   });
 });
 </script>
 
@@ -38,7 +47,7 @@ $(document).ready(function(){
 		<c:import url="/inc/header"></c:import>
 		<div class="container_wrap">
 			<div class="container">
-				<form id="writeboard" action="/board2/insert" method="post" >
+				<form action="/board2/insert">
 					<table>
 						<colgroup>
 							<col width="30%">
@@ -80,14 +89,10 @@ $(document).ready(function(){
 							
 						</tbody>
 					</table>
-					
-						<input type="submit" name="submitme" value="Submit1" id="submit1" />
- 					   <p><a href="#" id="submit2">Submit</a></p>
-    				</form>
+					<input type="button" value="전송" id="submitBtn"/>
+   				</form>
 	</div>
 	</div>
 	</div>
-	
-
 </body>
 </html>

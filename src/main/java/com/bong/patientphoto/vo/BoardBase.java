@@ -21,7 +21,7 @@ public class BoardBase extends Paging {
 	private int replyCount;
 	private int userType;
 	private int userLevel;
-	private int AccessLevel;
+	private int accessLevel;
 	
 	public BoardBase() {}
 	
@@ -135,11 +135,11 @@ public class BoardBase extends Paging {
 	}
 
 	public int getAccessLevel() {
-		return AccessLevel;
+		return accessLevel;
 	}
 
 	public void setAccessLevel(int accessLevel) {
-		AccessLevel = accessLevel;
+		this.accessLevel = accessLevel;
 	}
 
 	@Override
