@@ -30,7 +30,7 @@ public class BacoderController {
 	@Resource(name="boardService")
 	protected BoardService boardService;
 	
-	@Resource(name="boardbaseService")
+	@Resource(name="boardBaseService")
 	protected BoardBaseService boardBaseService;
 	
 	@Resource(name="boardReplyService")

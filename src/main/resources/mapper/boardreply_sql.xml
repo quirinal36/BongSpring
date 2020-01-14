@@ -21,4 +21,16 @@
 			reply.createdTime = ${boardId}
 		</where>
 	</select>
+	
+	<insert id="insert" parameterType="boardreply" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Board_reply 
+			(boardId, text, status, writerId)
+		values
+			(${boardId}, '${text}', ${status}, ${writerId})
+	</insert>
+	
+	<delete id="delete" parameterType="boardreply">
+		delete from Board_reply
+		where id = ${id}
+	</delete>
 </mapper>

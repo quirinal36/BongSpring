@@ -122,4 +122,14 @@ public class BoardBaseController extends BacoderController {
 		int result = boardBaseService.insert(board);
 		return board.toString();
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/board2/delete", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView deleteBoard(ModelAndView mv, BoardBase board,
+			HttpServletRequest request) throws IOException {
+		int result = boardBaseService.delete(board);
+		
+		mv.setViewName("redirect:/board2");
+		return mv;
+	}
 }

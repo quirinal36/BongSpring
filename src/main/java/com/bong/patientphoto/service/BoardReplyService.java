@@ -16,8 +16,7 @@ public class BoardReplyService implements DataService<BoardReply> {
 
 	@Override
 	public int insert(BoardReply input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insert(input);
 	}
 
 	@Override

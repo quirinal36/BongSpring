@@ -7,8 +7,9 @@ import org.springframework.stereotype.Component;
 
 import com.bong.patientphoto.dao.BoardBaseDAO;
 import com.bong.patientphoto.vo.BoardBase;
+import com.bong.patientphoto.vo.BoardReply;
 
-@Component("boardbaseService")
+@Component("boardBaseService")
 public class BoardBaseService implements DataService<BoardBase> {
 
 	@Autowired
@@ -27,8 +28,7 @@ public class BoardBaseService implements DataService<BoardBase> {
 
 	@Override
 	public int delete(BoardBase input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.delete(input);
 	}
 
 	@Override

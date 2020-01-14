@@ -18,8 +18,7 @@ public class BoardReplyDAO implements DataAccess<BoardReply> {
 
 	@Override
 	public int insert(BoardReply input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(namespace + ".insert", input);
 	}
 
 	@Override

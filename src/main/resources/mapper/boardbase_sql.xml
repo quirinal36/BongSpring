@@ -59,4 +59,8 @@
 			(${creatorId}, ${patientId}, ${status}, '${text}', ${type}, ${accessLevel})
 	</insert>
 	
+	<delete id="delete" parameterType="boardbase">
+		delete from Board_main
+		where id = ${id}
+	</delete>
 </mapper>

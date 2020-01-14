@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Paging {
 	public static final int PAGE_SIZE_LIST = 10;
-	public static final int PAGE_SIZE_CARD = 3;
+	public static final int PAGE_SIZE_CARD = 10;
 	private String query;		// 검색어
 	private int pageSize; 		// 게시 글 수
     private int firstPageNo; 	// 첫 번째 페이지 번호
