@@ -37,23 +37,32 @@ $(document).ready(function(){
 	  });
    });
    $("#deleteBtn").on("click", function(){
-		  
-		  /*
-		  * AJAX 문법으로 처리
-		  */
-		  $.ajax({
-			  url : "/board2/delete",
-			  data: {'id':'${board.id}'},
-			  type: "POST",
-			  dataType: "json"
-		  }).done(function(){
-				// console.log("done:"+ data);	// 작성 완료
-				 
+	   var data = $("#deleteForm").serialize();
+	   var url = $("#deleteForm").attr("action");
+	   console.log(url +"?" + data);
+	   
+	   if(confirm("삭제하시겠습니까?")){
+			/*
+			* AJAX 문법으로 처리
+			*/
+			$.ajax({
+				url : url,
+				data: data,
+				type: "GET", // 비교용 : "POST",
+				dataType: "json"
+			}).done(function(json){
+				console.log("done:"+ json);	// 작성 완료
 				window.location.replace("/board2");
-				 
-			  });
+			}).fail(function(){
+				console.log("fail");
+			});
+			
+			/*
+			AJAX 없이 하려면
+			*/
+		//	window.location.replace(url + "?" + data);
+	   }
 	});
-   
 });
 </script>
 
@@ -85,7 +94,10 @@ $(document).ready(function(){
 							</tr>
 							<tr>
 								<td>
-									<input type="button" value="글삭제" id="deleteBtn"/>
+									<form id="deleteForm" action="<c:url value="/board2/delete"/>">
+										<input type="hidden" name="id" value="${board.id }"/>
+										<input type="button" value="글삭제" id="deleteBtn"/>
+									</form>
 								</td>
 							</tr>
 							

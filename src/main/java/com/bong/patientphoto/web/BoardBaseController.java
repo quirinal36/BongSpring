@@ -124,12 +124,9 @@ public class BoardBaseController extends BacoderController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/board2/delete", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView deleteBoard(ModelAndView mv, BoardBase board,
-			HttpServletRequest request) throws IOException {
-		int result = boardBaseService.delete(board);
-		
-		mv.setViewName("redirect:/board2");
-		return mv;
+	@RequestMapping(value="/board2/delete", method=RequestMethod.POST)
+	public String deleteBoardPost(BoardBase board) {
+		boardBaseService.delete(board);
+		return board.toString();
 	}
 }
