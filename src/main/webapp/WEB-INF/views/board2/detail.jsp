@@ -16,8 +16,8 @@
 	<script>
 $(document).ready(function(){
    $("#replyBtn").on("click", function(){
-	  var param = $("form").serialize();	// 넘길 정보
-	  var url = $("form").attr("action");	// 처리할 URL
+	  var param = $("#replyForm").serialize();	// 넘길 정보
+	  var url = $("#replyForm").attr("action");	// 처리할 URL
 	  console.log(url+"?"+param);
 	  
 	  /*
@@ -32,7 +32,7 @@ $(document).ready(function(){
 		 console.log(json);	// 작성 완료
 		 
 		 if(json.id > 1){ // 글작성 성공
-			 window.location.replace("/board2");
+			 window.location.replace("/board2/detail?boardId="+${board.id});
 		 }
 	  });
    });
@@ -48,7 +48,7 @@ $(document).ready(function(){
 			$.ajax({
 				url : url,
 				data: data,
-				type: "GET", // 비교용 : "POST",
+				type: "POST", // 비교용 : "POST",
 				dataType: "json"
 			}).done(function(json){
 				console.log("done:"+ json);	// 작성 완료
@@ -63,6 +63,52 @@ $(document).ready(function(){
 		//	window.location.replace(url + "?" + data);
 	   }
 	});
+   $("#replyDeleteBtn").on("click", function(){
+	   var data = $("#deleteForm").serialize();
+	   var url = $("#deleteForm").attr("action");
+	   console.log(url +"?" + data);
+	   
+	   if(confirm("삭제하시겠습니까?")){
+			/*
+			* AJAX 문법으로 처리
+			*/
+			$.ajax({
+				url : url,
+				data: data,
+				type: "POST", // 비교용 : "POST",
+				dataType: "json"
+			}).done(function(json){
+				console.log("done:"+ json);	// 작성 완료
+				window.location.replace("/board2");
+			}).fail(function(){
+				console.log("fail");
+			});
+			
+			/*
+			AJAX 없이 하려면
+			*/
+		//	window.location.replace(url + "?" + data);
+	   }
+	});
+	
+	function deleteReply(id){
+	   var url = "/board2/deleteReply";
+	
+		if(confirm("삭제 하시겠습니까?")){
+			$.ajax({
+				url : url,
+				data: {'id': id},
+				type: "POST", // 비교용 : "POST",
+				dataType: "json"
+			}).done(function(json){
+				console.log("done:"+ json);	// 작성 완료
+				window.location.replace("/board2/detail?boardId=" + ${board.id});
+			}).fail(function(){
+				console.log("fail");
+			});
+			//window.location.replace(url + "?id=" + id);
+		}
+	}
 });
 </script>
 
@@ -110,6 +156,9 @@ $(document).ready(function(){
 								<td>${item.text}</td>
 								<td>${item.writerId}</td>
 								<td>${item.createdTime}</td>
+								<td>
+									<input type="button" value="삭제" onclick="javascript:deleteReply('${item.id}')"/>
+								</td>
 							</tr>
 						</c:forEach>
 							
@@ -118,7 +167,7 @@ $(document).ready(function(){
 						</tbody>
 					</table>
 					
-					<form action="/board2/insertReply">
+					<form id="replyForm" action="/board2/insertReply">
 					<table>
 						<colgroup>
 							<col width="30%">
