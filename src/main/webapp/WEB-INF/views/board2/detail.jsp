@@ -102,7 +102,7 @@ $(document).ready(function(){
 				dataType: "json"
 			}).done(function(json){
 				console.log("done:"+ json);	// 작성 완료
-				window.location.replace("/board2/detail?boardId=" + ${board.id});
+				window.location.replace("/board2/detail?boardId=" + '${board.id}');
 			}).fail(function(){
 				console.log("fail");
 			});
