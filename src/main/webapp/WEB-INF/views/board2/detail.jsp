@@ -90,8 +90,9 @@ $(document).ready(function(){
 		//	window.location.replace(url + "?" + data);
 	   }
 	});
-	
-	function deleteReply(id){
+});
+
+function deleteReply(id){
 	   var url = "/board2/deleteReply";
 	
 		if(confirm("삭제 하시겠습니까?")){
@@ -109,7 +110,6 @@ $(document).ready(function(){
 			//window.location.replace(url + "?id=" + id);
 		}
 	}
-});
 </script>
 
 </head>
