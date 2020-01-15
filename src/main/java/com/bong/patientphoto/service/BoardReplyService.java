@@ -27,8 +27,7 @@ public class BoardReplyService implements DataService<BoardReply> {
 
 	@Override
 	public int delete(BoardReply input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.delete(input);
 	}
 
 	@Override

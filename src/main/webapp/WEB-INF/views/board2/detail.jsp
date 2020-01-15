@@ -47,7 +47,7 @@ $(document).ready(function(){
 			  type: "POST",
 			  dataType: "json"
 		  }).done(function(){
-				 console.log("done:"+ data);	// 작성 완료
+				// console.log("done:"+ data);	// 작성 완료
 				 
 				window.location.replace("/board2");
 				 

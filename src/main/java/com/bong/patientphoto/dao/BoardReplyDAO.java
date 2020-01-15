@@ -29,8 +29,7 @@ public class BoardReplyDAO implements DataAccess<BoardReply> {
 
 	@Override
 	public int delete(BoardReply input) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(namespace + ".delete", input);
 	}
 
 	@Override

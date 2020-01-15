@@ -39,4 +39,11 @@ public class BoardReplyController extends BacoderController {
 		int result = boardReplyService.insert(reply);
 		return reply.toString();
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/board2/deleteReply", method= RequestMethod.POST, produces = "application/json; charset=utf8")
+	public String deleteReply (BoardReply reply) {
+		int result = boardReplyService.delete(reply);
+		return reply.toString();
+	}
 }
