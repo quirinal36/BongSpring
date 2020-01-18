@@ -27,6 +27,8 @@ import com.bong.patientphoto.vo.UserVO;
 
 @Controller
 public class BoardBaseController extends BacoderController {
+	
+	private static final String token = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vaHNib25nLnN5bm9sb2d5Lm1lIiwic3ViIjoiUGhvdG9Ub2tlbiIsImV4cCI6MTU3OTQyMjcxMiwianRpIjoiRDAwMDciLCJzY29wZSI6InBob3RvIiwicm9sZSI6MH0.EhHPN-tTc9iPjw8M7qb6r7X1H9iXRRF7_E_fAYeEKmg";
 	/**
 	 * 게시판 리스트뷰
 	 * @param mv
@@ -40,6 +42,7 @@ public class BoardBaseController extends BacoderController {
 			@RequestParam(value="page", required=false)Optional<Integer> pageNum,
 			@RequestParam(value="orderById", required=false)Optional<Integer> orderById,
 			HttpServletRequest request) {
+		
 		if(request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
 			
 		}

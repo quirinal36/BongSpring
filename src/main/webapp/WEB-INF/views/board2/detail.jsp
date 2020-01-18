@@ -90,7 +90,7 @@ $(document).ready(function(){
 		//	window.location.replace(url + "?" + data);
 	   }
 	});
-	
+});
 	function deleteReply(id){
 	   var url = "/board2/deleteReply";
 	
@@ -109,7 +109,6 @@ $(document).ready(function(){
 			//window.location.replace(url + "?id=" + id);
 		}
 	}
-});
 </script>
 
 </head>

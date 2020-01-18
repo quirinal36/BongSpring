@@ -141,6 +141,105 @@ public class FileController extends BacoderController{
         files.put("files", list);
         return files;
 	}
+
+	
+	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
+    public @ResponseBody Map uploadPhoto(MultipartHttpServletRequest request, HttpServletResponse response) throws ParseException {
+
+		String patientId = request.getParameter("patientId");
+		logger.info("patientId: " + patientId);
+		
+		String date = request.getParameter("date");
+		logger.info("date: " + date);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date parsed = format.parse(date);
+        java.sql.Date captureDate = new java.sql.Date(parsed.getTime());
+
+		String doctor = request.getParameter("doctor");
+		logger.info("doctor: " + doctor);
+		
+		String classification = request.getParameter("classification");
+		logger.info("classification: " + classification);
+		
+		String uploader = request.getParameter("uploader");
+		logger.info("uploader: " + uploader);
+		
+		String caption = request.getParameter("caption");
+		
+		
+
+		
+		SimpleDateFormat format1 = new SimpleDateFormat ("HHmmss");			
+		Date time = new Date();			
+		String time1 = format1.format(time);
+		
+		Iterator<String> itr = request.getFileNames();
+        MultipartFile mpf;
+        List<PhotoInfo> list = new LinkedList<>();
+        
+        while (itr.hasNext()) {
+            mpf = request.getFile(itr.next());
+            logger.info("Uploading {}" + mpf.getOriginalFilename());
+            
+            //String url = "/home/phbong31/storage";
+            String url = "";
+            
+            File photoDir = new File(url + File.separator + "board_photo");
+            if(!photoDir.exists()) {
+            	photoDir.mkdir();
+            }
+            String newFilenameBase = UUID.randomUUID().toString();
+           // String newFilenameBase = patientId+"/"+patientId+"_"+date+"_"+time1;
+
+            String originalFileExtension = mpf.getOriginalFilename().substring(mpf.getOriginalFilename().lastIndexOf("."));
+            String newFilename = newFilenameBase + originalFileExtension;
+            
+            //String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+            String srcPath = Config.srcPath;
+
+            logger.info("srcPath: " + srcPath);
+			String contentType = mpf.getContentType();
+			
+			File newFile = new File(srcPath + "/" + newFilename);
+            try {
+                mpf.transferTo(newFile);
+                
+                BufferedImage thumbnail = Scalr.resize(ImageIO.read(newFile), 290);
+                String thumbnailFilename = newFilenameBase + "-thumbnail.JPG";
+                File thumbnailFile = new File(srcPath + "/" + thumbnailFilename);
+                ImageIO.write(thumbnail, "jpg", thumbnailFile);
+                
+                PhotoInfo photo = new PhotoInfo();
+                photo.setPatientId(patientId);
+                photo.setName(mpf.getOriginalFilename());
+                photo.setThumbnailFilename(thumbnailFilename);
+                photo.setNewFilename(newFilename);
+                photo.setSize((int)mpf.getSize());
+                photo.setThumbnailSize((int)thumbnailFile.length());
+                photo.setContentType(contentType);
+                photo.setClassification(classification);
+                photo.setSync(3);
+                photo.setPhotoUrl(newFilename);
+                photo.setDoctor(doctor);
+                photo.setCaptureDate(captureDate);
+                photo.setUploader(uploader);
+                
+                int result = photoInfoService.insert(photo);
+                
+                photo.setUrl(getWebappDir(request) +"/picture/"+photo.getId());
+                photo.setThumbnailUrl(getWebappDir(request) + "/thumbnail/"+photo.getId());
+                
+                logger.info(photo.toString());
+                list.add(photo);
+            } catch(IOException e) {
+                logger.info("Could not upload file "+mpf.getOriginalFilename() + e.getLocalizedMessage());
+            }
+        }
+        Map<String, Object> files = new HashMap<>();
+        files.put("files", list);
+        return files;
+	}
+	
 	
 	@RequestMapping(value = "/picture/{id}", method = RequestMethod.GET)
     public void picture(HttpServletRequest request,

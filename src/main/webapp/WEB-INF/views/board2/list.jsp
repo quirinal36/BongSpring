@@ -13,7 +13,7 @@
 					<table>
 						<thead>
 							<tr>
-								<td>Board List</td>
+								<td>게시판</td>
 								
 							</tr>
 						</thead>

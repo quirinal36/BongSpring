@@ -3,12 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<c:set var="baseUrl" value="${pageContext.request.contextPath}"></c:set>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
+	<link href="<c:url value="/resources/css/dropzone.css"/>" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
 	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
@@ -38,6 +41,7 @@ $(document).ready(function(){
 		 }
 	  });
    });
+   
 });
 </script>
 
@@ -89,10 +93,65 @@ $(document).ready(function(){
 							
 						</tbody>
 					</table>
+						<input id="fileupload" type="file" name="files[]" 
+						accept="image/x-png,image/gif,image/jpeg" data-url="<c:url value="/uploadPhoto"/>" multiple>
+				    <div id="progress">
+				        <div style="width: 0%;"></div>
+				    </div>
+				    <table id="uploaded-files">
+				    	<thead>
+				    		<tr>
+								<th colspan="3">사진업로드</th>
+							</tr>
+						</thead>
+						<tbody>
+					        <tr>
+					            <th>파일명</th>
+					            <th>Size</th>
+					            <th>Type</th>
+					        </tr>
+				        </tbody>
+				    </table>
+					<input type="hidden" value="<c:url value="/upload/get"/>" name="uploadUrl">
+					<input type="hidden" value="<c:url value="/upload/clear"/>" name="clearUrl">
 					<input type="button" value="전송" id="submitBtn"/>
    				</form>
 	</div>
 	</div>
 	</div>
+	
+	<script type="text/javascript">
+	$(function () {
+	    $('#fileupload').fileupload({
+	    	imageCrop: true,
+	        dataType: 'json',
+	        done: function (e, data) {
+	        	var url = $("input[name='uploadUrl']").val();
+	        	
+	        	
+	            $("#uploaded-files tr:has(td)").remove();
+	            $.each(data.result, function (index, file) {
+	                $("#uploaded-files").append(
+	                        $('<tr/>')
+	                        .append($('<td/>').text(file.fileName))
+	                        .append($('<td/>').text(file.fileSize))
+	                        .append($('<td/>').text(file.fileType))
+	                        )//end $("#uploaded-files").append()
+	            }); 
+	        },
+	 		
+	        progressall: function (e, data) {
+	            var progress = parseInt(data.loaded / data.total * 100, 10);
+	            $('#progress .bar').css(
+	                'width',
+	                progress + '%'
+	            );
+	        },
+	 
+	        dropZone: $('#dropzone')
+	    });
+	});
+	
+	</script>
 </body>
 </html>
