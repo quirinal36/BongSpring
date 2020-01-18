@@ -1,0 +1,303 @@
+.notice_area {
+    padding: 20px 20px 0 20px;
+}
+
+.notice_area .title,
+.notice_area .item {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 100%;
+    font-size: 1.3rem;
+}
+
+.notice_area .title {
+    margin-right: 10px;
+    padding: 7px 8px 5px 8px;
+    border-radius: 4px;
+    background: #577dc0;
+    font-weight: 600;
+    color: #fff;
+    word-spacing: 1px;
+}
+
+.notice_area .item {
+    width: calc(100% - 60px);
+    padding-top: 2px;
+    font-size: 1.4rem;
+    color: #777;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.board_list {
+    padding: 20px 20px 0 20px;
+}
+
+.board_list > .item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.board_list.detail > .item {
+    background: #eee;
+}
+
+.board_list > .item:first-child {
+    margin-top: 0;
+}
+
+.board_list > .item .top_wrap {
+    position: relative;
+    padding: 10px 15px;
+}
+
+.board_list > .item .top_wrap .image,
+.board_list > .item .top_wrap .name {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.board_list > .item .top_wrap .image {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    text-indent: -100px;
+    overflow: hidden;
+}
+
+.board_list > .item .top_wrap .name {
+    margin-left: 8px;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.board_list > .item .top_wrap .time {
+    position: absolute;
+    top: 22px;
+    right: 40px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #bbb;
+}
+
+.board_list > .item .top_wrap #feed_more {
+    display: none;
+}
+
+.board_list > .item .top_wrap #feed_more + label {
+    position: absolute;
+    top: 12px;
+    right: 8px;
+    display: block;
+    width: 24px;
+    height: 41px;
+    background: url(/img/comm/dot.png) no-repeat 0 0;
+    font-size: 0;
+    color: rgba(0, 0, 0, 0);
+}
+
+
+
+
+/*control_wrap*/
+.control_wrap {
+    position: relative;
+    border-top: 4px solid #577dc0;
+    padding: 10px 15px;
+    background: #edeeee;
+}
+
+.control_wrap input[type="button"] {
+    min-height: 21px;
+    padding-top: 3px;
+    padding-left: 28px;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.control_wrap .bt_scrap {
+    background:url(/img/comm/scrap.png) no-repeat 0 0;
+}
+
+
+.control_wrap  .bt_share {
+    background: url(/img/comm/share.png) no-repeat 0 0;
+    margin-left: 8px;
+}
+
+.control_wrap select {
+    position: absolute;
+    top: 9px;
+    right: 15px;
+    border: none;
+    border-radius: 5px;
+    padding: 2px 2px;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+
+/*feed_img_slider*/
+.feed_img_slider .item {
+    border: none;
+    width: 100%;
+    height: 300px;
+    text-indent: -100px;
+    overflow: hidden;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.feed_img_slider .bx-wrapper .bx-pager.bx-default-pager a {
+    width: 7px;
+    height: 7px;
+    margin: 0 3px;
+    transition: 0.5s;
+}
+
+.feed_img_slider .bx-wrapper .bx-pager.bx-default-pager a.active {
+    width: 20px;
+}
+
+/*text_wrap*/
+.text_wrap {
+    padding: 10px 15px;
+}
+
+.text_wrap .text {
+    line-height: 160%;
+}
+
+.text_wrap .text p {
+    font-size: 1.5rem;
+}
+
+.text_wrap .text a {
+    color: #999;
+    font-size: 1.5rem;
+    font-weight: 600;    
+}
+
+.text_wrap .comment {
+    text-align: right;
+}
+.text_wrap .comment a {
+    font-size: 1.5rem;
+    font-weight: 600;    
+}
+
+.comment_view {
+    padding: 20px 15px 15px 15px;
+}
+
+.comment_view dl {
+    font-size: 0;
+    margin-top: 5px;
+}
+
+.comment_view dl:first-child {
+    margin-top: 0;
+}
+.comment_view dd,
+.comment_view dt {
+    display: inline-block;
+    font-size: 1.4rem;    
+    vertical-align: top;
+}
+
+.comment_view dt {
+    font-weight: 800;
+    width: 100px;
+}
+
+.comment_view dd {
+    width: calc(100% - 100px);
+
+}
+
+.detail_img_list {
+    margin-top: 20px;
+}
+
+.detail_img_list .item {
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+.detail_img_list .item:first-child {
+    margin-top: 0;
+}
+
+.detail_img_list .item .image {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    text-indent: -100px;
+    overflow: hidden;
+}
+
+.detail_img_list .item .image::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    background: red;
+}
+
+.detail_img_list .item .count{
+    padding: 10px 10px;
+    text-align: right;
+}
+.detail_img_list .item .count a,
+.detail_img_list .item .count span {
+    display: inline-block;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #666;
+}
+
+.detail_img_list .item .count span {
+    margin-left: 10px;
+}
+
+.detail_img_list .item .count span::before {
+    content:"·";
+    display: inline-block;
+    padding-right: 10px;
+    font-weight: 800;
+    color: #666;
+}
+
+.detail_img_list .bt {
+    font-size: 0;
+}
+
+.detail_img_list .item .bt a {
+    display: inline-block;
+    width: 50%;
+    height: 40px;
+    padding-top: 10px;
+    box-sizing: border-box;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    background: #577dc0;
+    text-align: center;
+}
+
+.detail_img_list .item .bt a:first-child {
+    border-right: 1px solid rgba(255,255,255,0.5);
+}
