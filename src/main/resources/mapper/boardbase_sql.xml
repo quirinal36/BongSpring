@@ -31,7 +31,7 @@
 		</where>
 		GROUP BY board.id
 		limit ${from}, ${pageSize}
-		ORDER BY board.id
+		
 		
 	</select>
 	
