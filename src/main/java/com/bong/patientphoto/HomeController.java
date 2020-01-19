@@ -51,17 +51,22 @@ public class HomeController {
 			UserDetails user = userService.loadUserByUsername(username);
 			mv.addObject("user", user);
 		}
-		mv.setViewName("home");
+		mv.setViewName("index");
 		return mv;
 	}
 	@RequestMapping(value="/inc/header")
 	public ModelAndView getHeaderView(ModelAndView mv) {
-		mv.setViewName("/inc/header");
+		mv.setViewName("/inc/header_app");
 		return mv;
 	}
 	@RequestMapping(value="/privacypolicy")
 	public ModelAndView getPrivacyView(ModelAndView mv) {
 		mv.setViewName("privacy");
+		return mv;
+	}
+	@RequestMapping(value="/index")
+	public ModelAndView getIndexView(ModelAndView mv) {
+		mv.setViewName("/index");
 		return mv;
 	}
 }

@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>어디아포</title>
-    <link rel="stylesheet" href="/css/css.css">
-    <script src="/js/jquery-1.12.1.min.js"></script>
-    <script src="/js/jquery.bxslider.js"></script>
-    <script src="/js/index.js"></script>
-    <script src="/js/common.js"></script>
+    <link rel="stylesheet" href="/resources/css/css.css">
+    <script src="/resources/js/jquery-1.12.1.min.js"></script>
+    <script src="/resources/js/jquery.bxslider.js"></script>
+    <script src="/resources/js/index.js"></script>
+    <script src="/resources/js/common.js"></script>
 </head>
 <body>
     <div id="wrap">
@@ -17,7 +21,7 @@
             <header>
                 <!-- header 시작 -->
                 <h1>
-                    <a href="/"><img src="/img/comm/logo.png" alt="마이닥터"></a>
+                    <a href="/"><img src="/resources/img/comm/logo.png" alt="마이닥터"></a>
                 </h1>
                 <div class="right">
                     <a href="#">로그인</a>
@@ -35,39 +39,31 @@
                     <div class="item">
                         <div class="top_wrap">
                             <div class="top_wrap">
-                                <a href="#" class="image" style="background-image: url(/img/temp/1.jpg);">홍길동</a>
-                                <a href="#" class="name">홍길동 (001234123)</a>
-                                <span class="time">2시간 전</span>
+                                <a href="#" class="image" style="background-image: url(/resources/img/temp/1.jpg);">홍길동</a>
+                                <a href="#" class="name">${board.writerName} (${board.position})</a>
+                                <span class="time">${board.updatedTime}</span>
                                 <input type="checkbox" id="feed_more">
                                 <label for="feed_more">더 보기</label>
                         </div>
                         <div class="text_wrap">
                             <div class="text">
-                                <p>앞십자인대와 뒤십자인대가 있으며 무릎관절 내에 존재하나 인대는 활막에 싸여 구별되므로 십자인대 자체는 활막 외 조직 이다.
-                                    인대파열 정도가 심하지 않은 경우라면 약물이나 주사 그리고 도수물리 운동 등의 보존적인 처치로 증상 개선을 도와드릴 수 있습니다. 
-                                    답변에 도움이 되셨길 바랍니다
+                                <p>${board.text}
                                 </p>
                             </div>   
                         </div>     
                         <div class="comment_view">
-                            <dl>
-                                <dt><a href="#">홍길동환자</a></dt>
-                                <dd>수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?</dd>
-                            </dl>
-                            <dl>
-                                <dt><a href="#">봉황세전문의</a></dt>
-                                <dd>수술은 불가피할 경우 진행하며, 보존치료 합니다.</dd>
-                            </dl>
-                            <dl>
-                                <dt><a href="#">봉홍황세전문의</a></dt>
-                                <dd>수술은 불가피할 경우 진행하며, 보존치료 합니다.</dd>
-                            </dl>
+                        	<c:forEach items="${reply }" var="item">
+	                            <dl>
+	                                <dt><a href="#">${item.writerName }</a></dt>
+	                                <dd>${item.text }</dd>
+	                            </dl>
+                            </c:forEach>
                         </div>    
                     </div>    
                 </div>
                 <div class="detail_img_list">
                     <div class="item">
-                        <a href="#" class="image" style="background-image:url(/img/temp/slider1.jpg)";>사진</a>
+                        <a href="#" class="image" style="background-image:url(/resources/img/temp/slider1.jpg)";>사진</a>
                         <div class="count">
                             <a href="#">댓글 5개</a>
                             <span>공유 3개</span>
@@ -78,7 +74,7 @@
                         </div>
                     </div> 
                     <div class="item">
-                        <a href="#" class="image" style="background-image:url(/img/temp/slider1.jpg)";>사진</a>
+                        <a href="#" class="image" style="background-image:url(/resources/img/temp/slider1.jpg)";>사진</a>
                         <div class="count">
                             <a href="#">댓글 5개</a>
                             <span>공유 3개</span>
@@ -89,7 +85,7 @@
                         </div>
                     </div>   
                     <div class="item">
-                        <a href="#" class="image" style="background-image:url(/img/temp/slider1.jpg)";>사진</a>
+                        <a href="#" class="image" style="background-image:url(/resources/img/temp/slider1.jpg)";>사진</a>
                         <div class="count">
                             <a href="#">댓글 5개</a>
                             <span>공유 3개</span>

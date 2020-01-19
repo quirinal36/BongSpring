@@ -3,13 +3,18 @@
 <!doctype html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css"/>" />
 </head>
 <body>
-<div class="wrap">
-<header><c:import url="/inc/header"></c:import></header>
-	<div class="container_wrap">
-		<div class="container">
+    <div id="wrap">
+        <div id="headerWrap">
+        <!-- header 분리함  -->
+           <%@ include file="/WEB-INF/views/inc/header_app.jsp" %>
+        </div>
+        <div id="containerWrap">
+            <div id="container">
+                <!-- container 시작 -->
+
 		<!-- 컨텐츠 시작 -->
 		<div id="login" class="member">
 			<form class="form1" action="<c:url value="/j_spring_security_check"/>" method="post">

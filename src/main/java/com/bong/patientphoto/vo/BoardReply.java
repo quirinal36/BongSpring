@@ -14,6 +14,11 @@ public class BoardReply {
 	private Date createdTime;
 	private Date updatedTime;
 	private int writerId;
+	private String writerName;
+	private int userType;
+	private int userLevel;
+	private int accessLevel;
+	private String position;
 	
 	public int getId() {
 		return id;
@@ -64,6 +69,36 @@ public class BoardReply {
 		this.writerId = writerId;
 	}
 	
+	public String getWriterName() {
+		return writerName;
+	}
+	public void setWriterName(String writerName) {
+		this.writerName = writerName;
+	}
+	public int getUserType() {
+		return userType;
+	}
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
+	public int getUserLevel() {
+		return userLevel;
+	}
+	public void setUserLevel(int userLevel) {
+		this.userLevel = userLevel;
+	}
+	public int getAccessLevel() {
+		return accessLevel;
+	}
+	public void setAccessLevel(int accessLevel) {
+		this.accessLevel = accessLevel;
+	}
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
+	}
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

@@ -58,7 +58,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 #headerWrap .right #bt_gnb + label {
     width: 38px;
     height: 31px;
-    background: url(/img/comm/menu.png) no-repeat 0 0;
+    background: url(/resources/img/comm/menu.png) no-repeat 0 0;
     font-size: 0;
     color: rgba(0, 0, 0, 0);
     cursor: pointer;
@@ -103,17 +103,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 }
 
 #fixedMenu .home {
-    background-image: url(/img/comm/home.png);
+    background-image: url(/resources/img/comm/home.png);
 }
 
 #fixedMenu .notice {
-    background-image: url(/img/comm/notice.png);
+    background-image: url(/resources/img/comm/notice.png);
 }
 
 #fixedMenu .info {
-    background-image: url(/img/comm/info.png);
+    background-image: url(/resources/img/comm/info.png);
 }
 
 #fixedMenu .write {
-    background-image: url(/img/comm/write.png);
+    background-image: url(/resources/img/comm/write.png);
 }

@@ -13,6 +13,7 @@
 			user.patientId as patientId,
 			user.userType as userType,
 			user.userLevel as userLevel,
+			user.position as position,
 			board.text, 
 			board.createdTime,
 			board.updatedTime,
@@ -24,7 +25,7 @@
 			Count(reply.id) AS replyCount
 		FROM Board_main board
 		LEFT JOIN Board_reply AS reply ON reply.boardId = board.id
-		LEFT JOIN User AS user ON user.id = board.creatorId
+		LEFT JOIN Person AS user ON user.NUM = board.creatorId
 		<where>
 			user.userLevel >= board.accessLevel
 		</where>
@@ -35,8 +36,27 @@
 	
 	<select id="select_one" parameterType="boardbase" resultType="boardbase">
 		select 
-			*
+			board.id, 
+			board.creatorId,
+			user.name as writerName,
+			user.kImageUrl as writerPhotoUrl, 
+			user.patientId as patientId,
+			user.userType as userType,
+			user.userLevel as userLevel,
+			user.position as position,
+			board.text, 
+			board.createdTime,
+			board.updatedTime,
+			board.patientId,
+			board.status,
+			board.type,
+			board.expireDate,
+			board.accessLevel,
+			Count(reply.id) AS replyCount
 		from Board_main board
+		LEFT JOIN Board_reply AS reply ON reply.boardId = board.id
+		LEFT JOIN Person AS user ON user.NUM = board.creatorId
+		
 		<where>
 			board.id = ${id}
 		</where>
@@ -46,7 +66,7 @@
 			count(*)
 		FROM Board_main board
 
-		LEFT JOIN User AS user ON user.id = board.creatorId
+		LEFT JOIN Person AS user ON user.NUM = board.creatorId
 		<where>
 			user.userLevel >= board.accessLevel
 		</where>

@@ -6,8 +6,21 @@
 	
 	<select id="select_all" parameterType = "boardreply" resultType="boardreply">
 		select 
-			*
+			reply.id as id,
+			reply.boardId as boardId,
+			reply.text as text,
+			reply.photoId as photoId,
+			reply.status as status,
+			reply.createdTime as createdTime,
+			reply.updatedTime as updatedTime,
+			reply.writerId as writerId,
+			user.name as writerName,
+			user.patientId as patientId,
+			user.userType as userType,
+			user.userLevel as userLevel,
+			user.position as position
 		from Board_reply reply
+		LEFT JOIN Person AS user ON user.NUM = reply.writerId
 		<where>
 			reply.boardId = ${boardId}
 		</where>

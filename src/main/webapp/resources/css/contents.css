@@ -1,3 +1,5 @@
+@import url("./server.css");
+
 .notice_area {
     padding: 20px 20px 0 20px;
 }
@@ -97,7 +99,7 @@
     display: block;
     width: 24px;
     height: 41px;
-    background: url(/img/comm/dot.png) no-repeat 0 0;
+    background: url(/resources/img/comm/dot.png) no-repeat 0 0;
     font-size: 0;
     color: rgba(0, 0, 0, 0);
 }
@@ -123,12 +125,12 @@
 }
 
 .control_wrap .bt_scrap {
-    background:url(/img/comm/scrap.png) no-repeat 0 0;
+    background: url(var(--server_url)'/resources/img/comm/scrap.png') no-repeat 0 0;
 }
 
 
 .control_wrap  .bt_share {
-    background: url(/img/comm/share.png) no-repeat 0 0;
+    background: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/share.png) no-repeat 0 0;
     margin-left: 8px;
 }
 

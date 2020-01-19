@@ -71,12 +71,12 @@ public class BoardBaseController extends BacoderController {
 
 	//	mv.addObject("board", board);
 		mv.addObject("list", list);
-		mv.setViewName("/board2/list");
+		mv.setViewName("/index");
 		return mv;
 	}
 	
 	@RequestMapping(value= "/board2/detail", method=RequestMethod.GET)
-	public ModelAndView getBoardList(ModelAndView mv, BoardBase boardInput, BoardBase board, BoardReply reply, @RequestParam(value="boardId", required=true)int boardId ) {
+	public ModelAndView getBoardDetail(ModelAndView mv, BoardBase boardInput, BoardBase board, BoardReply reply, @RequestParam(value="boardId", required=true)int boardId ) {
 		
 		logger.info("boardId : "+ boardId);
 		boardInput.setId(boardId);
@@ -93,7 +93,13 @@ public class BoardBaseController extends BacoderController {
 
 		mv.addObject("board", board);
 		mv.addObject("reply", replyList);
-		mv.setViewName("/board2/detail");
+		mv.setViewName("/contents/detail");
+		return mv;
+	}
+	
+	@RequestMapping(value="/board2/detail_test")
+	public ModelAndView getDetailView(ModelAndView mv) {
+		mv.setViewName("/contents/detail");
 		return mv;
 	}
 	

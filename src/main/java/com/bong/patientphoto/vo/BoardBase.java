@@ -22,6 +22,7 @@ public class BoardBase extends Paging {
 	private int userType;
 	private int userLevel;
 	private int accessLevel;
+	private String position;
 	
 	public BoardBase() {}
 	
@@ -140,6 +141,14 @@ public class BoardBase extends Paging {
 
 	public void setAccessLevel(int accessLevel) {
 		this.accessLevel = accessLevel;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	@Override
