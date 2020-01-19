@@ -36,7 +36,7 @@ public class BoardBaseController extends BacoderController {
 	 * @return
 	 */
 	
-	@RequestMapping(value= {"/board2/list","/board2"}, method=RequestMethod.GET)
+	@RequestMapping(value= {"/board2/list","/board2","/"}, method=RequestMethod.GET)
 	public ModelAndView getBoardList(ModelAndView mv, 
 			@RequestParam(value="search", required=false)String search,
 			@RequestParam(value="page", required=false)Optional<Integer> pageNum,
@@ -68,6 +68,9 @@ public class BoardBaseController extends BacoderController {
 		
 		list = boardBaseService.select(board);
 		logger.info("list : "+ list.toString());
+		
+//		UserVO user = getUser();
+//		mv.addObject("user", user);
 
 	//	mv.addObject("board", board);
 		mv.addObject("list", list);
@@ -90,6 +93,8 @@ public class BoardBaseController extends BacoderController {
 		logger.info("detail : "+ board.toString());
 		logger.info("replyList : "+ replyList.toString());
 
+//		UserVO user = getUser();
+//		mv.addObject("user", user);
 
 		mv.addObject("board", board);
 		mv.addObject("reply", replyList);

@@ -19,14 +19,14 @@
     <div id="wrap">
         <div id="headerWrap">
         <!-- header 분리함  -->
-           <%@ include file="/WEB-INF/views/inc/header_app.jsp" %>
-        </div>
+		<header><c:import url="/inc/header"></c:import></header>        
+		</div>
         <div id="containerWrap">
             <div id="container">
                 <!-- container 시작 -->
                 <div class="notice_area">
                     <a href="#" class="title">공 지</a>
-                    <a href="#" class="item">이달의 우수직원 및 수병원 칭찬 릴레이 이달의 우수직원 및 수병원 칭찬 릴레이 이달의 우수직원 및 수병원 칭찬 릴레이</a>
+                    <a href="#" class="item">${user.role }</a>
                 </div>
                 <div class="board_list">
                 	<c:forEach items="${list }" var="item">
@@ -42,8 +42,8 @@
 	                        <div class="feed_img_slider">
 	                            <div class="feed_img">
 	                                <div class="item" style="background-image:url(<c:url value="/resources/img/temp/slider1.jpg"/>);">사진</div>
-	                                <div class="item" style="background-image:url(/resources/img/temp/slider2.jpg);">사진</div>
-	                                <div class="item" style="background-image:url(/resources/img/temp/slider3.jpg);">사진</div>
+	                                <div class="item" style="background-image:url(<c:url value="/resources/img/temp/slider2.jpg"/>);">사진</div>
+	                                <div class="item" style="background-image:url(<c:url value="/resources/img/temp/slider3.jpg"/>);">사진</div>
 	                            </div>
 	                        </div>
                         </c:if>
@@ -59,8 +59,8 @@
                         </div>    
                         <div class="text_wrap">
                             <div class="text">
-                                <p>${item.text}</p>
-                                    <a class="more" href="/board2/detail?boardId=${item.id }">더보기</a>
+                                <p>${item.text} ${user}</p>
+                                    <a class="more" href="<c:url value="/board2/detail?boardId=${item.id }"/>">더보기</a>
                             </div>
                             <div class="comment">
                                 <a class="more" href="#">댓글 ${item.replyCount}개</a> 
@@ -81,7 +81,7 @@
                     <a href="/" class="home">홈</a>
                     <a href="#" class="notice">진료안내</a>
                     <a href="#" class="info">내 정보</a>
-                    <a href="#" class="write">글쓰기</a>
+                    <a href="<c:url value="/board2/write"/>" class="write">글쓰기</a>
                 </div>
                 <!-- footer 끝 -->
             </footer>

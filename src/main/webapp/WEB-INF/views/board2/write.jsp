@@ -13,6 +13,8 @@
 	<link href="<c:url value="/resources/css/dropzone.css"/>" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css"/>" />
+	
 	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
@@ -37,7 +39,7 @@ $(document).ready(function(){
 		 console.log(json);	// 작성 완료
 		 
 		 if(json.id > 1){ // 글작성 성공
-			 window.location.replace("/board2");
+			 window.location.replace("<c:url value="/"/>");	
 		 }
 	  });
    });
@@ -46,11 +48,14 @@ $(document).ready(function(){
 </script>
 
 </head>
-<body>
-	<div class="wrap">
-		<c:import url="/inc/header"></c:import>
-		<div class="container_wrap">
-			<div class="container">
+    <div id="wrap">
+        <div id="headerWrap">
+           <!-- header 분리함  -->
+			<header><c:import url="/inc/header"></c:import></header>
+        </div>
+        <div id="containerWrap">
+            <div id="container">
+                <!-- container 시작 -->
 				<form action="/board2/insert">
 					<table>
 						<colgroup>

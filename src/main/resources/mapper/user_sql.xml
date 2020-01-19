@@ -4,11 +4,11 @@
 
 <mapper namespace="user_sql">
 	<insert id="insert" parameterType="user">
-	INSERT INTO users 
+	INSERT INTO Person 
 	(
-		username,
+		uqiqueId,
 		password,
-		user_phon
+		phone
 	)
 	values
 	(
@@ -28,14 +28,15 @@
 	
 	<select id="login" parameterType="user" resultType="user">
 		SELECT 
-			usr.id, 
-			usr.username, 
+			usr.NUM as id, 
+			usr.uniqueId as uniqueId, 
+			usr.name as username,
 			usr.password, 
 			role.user_role AS role
-		FROM users usr, roles role
+		FROM Person usr, roles role
 		<where>
-			usr.username = '${username}'
-			and usr.user_role = role.id
+			usr.uniqueId = '${username}'
+			and usr.userLevel = role.id
 		</where>
 	</select>
 	

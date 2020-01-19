@@ -59,7 +59,7 @@ public class BacoderController {
 	
 	public UserVO getUser() {
 		String authUser = authenticationFacade.getAuthentication().getName();
-		// logger.info("authUser: " + authUser);
+		logger.info("authUser: " + authUser);
 		UserVO searchUser = new UserVO();
 		searchUser.setUsername(authUser);
 		UserVO user = userService.selectOne(searchUser);

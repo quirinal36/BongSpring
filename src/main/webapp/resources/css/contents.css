@@ -125,7 +125,7 @@
 }
 
 .control_wrap .bt_scrap {
-    background: url(var(--server_url)'/resources/img/comm/scrap.png') no-repeat 0 0;
+    background: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/scrap.png) no-repeat 0 0;
 }
 
 

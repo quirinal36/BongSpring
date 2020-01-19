@@ -9,28 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>어디아포</title>
-    <link rel="stylesheet" href="/resources/css/css.css">
-    <script src="/resources/js/jquery-1.12.1.min.js"></script>
-    <script src="/resources/js/jquery.bxslider.js"></script>
-    <script src="/resources/js/index.js"></script>
-    <script src="/resources/js/common.js"></script>
+    <link rel="stylesheet" href="<c:url value="/resources/css/css.css"/>">
+    <script src="<c:url value="/resources/js/jquery-1.12.1.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/jquery.bxslider.js"/>"></script>
+    <script src="<c:url value="/resources/js/index.js"/>"></script>
+    <script src="<c:url value="/resources/js/common.js"/>"></script>
 </head>
 <body>
     <div id="wrap">
         <div id="headerWrap">
-            <header>
-                <!-- header 시작 -->
-                <h1>
-                    <a href="/"><img src="/resources/img/comm/logo.png" alt="마이닥터"></a>
-                </h1>
-                <div class="right">
-                    <a href="#">로그인</a>
-                    <a href="#">회원가입</a>
-                    <input type="checkbox" id="bt_gnb">
-                    <label for="bt_gnb">메뉴</label>
-                </div>
-                <!-- header 끝 -->
-            </header>
+           <!-- header 분리함  -->
+			<header><c:import url="/inc/header"></c:import></header>
         </div>
         <div id="containerWrap">
             <div id="container">

@@ -20,12 +20,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.bong.patientphoto.security.config.UserDetailService;
 import com.bong.patientphoto.service.UserService;
+import com.bong.patientphoto.vo.UserVO;
+import com.bong.patientphoto.web.BacoderController;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-public class HomeController {
+public class HomeController extends BacoderController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -34,7 +36,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/PatientPhoto", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, ModelAndView mv,
 			HttpServletRequest req, Authentication authentication) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -56,6 +58,9 @@ public class HomeController {
 	}
 	@RequestMapping(value="/inc/header")
 	public ModelAndView getHeaderView(ModelAndView mv) {
+		
+		UserVO user = getUser();
+		mv.addObject("user", user);
 		mv.setViewName("/inc/header_app");
 		return mv;
 	}
@@ -64,9 +69,5 @@ public class HomeController {
 		mv.setViewName("privacy");
 		return mv;
 	}
-	@RequestMapping(value="/index")
-	public ModelAndView getIndexView(ModelAndView mv) {
-		mv.setViewName("/index");
-		return mv;
-	}
+
 }
