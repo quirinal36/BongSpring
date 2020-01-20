@@ -103,17 +103,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 }
 
 #fixedMenu .home {
-    background-image: url(/resources/img/comm/home.png);
+    background-image: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/home.png);
 }
 
 #fixedMenu .notice {
-    background-image: url(/resources/img/comm/notice.png);
+    background-image: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/notice.png);
 }
 
 #fixedMenu .info {
-    background-image: url(/resources/img/comm/info.png);
+    background-image: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/info.png);
 }
 
 #fixedMenu .write {
-    background-image: url(/resources/img/comm/write.png);
+    background-image: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/write.png);
 }
