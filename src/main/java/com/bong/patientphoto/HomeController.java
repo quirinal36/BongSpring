@@ -64,6 +64,12 @@ public class HomeController extends BacoderController {
 		mv.setViewName("/inc/header_app");
 		return mv;
 	}
+	@RequestMapping(value="/inc/footer")
+	public ModelAndView getFooterView(ModelAndView mv) {
+		
+		mv.setViewName("/inc/footer_app");
+		return mv;
+	}
 	@RequestMapping(value="/privacypolicy")
 	public ModelAndView getPrivacyView(ModelAndView mv) {
 		mv.setViewName("privacy");

@@ -217,16 +217,7 @@ function deleteReply(id){
         </div>     
                 <!-- container 끝 -->
         <div id="footerWrap">
-            <footer>
-                <!-- footer 시작 -->
-                <div id="fixedMenu">
-                    <a href="/" class="home">홈</a>
-                    <a href="#" class="notice">진료안내</a>
-                    <a href="#" class="info">내 정보</a>
-                    <a href="#" class="write">글쓰기</a>
-                </div>
-                <!-- footer 끝 -->
-            </footer>
+              <footer><c:import url="/inc/footer"></c:import></footer>
         </div>
     </div>
 </body>
