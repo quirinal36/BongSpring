@@ -9,7 +9,7 @@ public class UserVO {
 	private String password;
 	private String role;
 	private String user_phon;
-	private int user_role;
+	private int userLevel;
 	private String profileUrl;
 	private String kImageUrl;
 	
@@ -44,11 +44,11 @@ public class UserVO {
 		this.user_phon = user_phon;
 	}
 	
-	public int getUser_role() {
-		return user_role;
+	public int getUserLevel() {
+		return userLevel;
 	}
-	public void setUser_role(int user_role) {
-		this.user_role = user_role;
+	public void setUserLevel(int userLevel) {
+		this.userLevel = userLevel;
 	}
 	public String getProfileUrl() {
 		return profileUrl;

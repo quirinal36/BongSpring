@@ -17,6 +17,7 @@ public class Person {
 	private String department;
 	private Date signupDate;
 	private Date mDate;
+	private int userLevel;
 	private String role;
 	private String profileUrl;
 	private String kImageUrl;
@@ -105,7 +106,12 @@ public class Person {
 	public void setkImageUrl(String kImageUrl) {
 		this.kImageUrl = kImageUrl;
 	}
-	
+	public int getUserLevel() {
+		return userLevel;
+	}
+	public void setUserLevel(int userLevel) {
+		this.userLevel = userLevel;
+	}
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

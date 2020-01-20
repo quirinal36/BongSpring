@@ -71,29 +71,28 @@ $(document).ready(function(){
 						</thead>
 						<tbody>
 							<tr>
-								<td>글쓴이Id</td>
-								<td><input type="text" name="creatorId" placeholder="글쓴이Id" required/></td>
+								<td>작성자</td>
+								<td>${user.username }</td>
 							</tr>
 							<tr>
 								<td>환자번호</td>
-								<td><input type="text" name="patientId" placeholder="환자번호" required/></td>
-							</tr>
-							<tr>
-								<td>status</td>
-								<td><input type="text" name="status" placeholder="글상태" required/></td>
+								<td><input type="text" name="patientId" placeholder="환자번호"/></td>
 							</tr>
 							<tr>
 								<td>text</td>
-								<td><input type="text" name="text" placeholder="내용"/></td>
+								<td><input type="text" name="text" placeholder="내용" required/></td>
 							</tr>
 							<tr>
 								<td>type</td>
-								<td><input type="text" name="type" placeholder="종류"/></td>
+								<td><input type="text" name="type" placeholder="1:사진포함,2:글" required/></td>
 							</tr>
 							<tr>
-								<td>accessLevel</td>
-								<td><input type="text" name="accessLevel" placeholder="열람등급"/></td>
+								<td>공개설정</td>
+								<td><input type="text" name="accessLevel" placeholder="0:전체,2:회원공개 " required/></td>
 							</tr>
+							
+							<input type="hidden" name="creatorId" value="${user.id }"/>
+							<input type="hidden" name="status" value="1"/>
 							
 							
 						</tbody>

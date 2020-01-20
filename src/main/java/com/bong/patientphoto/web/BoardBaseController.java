@@ -60,17 +60,26 @@ public class BoardBaseController extends BacoderController {
 		
 	//	board.setSearch(search);
 	//	logger.info("param :" + pageNum.get());
-
-		mv.addObject("pageNum", board.getPageNo());
-		logger.info("param :" + board.getPageNo());
-		logger.info("board :" + board.toString());
-		board.setTotalCount(boardBaseService.count(board));
-		
-		list = boardBaseService.select(board);
-		logger.info("list : "+ list.toString());
 		
 		UserVO user = getUser();
 		mv.addObject("user", user);
+		if(user != null) {
+			board.setUserLevel(user.getUserLevel());
+			logger.info(user.getUserLevel()+"//user not null#################");
+
+		}else {
+			logger.info("user null#######################");
+			board.setUserLevel(0);
+		}
+		
+		mv.addObject("pageNum", board.getPageNo());
+		//logger.info("param :" + board.getPageNo());
+		//logger.info("board :" + board.toString());
+		board.setTotalCount(boardBaseService.count(board));
+		
+		
+		list = boardBaseService.select(board);
+		//logger.info("list : "+ list.toString());
 
 	//	mv.addObject("board", board);
 		mv.addObject("list", list);
@@ -93,8 +102,8 @@ public class BoardBaseController extends BacoderController {
 		logger.info("detail : "+ board.toString());
 		logger.info("replyList : "+ replyList.toString());
 
-//		UserVO user = getUser();
-//		mv.addObject("user", user);
+		UserVO user = getUser();
+		mv.addObject("user", user);
 
 		mv.addObject("board", board);
 		mv.addObject("reply", replyList);
@@ -115,13 +124,22 @@ public class BoardBaseController extends BacoderController {
 	 * @return
 	 */
 	@RequestMapping(value="/board2/write", method=RequestMethod.GET)
-	public ModelAndView getWriteView(ModelAndView mv) {
+	public ModelAndView getWriteView(ModelAndView mv, HttpServletRequest request) {
 		//UserVO user = getUser();
 		//mv.addObject("user", user);
-		LocalDate today = LocalDate.now();
-		mv.addObject("today", today);
+		if(request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
+			
+			LocalDate today = LocalDate.now();
+			mv.addObject("today", today);
+			
+			UserVO user = getUser();
+			mv.addObject("user", user);
+			
+			mv.setViewName("/board2/write");
+		} else {
+			mv.setViewName("member/login");
+		}
 		
-		mv.setViewName("/board2/write");
 		return mv;
 	}
 	

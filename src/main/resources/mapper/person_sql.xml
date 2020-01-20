@@ -7,6 +7,7 @@
 		SELECT 
 			person.*,
 			rs.user_role AS role
+			
 		FROM Person person LEFT JOIN roles rs on person.userLevel = rs.id
 		<where>
 			uniqueId = '${uniqueId}'

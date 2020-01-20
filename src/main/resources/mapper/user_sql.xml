@@ -33,7 +33,8 @@
 			usr.name as username,
 			usr.password, 
 			usr.profileUrl,
-			role.user_role AS role
+			role.user_role AS role,
+			usr.userLevel as userLevel
 		FROM Person usr, roles role
 		<where>
 			usr.uniqueId = '${username}'
@@ -47,7 +48,8 @@
 			usr.username,
 			usr.user_phon,
 			usr.user_role,
-			role.user_role AS role
+			role.user_role AS role,
+			usr.userLevel as userLevel
 		FROM users usr left join roles role on usr.user_role = role.id
 		<where>
 			
@@ -67,7 +69,7 @@
 				password = '${password}',
 				</when>
 				<otherwise>
-				user_role = ${user_role}
+				user_role = ${userLevel}
 				</otherwise>
 			</choose>
 		</set>

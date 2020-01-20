@@ -4,7 +4,7 @@
 
 <mapper namespace="boardbase_sql">
 	
-	<select id="select_all" resultType="boardbase">
+	<select id="select_all" resultType="boardbase" parameterType="boardbase">
 		SELECT 
 			board.id, 
 			board.creatorId,
@@ -28,7 +28,7 @@
 		LEFT JOIN Board_reply AS reply ON reply.boardId = board.id
 		LEFT JOIN Person AS user ON user.NUM = board.creatorId
 		<where>
-			user.userLevel >= board.accessLevel
+			${userLevel} >= board.accessLevel
 		</where>
 		GROUP BY board.id
 		limit ${from}, ${pageSize}
@@ -71,7 +71,7 @@
 
 		LEFT JOIN Person AS user ON user.NUM = board.creatorId
 		<where>
-			user.userLevel >= board.accessLevel
+			${userLevel} >= board.accessLevel
 		</where>
 	</select>
 	

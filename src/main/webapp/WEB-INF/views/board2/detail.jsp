@@ -32,7 +32,7 @@ $(document).ready(function(){
 		 console.log(json);	// 작성 완료
 		 
 		 if(json.id > 1){ // 글작성 성공
-			 window.location.replace("/board2/detail?boardId="+${board.id});
+			 window.location.replace("/board2/detail?boardId="+ ${board.id});
 		 }
 	  });
    });
@@ -167,7 +167,7 @@ function deleteReply(id){
 						</tbody>
 					</table>
 					
-					<form id="replyForm" action="/board2/insertReply">
+				<form id="replyForm" action="/board2/insertReply">
 					<table>
 						<colgroup>
 							<col width="30%">

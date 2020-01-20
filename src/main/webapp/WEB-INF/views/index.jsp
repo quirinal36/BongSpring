@@ -26,7 +26,7 @@
                 <!-- container 시작 -->
                 <div class="notice_area">
                     <a href="#" class="title">공 지</a>
-                    <a href="#" class="item">${user.role }</a>
+                    <a href="#" class="item">${user.role } 테스트 중입니다.</a>
                 </div>
                 <div class="board_list">
                 	<c:forEach items="${list }" var="item">
