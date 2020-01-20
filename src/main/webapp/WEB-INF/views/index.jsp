@@ -78,7 +78,7 @@
             <footer>
                 <!-- footer 시작 -->
                 <div id="fixedMenu">
-                    <a href="/" class="home">홈</a>
+                    <a href="<c:url value="/"/>" class="home">홈</a>
                     <a href="#" class="notice">진료안내</a>
                     <a href="#" class="info">내 정보</a>
                     <a href="<c:url value="/board2/write"/>" class="write">글쓰기</a>
