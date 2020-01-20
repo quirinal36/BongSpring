@@ -32,6 +32,7 @@
 			usr.uniqueId as uniqueId, 
 			usr.name as username,
 			usr.password, 
+			usr.profileUrl,
 			role.user_role AS role
 		FROM Person usr, roles role
 		<where>

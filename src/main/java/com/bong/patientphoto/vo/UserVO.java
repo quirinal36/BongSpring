@@ -10,6 +10,8 @@ public class UserVO {
 	private String role;
 	private String user_phon;
 	private int user_role;
+	private String profileUrl;
+	private String kImageUrl;
 	
 	public int getId() {
 		return id;
@@ -48,6 +50,19 @@ public class UserVO {
 	public void setUser_role(int user_role) {
 		this.user_role = user_role;
 	}
+	public String getProfileUrl() {
+		return profileUrl;
+	}
+	public void setProfileUrl(String profileUrl) {
+		this.profileUrl = profileUrl;
+	}
+	public String getkImageUrl() {
+		return kImageUrl;
+	}
+	public void setkImageUrl(String kImageUrl) {
+		this.kImageUrl = kImageUrl;
+	}
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

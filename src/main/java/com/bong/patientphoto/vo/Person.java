@@ -6,18 +6,20 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Person {
-	int NUM;
-	String name;
-	int birth;
-	String phone;
-	String password;
-	String email;
-	String uniqueId;
-	int department_id;
-	String department;
-	Date signupDate;
-	Date mDate;
-	String role;
+	private int NUM;
+	private String name;
+	private int birth;
+	private String phone;
+	private String password;
+	private String email;
+	private String uniqueId;
+	private int department_id;
+	private String department;
+	private Date signupDate;
+	private Date mDate;
+	private String role;
+	private String profileUrl;
+	private String kImageUrl;
 	
 	public int getNUM() {
 		return NUM;
@@ -91,6 +93,19 @@ public class Person {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	public String getProfileUrl() {
+		return profileUrl;
+	}
+	public void setProfileUrl(String profileUrl) {
+		this.profileUrl = profileUrl;
+	}
+	public String getkImageUrl() {
+		return kImageUrl;
+	}
+	public void setkImageUrl(String kImageUrl) {
+		this.kImageUrl = kImageUrl;
+	}
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

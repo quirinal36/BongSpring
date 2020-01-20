@@ -12,8 +12,9 @@
 			board.content, 
 			board.wdate,
 			user.username AS username,
+			user.profileUrl AS profileUrl,
 			board.photoUrl
-		from Board board, users user 
+		from Board board, Person user 
 		<where>
 			board.writer = user.id
 		</where>
@@ -39,6 +40,7 @@
 			board.content, 
 			board.wdate,
 			user.username AS username,
+			user.profileUrl AS profileUrl,
 			board.photoUrl
 		from Board board left join users user on board.writer = user.id
 		<if test="search != null and search != ''">
@@ -68,8 +70,9 @@
 			board.content, 
 			board.wdate,
 			user.username AS username,
+			user.profileUrl AS profileUrl,
 			board.photoUrl
-		from Board board, users user
+		from Board board, Person user
 		<where>
 			board.id=${id}
 			and board.writer = user.id

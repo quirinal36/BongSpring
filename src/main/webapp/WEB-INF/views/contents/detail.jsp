@@ -28,7 +28,7 @@
                     <div class="item">
                         <div class="top_wrap">
                             <div class="top_wrap">
-                                <a href="#" class="image" style="background-image: url(/resources/img/temp/1.jpg);">홍길동</a>
+                                <a href="#" class="image" style="background-image: url(${board.profileUrl});">photo</a>
                                 <a href="#" class="name">${board.writerName} (${board.position})</a>
                                 <span class="time">${board.updatedTime}</span>
                                 <input type="checkbox" id="feed_more">

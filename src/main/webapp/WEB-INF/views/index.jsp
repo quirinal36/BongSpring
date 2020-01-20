@@ -32,7 +32,7 @@
                 	<c:forEach items="${list }" var="item">
                     <div class="item">
                         <div class="top_wrap">
-                            <a href="#" class="image" style="background-image: url(<c:url value="/resources/img/temp/1.jpg"/>);">홍길동</a>
+                            <a href="#" class="image" style="background-image: url(${item.profileUrl});"></a>
                             <a href="#" class="name">${item.writerName} (${item.position })</a>
                             <span class="time">2시간 전</span>
                             <input type="checkbox" id="feed_more">
@@ -59,7 +59,7 @@
                         </div>    
                         <div class="text_wrap">
                             <div class="text">
-                                <p>${item.text} ${user}</p>
+                                <p>${item.text}</p>
                                     <a class="more" href="<c:url value="/board2/detail?boardId=${item.id }"/>">더보기</a>
                             </div>
                             <div class="comment">

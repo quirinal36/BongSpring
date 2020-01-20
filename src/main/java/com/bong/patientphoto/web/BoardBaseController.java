@@ -69,8 +69,8 @@ public class BoardBaseController extends BacoderController {
 		list = boardBaseService.select(board);
 		logger.info("list : "+ list.toString());
 		
-//		UserVO user = getUser();
-//		mv.addObject("user", user);
+		UserVO user = getUser();
+		mv.addObject("user", user);
 
 	//	mv.addObject("board", board);
 		mv.addObject("list", list);

@@ -10,7 +10,8 @@ public class BoardBase extends Paging {
 	private int creatorId;
 	private String writerName;
 	private String writerUserId;
-	private String writerPhotoUrl;
+	private String profileUrl;
+	private String kImageUrl;
 	private Date createdTime;
 	private Date updatedTime;
 	private int patientId;
@@ -111,12 +112,12 @@ public class BoardBase extends Paging {
 		this.writerUserId = writerUserId;
 	}
 
-	public String getWriterPhotoUrl() {
-		return writerPhotoUrl;
+	public String getProfileUrl() {
+		return profileUrl;
 	}
 
-	public void setWriterPhotoUrl(String writerPhotoUrl) {
-		this.writerPhotoUrl = writerPhotoUrl;
+	public void setProfileUrl(String profileUrl) {
+		this.profileUrl = profileUrl;
 	}
 
 	public int getUserType() {
@@ -149,6 +150,14 @@ public class BoardBase extends Paging {
 
 	public void setPosition(String position) {
 		this.position = position;
+	}
+
+	public String getkImageUrl() {
+		return kImageUrl;
+	}
+
+	public void setkImageUrl(String kImageUrl) {
+		this.kImageUrl = kImageUrl;
 	}
 
 	@Override
