@@ -99,7 +99,7 @@
     display: block;
     width: 24px;
     height: 41px;
-    background: url(/resources/img/comm/dot.png) no-repeat 0 0;
+    background: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/dot.png) no-repeat 0 0;
     font-size: 0;
     color: rgba(0, 0, 0, 0);
 }
