@@ -15,11 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css"/>" />
 	
-	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
-	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+	
 	<script>
 $(document).ready(function(){
    $("#submitBtn").on("click", function(){
@@ -127,6 +123,7 @@ $(document).ready(function(){
 	<script type="text/javascript">
 	$(function () {
 	    $('#fileupload').fileupload({
+	    	console.log('fileupload!')
 	    	imageCrop: true,
 	        dataType: 'json',
 	        done: function (e, data) {
@@ -157,5 +154,10 @@ $(document).ready(function(){
 	});
 	
 	</script>
+	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

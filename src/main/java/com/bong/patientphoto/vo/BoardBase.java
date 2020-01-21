@@ -1,6 +1,8 @@
 package com.bong.patientphoto.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -12,8 +14,8 @@ public class BoardBase extends Paging {
 	private String writerUserId;
 	private String profileUrl;
 	private String kImageUrl;
-	private Date createdTime;
-	private Date updatedTime;
+	private Timestamp createdTime;
+	private Timestamp updatedTime;
 	private int patientId;
 	private int status;
 	private String text;
@@ -47,16 +49,16 @@ public class BoardBase extends Paging {
 	public void setCreatorId(int creatorId) {
 		this.creatorId = creatorId;
 	}
-	public Date getCreatedTime() {
+	public Timestamp getCreatedTime() {
 		return createdTime;
 	}
-	public void setCreatedTime(Date createdTime) {
+	public void setCreatedTime(Timestamp createdTime) {
 		this.createdTime = createdTime;
 	}
-	public Date getUpdatedTime() {
+	public Timestamp getUpdatedTime() {
 		return updatedTime;
 	}
-	public void setUpdatedTime(Date updatedTime) {
+	public void setUpdatedTime(Timestamp updatedTime) {
 		this.updatedTime = updatedTime;
 	}
 	public int getPatientId() {

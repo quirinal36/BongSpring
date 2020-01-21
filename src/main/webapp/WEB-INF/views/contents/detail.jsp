@@ -114,6 +114,32 @@ function deleteReply(id){
 			//window.location.replace(url + "?id=" + id);
 		}
 	}
+	
+Date.prototype.format = function(f) {
+	if (!this.valueOf()) return " ";
+
+	var weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+	var d = this;
+	
+	return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
+		switch ($1) {
+			case "yyyy": return d.getFullYear();
+			case "yy": return (d.getFullYear() % 1000).zf(2);
+			case "MM": return (d.getMonth() + 1).zf(2);
+			case "dd": return d.getDate().zf(2);
+			case "E": return weekName[d.getDay()];
+			case "HH": return d.getHours().zf(2);
+			case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+			case "mm": return d.getMinutes().zf(2);
+			case "ss": return d.getSeconds().zf(2);
+			case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+			default: return $1;
+		}
+	});
+};
+String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+Number.prototype.zf = function(len){return this.toString().zf(len);};
 </script>
 </head>
 <body>
@@ -131,7 +157,7 @@ function deleteReply(id){
                             <div class="top_wrap">
                                 <a href="#" class="image" style="background-image: url(${board.profileUrl});">photo</a>
                                 <a href="#" class="name">${board.writerName} (${board.position})</a>
-                                <span class="time">${board.updatedTime}</span>
+                                <span class="time"><script>document.write(new Date('${board.updatedTime }').format("yyyy.MM.dd a/p hh:mm"));</script></span>
                                 <input type="checkbox" id="feed_more">
                                 <label for="feed_more">더 보기</label>
                         </div>
@@ -145,7 +171,16 @@ function deleteReply(id){
                         	<c:forEach items="${reply }" var="item">
 	                            <dl>
 	                                <dt><a href="#">${item.writerName }</a></dt>
-	                                <dd>${item.text } (${item.updatedTime }) <input type="button" value="삭제" onclick="javascript:deleteReply('${item.id}')"/></dd>
+	                                <dd>${item.text } (<script>document.write(new Date('${item.updatedTime }').format("yyyy.MM.dd a/p hh:mm"));</script>) 
+	                                <c:choose>
+										<c:when test="${user.userLevel == '5' or user.id eq item.writerId }">
+	                               			 <input type="button" value="삭제" onclick="javascript:deleteReply('${item.id}')"/>
+	                              		</c:when>
+	                              		<c:otherwise>
+	                              			<input type="button" value="삭제" disabled/>
+	                              		</c:otherwise>
+	                              	</c:choose>
+	                                </dd>
 								
 	                            </dl>
                             </c:forEach>
@@ -154,22 +189,25 @@ function deleteReply(id){
 			                <form id="replyForm" action="<c:url value="/board2/insertReply"/>">
 								<table>
 									<colgroup>
-										<col width="10%">
-										<col width="70%">
 										<col width="20%">
+										<col width="70%">
+										<col width="10%">
 									</colgroup>
-									<thead>
-										<tr>
-											<th colspan="1">
-												답글쓰기								
-											</th>
-										</tr>
-									</thead>
+									
 									<tbody>
 										<tr>
-											<td>${user.username} : </td>
-											<td><input type="text" name="text" placeholder="내용" required/></td>
-											<td><input type="button" value="답글쓰기" id="replyBtn"/></td>
+											<c:choose>
+												<c:when test="${user.userLevel > '1' }">
+													<td>답글쓰기</td>
+													<td><input type="text" name="text" placeholder="내용" required/></td>
+													<td><input type="button" value="답글쓰기" id="replyBtn"/></td>
+												</c:when>
+												<c:otherwise>
+													<td>답글쓰기</td>
+													<td><input type="text" name="text" placeholder="작성 권한이 없습니다" disabled/></td>
+													<td><input type="button" value="답글쓰기" id="replyBtn" disabled/></td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 									</tbody>
 								</table>

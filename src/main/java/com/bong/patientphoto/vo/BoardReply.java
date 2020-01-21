@@ -1,6 +1,10 @@
 package com.bong.patientphoto.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -11,8 +15,8 @@ public class BoardReply {
 	private String text;
 	private int photoId;
 	private int status;
-	private Date createdTime;
-	private Date updatedTime;
+	private Timestamp createdTime;
+	private Timestamp updatedTime;
 	private int writerId;
 	private String writerName;
 	private int userType;
@@ -50,16 +54,16 @@ public class BoardReply {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public Date getCreatedTime() {
+	public Timestamp getCreatedTime() {
 		return createdTime;
 	}
-	public void setCreatedTime(Date createdTime) {
+	public void setCreatedTime(Timestamp createdTime) {
 		this.createdTime = createdTime;
 	}
-	public Date getUpdatedTime() {
+	public Timestamp getUpdatedTime() {
 		return updatedTime;
 	}
-	public void setUpdatedTime(Date updatedTime) {
+	public void setUpdatedTime(Timestamp updatedTime) {
 		this.updatedTime = updatedTime;
 	}
 	public int getWriterId() {

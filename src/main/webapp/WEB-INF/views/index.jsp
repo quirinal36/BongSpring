@@ -14,6 +14,7 @@
     <script src="<c:url value="/resources/js/jquery.bxslider.js"/>"></script>
     <script src="<c:url value="/resources/js/index.js"/>"></script>
     <script src="<c:url value="/resources/js/common.js"/>"></script>
+
 </head>
 <body>
     <div id="wrap">
@@ -30,11 +31,29 @@
                 </div>
                 <div class="board_list">
                 	<c:forEach items="${list }" var="item">
+                		<script>
+                			var updatedTime = new Date('${item.updatedTime}');
+                			var now = new Date();
+                			var gap = now.getTime() - updatedTime.getTime();
+                			var min_gap = parseInt(gap /1000 /60);
+                			var hr_gap = parseInt(min_gap / 60);
+                			var date_gap = now.getDate() - updatedTime.getDate();
+                			var updated_gap = null;
+                			if(min_gap < 60) {
+                				var updated_gap = min_gap + "분 전";
+                			}
+                			if(min_gap >59 && hr_gap <24) {
+                				var updated_gap = hr_gap + "시간 전";
+                			}
+                			if(hr_gap > 23) {
+                				var updated_gap = date_gap + "일 전";
+                			}
+                		</script>
                     <div class="item">
                         <div class="top_wrap">
                             <a href="#" class="image" style="background-image: url(${item.profileUrl});"></a>
                             <a href="#" class="name">${item.writerName} (${item.position })</a>
-                            <span class="time">2시간 전</span>
+                            <span class="time"><script>document.write(updated_gap);</script></span>
                             <input type="checkbox" id="feed_more">
                             <label for="feed_more">더 보기</label>
                         </div>
