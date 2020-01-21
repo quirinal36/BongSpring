@@ -19,7 +19,6 @@ $(document).ready(function(){
    $("#replyBtn").on("click", function(){
 	  var param = $("#replyForm").serialize();	// 넘길 정보
 	  var url = $("#replyForm").attr("action");	// 처리할 URL
-	  console.log(url+"?"+param);
 	  
 	  /*
 	  * AJAX 문법으로 처리
@@ -33,7 +32,7 @@ $(document).ready(function(){
 		 console.log(json);	// 작성 완료
 		 
 		 if(json.id > 1){ // 글작성 성공
-			 window.location.replace("/board2/detail?boardId="+ ${board.id});
+			 window.location.replace("<c:url value="/board2/detail?boardId="/>"+ ${board.id});
 		 }
 	  });
    });
@@ -64,6 +63,8 @@ $(document).ready(function(){
 		//	window.location.replace(url + "?" + data);
 	   }
 	});
+   
+   /* 사용중지 */
    $("#replyDeleteBtn").on("click", function(){
 	   var data = $("#deleteForm").serialize();
 	   var url = $("#deleteForm").attr("action");
@@ -91,10 +92,12 @@ $(document).ready(function(){
 		//	window.location.replace(url + "?" + data);
 	   }
 	});
+	/* 사용중지 */
+	
 });
 
 function deleteReply(id){
-	   var url = "/board2/deleteReply";
+	   var url = "<c:url value="/board2/deleteReply"/>";
 	
 		if(confirm("삭제 하시겠습니까?")){
 			$.ajax({
@@ -104,7 +107,7 @@ function deleteReply(id){
 				dataType: "json"
 			}).done(function(json){
 				console.log("done:"+ json);	// 작성 완료
-				window.location.replace("/board2/detail?boardId=" + '${board.id}');
+				window.location.replace("<c:url value="/board2/detail?boardId="/>" + '${board.id}');
 			}).fail(function(){
 				console.log("fail");
 			});
@@ -148,7 +151,7 @@ function deleteReply(id){
                             </c:forEach>
                         </div>  
                         <div class="comment_write">
-			                <form id="replyForm" action="/board2/insertReply">
+			                <form id="replyForm" action="<c:url value="/board2/insertReply"/>">
 								<table>
 									<colgroup>
 										<col width="10%">
