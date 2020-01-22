@@ -23,14 +23,15 @@
 			board.type,
 			board.expireDate,
 			board.accessLevel,
-			Count(reply.id) AS replyCount
+			(SELECT count(*) FROM Board_reply reply WHERE reply.boardId = board.id) AS replyCount
+			
 		FROM Board_main board
-		LEFT JOIN Board_reply AS reply ON reply.boardId = board.id
+		
 		LEFT JOIN Person AS user ON user.NUM = board.creatorId
 		<where>
 			${userLevel} >= board.accessLevel
 		</where>
-		GROUP BY board.id
+		ORDER BY board.createdTime DESC
 		limit ${from}, ${pageSize}
 		
 		
