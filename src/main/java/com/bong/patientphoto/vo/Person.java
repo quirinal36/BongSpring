@@ -21,6 +21,7 @@ public class Person {
 	private String role;
 	private String profileUrl;
 	private String kImageUrl;
+	private int initGroupId;
 	
 	public int getNUM() {
 		return NUM;
@@ -112,6 +113,13 @@ public class Person {
 	public void setUserLevel(int userLevel) {
 		this.userLevel = userLevel;
 	}
+	public int getInitGroupId() {
+		return initGroupId;
+	}
+	public void setInitGroupId(int initGroupId) {
+		this.initGroupId = initGroupId;
+	}
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

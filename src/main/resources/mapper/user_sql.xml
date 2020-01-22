@@ -33,6 +33,7 @@
 			usr.name as username,
 			usr.password, 
 			usr.profileUrl,
+			usr.initGroupId,
 			role.user_role AS role,
 			usr.userLevel as userLevel
 		FROM Person usr, roles role

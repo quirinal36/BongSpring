@@ -26,6 +26,7 @@ public class BoardBase extends Paging {
 	private int userLevel;
 	private int accessLevel;
 	private String position;
+	private int groupId;
 	
 	public BoardBase() {}
 	
@@ -160,6 +161,13 @@ public class BoardBase extends Paging {
 
 	public void setkImageUrl(String kImageUrl) {
 		this.kImageUrl = kImageUrl;
+	}
+	public int getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
 	}
 
 	@Override

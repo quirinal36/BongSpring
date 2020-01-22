@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="group_sql">
+	
+	<select id="select_all" resultType="group" parameterType="group">
+		SELECT 
+			groupList.id as id,
+			groupList.groupType as groupType,
+			groupList.parentGroupId as parentGroupId,
+			groupList.groupName as groupName,
+			groupList.groupText as groupText,
+			groupList.groupIconUrl as groupIconUrl,
+			groupList.groupDetailPhotoUrl1 as groupDetailPhotoUrl1,
+			groupList.groupDetailPhotoUrl2 as groupDetailPhotoUrl2,
+			groupList.groupDetailPhotoUrl3 as groupDetailPhotoUrl3,
+			groupList.adminUserId as adminUserId,
+			groupList.presidentUserId as presidentUserId,
+			groupList.secret as secret,
+			groupList.createdTime as createdTime
+			
+		FROM Group_list groupList
+		
+		<where>
+			groupList.groupType = '1'
+			AND
+			groupList.secret = '0'
+		</where>
+				
+	</select>
+	
+	
+</mapper>

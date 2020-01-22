@@ -36,8 +36,9 @@ public class BoardBaseController extends BacoderController {
 	 * @return
 	 */
 	
-	@RequestMapping(value= {"/board2/list","/board2","/"}, method=RequestMethod.GET)
+	@RequestMapping(value= {"/board2/list","/board2","/list"}, method=RequestMethod.GET)
 	public ModelAndView getBoardList(ModelAndView mv, 
+			@RequestParam(value="groupId", required=false)Optional<Integer> groupId,
 			@RequestParam(value="search", required=false)String search,
 			@RequestParam(value="page", required=false)Optional<Integer> pageNum,
 			@RequestParam(value="orderById", required=false)Optional<Integer> orderById,
@@ -54,9 +55,9 @@ public class BoardBaseController extends BacoderController {
 		}else {
 			board = new BoardBase(0, 1);
 		}
-	//	if(orderById.isPresent()) {
-	//		board.setOrderById(orderById.get());
-	//	}
+		if(groupId.isPresent()) {
+			board.setGroupId(groupId.get());
+		}
 		
 	//	board.setSearch(search);
 	//	logger.info("param :" + pageNum.get());

@@ -13,6 +13,7 @@ import com.bong.patientphoto.service.AppUserService;
 import com.bong.patientphoto.service.BoardBaseService;
 import com.bong.patientphoto.service.BoardReplyService;
 import com.bong.patientphoto.service.BoardService;
+import com.bong.patientphoto.service.GroupService;
 import com.bong.patientphoto.service.ImageService;
 import com.bong.patientphoto.service.OPRecordService;
 import com.bong.patientphoto.service.PatientInfoService;
@@ -29,6 +30,9 @@ public class BacoderController {
 	
 	@Resource(name="boardService")
 	protected BoardService boardService;
+	
+	@Resource(name="groupService")
+	protected GroupService groupService;
 	
 	@Resource(name="boardBaseService")
 	protected BoardBaseService boardBaseService;

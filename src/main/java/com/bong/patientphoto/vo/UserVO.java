@@ -12,6 +12,7 @@ public class UserVO {
 	private int userLevel;
 	private String profileUrl;
 	private String kImageUrl;
+	private int initGroupId;
 	
 	public int getId() {
 		return id;
@@ -61,6 +62,12 @@ public class UserVO {
 	}
 	public void setkImageUrl(String kImageUrl) {
 		this.kImageUrl = kImageUrl;
+	}
+	public int getInitGroupId() {
+		return initGroupId;
+	}
+	public void setInitGroupId(int initGroupId) {
+		this.initGroupId = initGroupId;
 	}
 	
 	@Override

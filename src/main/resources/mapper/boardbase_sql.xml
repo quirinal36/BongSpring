@@ -23,6 +23,7 @@
 			board.type,
 			board.expireDate,
 			board.accessLevel,
+			board.groupId,
 			(SELECT count(*) FROM Board_reply reply WHERE reply.boardId = board.id) AS replyCount
 			
 		FROM Board_main board
@@ -30,6 +31,8 @@
 		LEFT JOIN Person AS user ON user.NUM = board.creatorId
 		<where>
 			${userLevel} >= board.accessLevel
+			AND board.groupId = ${groupId}
+			
 		</where>
 		ORDER BY board.createdTime DESC
 		limit ${from}, ${pageSize}
@@ -56,6 +59,7 @@
 			board.type,
 			board.expireDate,
 			board.accessLevel,
+			board.groupId,
 			Count(reply.id) AS replyCount
 		from Board_main board
 		LEFT JOIN Board_reply AS reply ON reply.boardId = board.id

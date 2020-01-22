@@ -14,7 +14,11 @@
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css"/>" />
-	
+	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	
 	<script>
 $(document).ready(function(){
@@ -76,7 +80,8 @@ $(document).ready(function(){
 							</tr>
 							<tr>
 								<td>text</td>
-								<td><input type="text" name="text" placeholder="내용" required/></td>
+								<td><textarea name="text" style="width:250px;height:150px;" placeholder="내용"></textarea></td>
+							
 							</tr>
 							<tr>
 								<td>type</td>
@@ -114,7 +119,7 @@ $(document).ready(function(){
 				    </table>
 					<input type="hidden" value="<c:url value="/upload/get"/>" name="uploadUrl">
 					<input type="hidden" value="<c:url value="/upload/clear"/>" name="clearUrl">
-					<input type="button" value="전송" id="submitBtn"/>
+					<input type="button" value="글전송" id="submitBtn"/>
    				</form>
 	</div>
 	</div>
@@ -154,10 +159,6 @@ $(document).ready(function(){
 	});
 	
 	</script>
-	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
-	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+	
 </body>
 </html>
