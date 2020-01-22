@@ -35,11 +35,14 @@
                 			var updatedTime = new Date('${item.updatedTime}');
                 			var now = new Date();
                 			var gap = now.getTime() - updatedTime.getTime();
-                			var min_gap = parseInt(gap /1000 /60);
+                			var min_gap = parseInt(gap / 60000);
                 			var hr_gap = parseInt(min_gap / 60);
                 			var date_gap = now.getDate() - updatedTime.getDate();
                 			var updated_gap = null;
-                			if(min_gap < 60) {
+                			if(min_gap < 1) {
+                				var updated_gap = "방금 전";
+                			}
+                			if(min_gap > 0 && min_gap < 60) {
                 				var updated_gap = min_gap + "분 전";
                 			}
                 			if(min_gap >59 && hr_gap <24) {
