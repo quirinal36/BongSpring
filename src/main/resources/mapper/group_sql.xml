@@ -9,6 +9,8 @@
 			groupList.id as id,
 			groupList.groupType as groupType,
 			groupList.parentGroupId as parentGroupId,
+			(SELECT sublist.groupName From Group_list sublist WHERE sublist.id = groupList.parentGroupId ) AS parentGroupName,
+			(SELECT sublist.groupIconUrl From Group_list sublist WHERE sublist.id = groupList.parentGroupId ) AS parentGroupIconUrl,
 			groupList.groupName as groupName,
 			groupList.groupText as groupText,
 			groupList.groupIconUrl as groupIconUrl,
@@ -18,13 +20,13 @@
 			groupList.adminUserId as adminUserId,
 			groupList.presidentUserId as presidentUserId,
 			groupList.secret as secret,
-			groupList.createdTime as createdTime
+			groupList.createdTime as createdTime,
+			groupList.joinRequest as joinRequest
 			
 		FROM Group_list groupList
 		
+		
 		<where>
-			groupList.groupType = '1'
-			AND
 			groupList.secret = '0'
 		</where>
 				

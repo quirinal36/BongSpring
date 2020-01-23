@@ -31,7 +31,8 @@
 		LEFT JOIN Person AS user ON user.NUM = board.creatorId
 		<where>
 			${userLevel} >= board.accessLevel
-			AND board.groupId = ${groupId}
+			AND 
+			board.groupId IN (SELECT groupUser.groupId FROM Group_user groupUser WHERE groupUser.userId = ${userId}) 
 			
 		</where>
 		ORDER BY board.createdTime DESC

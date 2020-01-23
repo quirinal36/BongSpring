@@ -27,6 +27,7 @@ public class BoardBase extends Paging {
 	private int accessLevel;
 	private String position;
 	private int groupId;
+	private int userId;
 	
 	public BoardBase() {}
 	
@@ -168,6 +169,14 @@ public class BoardBase extends Paging {
 
 	public void setGroupId(int groupId) {
 		this.groupId = groupId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	@Override

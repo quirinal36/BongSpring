@@ -65,6 +65,7 @@ public class BoardBaseController extends BacoderController {
 		UserVO user = getUser();
 		mv.addObject("user", user);
 		if(user != null) {
+			board.setUserId(user.getId());
 			board.setUserLevel(user.getUserLevel());
 			logger.info(user.getUserLevel()+"//user not null#################");
 

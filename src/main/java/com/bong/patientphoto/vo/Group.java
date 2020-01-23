@@ -7,6 +7,8 @@ public class Group {
 	private int id;
 	private int groupType;  //1: 기관(병원 대표), 2: 주치의, 3. 기관 내 소모임.  4:기관 외 모임, 5: 홍보 단체
 	private int parentGroupId; 
+	private String parentGroupName;
+	private String parentGroupIconUrl;
 	private String groupName;
 	private String groupText;
 	private String groupIconUrl;
@@ -17,6 +19,7 @@ public class Group {
 	private int presidentUserId;
 	private int secret; //0:공개, 1:비공개그룹, 2:휴면그룹
 	private Date createdTime;
+	private int joinRequest;
 	
 	//Group_user
 	private int groupId;
@@ -125,6 +128,24 @@ public class Group {
 	}
 	public void setGroupText(String groupText) {
 		this.groupText = groupText;
+	}
+	public int getJoinRequest() {
+		return joinRequest;
+	}
+	public void setJoinRequest(int joinRequest) {
+		this.joinRequest = joinRequest;
+	}
+	public String getParentGroupName() {
+		return parentGroupName;
+	}
+	public void setParentGroupName(String parentGroupName) {
+		this.parentGroupName = parentGroupName;
+	}
+	public String getParentGroupIconUrl() {
+		return parentGroupIconUrl;
+	}
+	public void setParentGroupIconUrl(String parentGroupIconUrl) {
+		this.parentGroupIconUrl = parentGroupIconUrl;
 	}
 	
 	
