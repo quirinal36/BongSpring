@@ -20,6 +20,9 @@ public class GroupDAO implements DataAccess<Group>{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public int join(Group input) {
+		return sqlSession.insert(namespace + ".join_group", input);
+	}
 
 	@Override
 	public int update(Group input) {
@@ -43,11 +46,12 @@ public class GroupDAO implements DataAccess<Group>{
 	public List<Group> select(Group input) {
 		return sqlSession.selectList(namespace +".select_all", input);
 	}
-
+	public List<Group> selectMy(Group input) {
+		return sqlSession.selectList(namespace +".select_my", input);
+	}
 	@Override
 	public Group selectOne(Group input) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(namespace +".select_one", input);
 	}
 
 	@Override

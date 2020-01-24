@@ -19,12 +19,13 @@ public class Group {
 	private int presidentUserId;
 	private int secret; //0:공개, 1:비공개그룹, 2:휴면그룹
 	private Date createdTime;
-	private int joinRequest;
+	private int defaultUserLevel;  //가입시 디폴트 유저레벨 
+	private int accessLevel;  //목록 조회 가능한 유저레
 	
 	//Group_user
 	private int groupId;
 	private int userId;
-	private int userLevel; //0: 승인대기, 1: 구독 (r), 2: 일반 (rw), 3: 관리자, 4: 대표자
+	private int userLevel; //0:미가입, 1: 승인대기, 2: 구독 (r), 3: 일반 (rw), 4: 관리자, 5: 대표자
 	private Timestamp joinDate;
 	
 	public int getId() {
@@ -129,11 +130,11 @@ public class Group {
 	public void setGroupText(String groupText) {
 		this.groupText = groupText;
 	}
-	public int getJoinRequest() {
-		return joinRequest;
+	public int getDefaultUserLevel() {
+		return defaultUserLevel;
 	}
-	public void setJoinRequest(int joinRequest) {
-		this.joinRequest = joinRequest;
+	public void setDefaultUserLevel(int defaultUserLevel) {
+		this.defaultUserLevel = defaultUserLevel;
 	}
 	public String getParentGroupName() {
 		return parentGroupName;
@@ -146,6 +147,12 @@ public class Group {
 	}
 	public void setParentGroupIconUrl(String parentGroupIconUrl) {
 		this.parentGroupIconUrl = parentGroupIconUrl;
+	}
+	public int getAccessLevel() {
+		return accessLevel;
+	}
+	public void setAccessLevel(int accessLevel) {
+		this.accessLevel = accessLevel;
 	}
 	
 	

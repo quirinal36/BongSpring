@@ -21,16 +21,76 @@
 			groupList.presidentUserId as presidentUserId,
 			groupList.secret as secret,
 			groupList.createdTime as createdTime,
-			groupList.joinRequest as joinRequest
-			
+			groupList.defaultUserLevel as defaultUserLevel,
+			groupList.accessLevel
 		FROM Group_list groupList
-		
-		
 		<where>
 			groupList.secret = '0'
+			AND
+			${userLevel} >= groupList.accessLevel
+		</where>
+				
+	</select>
+	<select id="select_my" resultType="group" parameterType="group">
+		SELECT 
+			groupList.id as id,
+			groupList.groupType as groupType,
+			groupList.parentGroupId as parentGroupId,
+			(SELECT sublist.groupName From Group_list sublist WHERE sublist.id = groupList.parentGroupId ) AS parentGroupName,
+			(SELECT sublist.groupIconUrl From Group_list sublist WHERE sublist.id = groupList.parentGroupId ) AS parentGroupIconUrl,
+			groupList.groupName as groupName,
+			groupList.groupText as groupText,
+			groupList.groupIconUrl as groupIconUrl,
+			groupList.groupDetailPhotoUrl1 as groupDetailPhotoUrl1,
+			groupList.groupDetailPhotoUrl2 as groupDetailPhotoUrl2,
+			groupList.groupDetailPhotoUrl3 as groupDetailPhotoUrl3,
+			groupList.adminUserId as adminUserId,
+			groupList.presidentUserId as presidentUserId,
+			groupList.secret as secret,
+			groupList.createdTime as createdTime,
+			groupList.defaultUserLevel as defaultUserLevel,
+			groupUser.userLevel as userLevel
+				
+		FROM Group_list groupList
+		LEFT JOIN Group_user groupUser on (groupList.id = groupUser.groupId AND groupUser.userId = '${userId}')	
+		<where>
+			${userLevel} >= groupList.accessLevel
+		</where>
+				
+	</select>	
+	
+	<select id="select_one" resultType="group" parameterType="group">
+		SELECT 
+			groupList.id as id,
+			groupList.groupType as groupType,
+			groupList.parentGroupId as parentGroupId,
+			(SELECT sublist.groupName From Group_list sublist WHERE sublist.id = groupList.parentGroupId ) AS parentGroupName,
+			(SELECT sublist.groupIconUrl From Group_list sublist WHERE sublist.id = groupList.parentGroupId ) AS parentGroupIconUrl,
+			groupList.groupName as groupName,
+			groupList.groupText as groupText,
+			groupList.groupIconUrl as groupIconUrl,
+			groupList.groupDetailPhotoUrl1 as groupDetailPhotoUrl1,
+			groupList.groupDetailPhotoUrl2 as groupDetailPhotoUrl2,
+			groupList.groupDetailPhotoUrl3 as groupDetailPhotoUrl3,
+			groupList.adminUserId as adminUserId,
+			groupList.presidentUserId as presidentUserId,
+			groupList.secret as secret,
+			groupList.createdTime as createdTime,
+			groupList.defaultUserLevel as defaultUserLevel
+				
+		FROM Group_list groupList
+		<where>
+			groupList.id = ${id}
 		</where>
 				
 	</select>
 	
 	
+	
+	<insert id="join_group" parameterType="group" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO Group_user
+			(groupId, userId, userLevel)
+		values
+			(${id}, ${userId}, ${defaultUserLevel})
+	</insert>
 </mapper>

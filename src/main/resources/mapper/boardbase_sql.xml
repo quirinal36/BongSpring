@@ -32,8 +32,9 @@
 		<where>
 			${userLevel} >= board.accessLevel
 			AND 
-			board.groupId IN (SELECT groupUser.groupId FROM Group_user groupUser WHERE groupUser.userId = ${userId}) 
-			
+				(board.groupId IN (SELECT groupUser.groupId FROM Group_user groupUser WHERE groupUser.userId = ${userId}) 
+				OR
+				board.status = '3')
 		</where>
 		ORDER BY board.createdTime DESC
 		limit ${from}, ${pageSize}

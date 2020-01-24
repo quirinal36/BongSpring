@@ -61,8 +61,17 @@
 			                            <div class="text">
 			                                <p>${item.groupText}</p>
 			                                <br>
-			                                <a class="more" href="<c:url value="/list?groupId=${item.id}"/>">채널 참여하기</a>
-			                                
+			                                <c:choose>
+			                                	<c:when test="${item.userLevel eq '0'}">
+			                            	   		 <a class="more" href="<c:url value="/joinGroup?groupId=${item.id }"/>">채널 가입</a>
+			                               		</c:when>
+			                               		<c:when test="${item.userLevel eq '1'}">
+			                            	   		 <a class="more" >가입 승인 대기 중</a>
+			                               		</c:when>
+			                               		<c:otherwise>
+			                            	   		 <a class="more" href="<c:url value="/"/>">가입 중(level:${item.userLevel })</a>
+			                               		</c:otherwise>
+			                                </c:choose>
 			                            </div>
 			                            
 			                        </div>

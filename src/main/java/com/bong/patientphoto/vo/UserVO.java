@@ -13,6 +13,7 @@ public class UserVO {
 	private String profileUrl;
 	private String kImageUrl;
 	private int initGroupId;
+	private int groupCount;
 	
 	public int getId() {
 		return id;
@@ -69,7 +70,13 @@ public class UserVO {
 	public void setInitGroupId(int initGroupId) {
 		this.initGroupId = initGroupId;
 	}
-	
+
+	public int getGroupCount() {
+		return groupCount;
+	}
+	public void setGroupCount(int groupCount) {
+		this.groupCount = groupCount;
+	}
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

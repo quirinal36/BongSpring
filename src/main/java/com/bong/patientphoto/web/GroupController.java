@@ -17,12 +17,12 @@ import com.bong.patientphoto.vo.UserVO;
 @Controller
 public class GroupController extends BacoderController {
 
-	@RequestMapping(value= {"/","/group"}, method=RequestMethod.GET)
-	public ModelAndView getGroupMainList(ModelAndView mv, 
+	@RequestMapping(value= "/", method=RequestMethod.GET)
+	public ModelAndView initPage(ModelAndView mv, 
 			@RequestParam(value="search", required=false)String search,
 			@RequestParam(value="groupId", required=false)Optional<Integer> groupId,
 			@RequestParam(value="orderById", required=false)Optional<Integer> orderById,
-			HttpServletRequest request) {
+			HttpServletRequest request, Group group) {
 		
 		if(request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
 		}
@@ -30,16 +30,24 @@ public class GroupController extends BacoderController {
 		UserVO user = getUser();
 		
 
-		if(user != null)
+		// user의 가입한 그룹이 있으면 메인 리스트로, 없으면 /group/select로 분기 
+		if(user != null && user.getGroupCount() > 0)
 		{
+//			logger.info("getGroupCount :"+ user.getGroupCount());
 			mv.setViewName("redirect:/list");
 			
-		} else  {
+		} else  { //가입하지 않았거나, 가입한 그룹이 없을 경우 
 			//logger.info("getInitGroupId :"+ user.getInitGroupId());
 			mv.addObject("user", user);
 			
 			List<Group> list;
-			Group group = null;
+			if(user != null && user.getUserLevel() > 0) { //group list 공개 유저레벨 확인 
+				group.setUserLevel(user.getUserLevel());
+			} else {
+				group.setUserLevel(0);
+			}
+			logger.info("getUserLevel#$#$#$#$#$#$#$ : "+ group.getUserLevel());
+
 			
 			list = groupService.select(group);
 			//logger.info("list : "+ list.toString());
@@ -51,10 +59,12 @@ public class GroupController extends BacoderController {
 		return mv;
 	}
 	
+
+	
 	@RequestMapping(value= "/myGroup", method=RequestMethod.GET)
 	public ModelAndView getMyGroupList(ModelAndView mv, 
 			@RequestParam(value="orderById", required=false)Optional<Integer> orderById,
-			HttpServletRequest request) {
+			HttpServletRequest request, Group group) {
 		
 		if(request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
 		}
@@ -67,17 +77,46 @@ public class GroupController extends BacoderController {
 			mv.addObject("user", user);
 			
 			List<Group> list;
-			Group group = null;
 			
-			list = groupService.select(group);
+			group.setUserId(user.getId());
+			group.setUserLevel(user.getUserLevel());
+			
+			list = groupService.selectMy(group);
 			//logger.info("list : "+ list.toString());
 
 			mv.addObject("list", list);
 			mv.setViewName("/group/select");
 			
-		} else  {
+		} else  {  //로그인 확인
 			mv.setViewName("/member/login");
 
+		}
+
+		return mv;
+	}
+	
+	@RequestMapping(value= "/joinGroup", method=RequestMethod.GET)
+	public ModelAndView joinGroup(ModelAndView mv, 
+			@RequestParam(value="groupId", required=true)int groupId,
+			HttpServletRequest request, Group group) {
+		
+		if(request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
+		}
+
+		UserVO user = getUser();
+		
+		if(user != null)
+		{
+			group.setId(groupId);
+			Group group2 = groupService.selectOne(group);
+			group2.setUserId(user.getId());
+			
+			int result = groupService.join(group2);
+
+			mv.setViewName("redirect:/myGroup");
+			
+		} else  {
+			mv.setViewName("/member/login");
 		}
 
 		return mv;

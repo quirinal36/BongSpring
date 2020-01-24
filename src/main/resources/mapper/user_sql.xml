@@ -35,7 +35,9 @@
 			usr.profileUrl,
 			usr.initGroupId,
 			role.user_role AS role,
-			usr.userLevel as userLevel
+			usr.userLevel as userLevel,
+			(SELECT count(*) FROM Group_user groupUser WHERE groupUser.userId = usr.NUM) AS groupCount
+			
 		FROM Person usr, roles role
 		<where>
 			usr.uniqueId = '${username}'

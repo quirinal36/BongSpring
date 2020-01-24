@@ -16,8 +16,10 @@ public class GroupService implements DataService<Group> {
 	
 	@Override
 	public int insert(Group input) {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+	public int join(Group input) {
+		return dao.join(input);
 	}
 
 	@Override
@@ -43,10 +45,13 @@ public class GroupService implements DataService<Group> {
 		return dao.select(input);
 	}
 
+	public List<Group> selectMy(Group input) {
+		return dao.selectMy(input);
+	}
+
 	@Override
 	public Group selectOne(Group input) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectOne(input);
 	}
 
 	@Override
