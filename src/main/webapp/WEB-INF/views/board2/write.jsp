@@ -14,6 +14,9 @@
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value="/resources/css/table.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css"/>" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+	
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
@@ -43,11 +46,14 @@ $(document).ready(function(){
 		 }
 	  });
    });
-   
 });
+
 </script>
 
 </head>
+
+
+
     <div id="wrap">
         <div id="headerWrap">
            <!-- header 분리함  -->
@@ -120,15 +126,19 @@ $(document).ready(function(){
 					<input type="hidden" value="<c:url value="/upload/get"/>" name="uploadUrl">
 					<input type="hidden" value="<c:url value="/upload/clear"/>" name="clearUrl">
 					<input type="button" value="글전송" id="submitBtn"/>
+						
+					
    				</form>
+   				
 	</div>
 	</div>
 	</div>
+
 	
 	<script type="text/javascript">
 	$(function () {
 	    $('#fileupload').fileupload({
-	    	console.log('fileupload!')
+
 	    	imageCrop: true,
 	        dataType: 'json',
 	        done: function (e, data) {

@@ -129,7 +129,7 @@ public class BoardBaseController extends BacoderController {
 	public ModelAndView getWriteView(ModelAndView mv, HttpServletRequest request) {
 		//UserVO user = getUser();
 		//mv.addObject("user", user);
-		if(request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
+//		if(request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
 			
 			LocalDate today = LocalDate.now();
 			mv.addObject("today", today);
@@ -138,9 +138,11 @@ public class BoardBaseController extends BacoderController {
 			mv.addObject("user", user);
 			
 			mv.setViewName("/board2/write");
-		} else {
-			mv.setViewName("member/login");
-		}
+//		} else {
+//			mv.setViewName("/board2/dialog");
+//
+////			mv.setViewName("member/login");
+//		}
 		
 		return mv;
 	}

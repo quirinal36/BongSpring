@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="false" contentType="text/html; charset=UTF-8"%>
+
 <!doctype html>
 <html>
 <head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css"/>" />
+	<script src="<c:url value="/resources/js/jquery-1.12.1.min.js"/>"></script>
 </head>
 <body>
     <div id="wrap">
@@ -37,9 +43,11 @@
 		<!-- 컨텐츠 끝 -->
 		</div>
 	</div>
-<footer>
-	<c:import url="/inc/footer"></c:import>
-</footer>
+	<div id="footerWrap">
+		<footer>
+			<c:import url="/inc/footer"></c:import>
+		</footer>
+	</div>
 </div>
 </body>
 </html>
