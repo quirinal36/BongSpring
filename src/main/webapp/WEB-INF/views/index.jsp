@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,7 +13,6 @@
     <script src="<c:url value="/resources/js/jquery.bxslider.js"/>"></script>
     <script src="<c:url value="/resources/js/index.js"/>"></script>
     <script src="<c:url value="/resources/js/common.js"/>"></script>
-
 </head>
 <body>
     <div id="wrap">
@@ -90,8 +88,6 @@
                         </div>
                     </div>
                     </c:forEach>
-                    
-                    
                 </div>
                 <!-- container 끝 -->
             </div>
