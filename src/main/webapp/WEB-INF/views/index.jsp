@@ -14,6 +14,7 @@
     <script src="<c:url value="/resources/js/index.js"/>"></script>
     <script src="<c:url value="/resources/js/common.js"/>"></script>
 </head>
+
 <body>
     <div id="wrap">
         <div id="headerWrap">
