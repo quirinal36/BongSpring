@@ -155,4 +155,16 @@ public class MemberController  {
 		
 		return person;
 	}
+	/**
+	 * 로그인 화면
+	 * 
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping(value="/member/signin", method=RequestMethod.GET)
+	public ModelAndView getSigninView(ModelAndView mv) {
+		
+		mv.setViewName("/member/signin");
+		return mv;
+	}
 }
