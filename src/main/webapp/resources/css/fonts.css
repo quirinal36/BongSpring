@@ -1,41 +1,42 @@
-@import url("./server.css");
+/*@import url("./server.css");*/
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 
 @font-face {
 	font-family: 'NotoKr';
 	font-style: normal;
 	font-weight: 100;
-	src: url(var(--server_url)'/resources/fonts/notokr-light.eot');
-	src: url(var(--server_url)'/resources/fonts/notokr-light.eot?#iefix') format('embedded-opentype'),
-		 url(var(--server_url)'/resources/fonts/notokr-light.woff2') format('woff2'),
-		 url(var(--server_url)'/resources/fonts/notokr-light.woff') format('woff');
+	src: url(/resources/fonts/notokr-light.eot');
+	src: url(/resources/fonts/notokr-light.eot?#iefix') format('embedded-opentype'),
+		 url(/resources/fonts/notokr-light.woff2') format('woff2'),
+		 url(/resources/fonts/notokr-light.woff') format('woff');
 }
  
 @font-face {
 	font-family: 'NotoKr';
 	font-style: normal;
 	font-weight: 400;
-	src: url(var(--server_url)'/resources/fonts/notokr-regular.eot');
-	src: url(var(--server_url)'/resources/fonts/') format('embedded-opentype'),
-		 url(var(--server_url)'/resources/fonts/notokr-regular.woff2') format('woff2'),
-		 url(var(--server_url)'/resources/fonts/notokr-regular.woff') format('woff');
+	src: url(/resources/fonts/notokr-regular.eot');
+	src: url(/resources/fonts/') format('embedded-opentype'),
+		 url(/resources/fonts/notokr-regular.woff2') format('woff2'),
+		 url(/resources/fonts/notokr-regular.woff') format('woff');
 }
  
 @font-face {
 	font-family: 'NotoKr';
 	font-style: normal;
 	font-weight: 600;
-	src: url(var(--server_url)'/resources/fonts/notokr-medium.eot');
-	src: url(var(--server_url)'/resources/fonts/notokr-medium.eot?#iefix') format('embedded-opentype'),
-		 url(var(--server_url)'/resources/fonts/notokr-medium.woff2') format('woff2'),
-		 url(var(--server_url)'/resources/fonts/notokr-medium.woff') format('woff');
+	src: url(/resources/fonts/notokr-medium.eot');
+	src: url(/resources/fonts/notokr-medium.eot?#iefix') format('embedded-opentype'),
+		 url(/resources/fonts/notokr-medium.woff2') format('woff2'),
+		 url(/resources/fonts/notokr-medium.woff') format('woff');
 }
  
 @font-face {
 	font-family: 'NotoKr';
 	font-style: normal;
 	font-weight: 800;
-	src: url(var(--server_url)'/resources/fonts/notokr-bold.eot');
-	src: url(var(--server_url)'/resources/fonts/notokr-bold.eot?#iefix') format('embedded-opentype'),
-		 url(var(--server_url)'/resources/fonts/notokr-bold.woff2') format('woff2'),
-		 url(var(--server_url)'/resources/fonts/notokr-bold.woff') format('woff');
+	src: url(/resources/fonts/notokr-bold.eot');
+	src: url(/resources/fonts/notokr-bold.eot?#iefix') format('embedded-opentype'),
+		 url(/resources/fonts/notokr-bold.woff2') format('woff2'),
+		 url(/resources/fonts/notokr-bold.woff') format('woff');
 }

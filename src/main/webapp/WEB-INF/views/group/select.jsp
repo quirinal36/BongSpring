@@ -53,8 +53,8 @@
 				                        </div>
 			                        </c:if>
 			                        <div class="control_wrap">
-			                            <input type="button" value="좋아요" class="bt_scrap">
-			                            <input type="button" value="관리" class="bt_share">
+			                            <input type="button" value="스크랩" class="bt_scrap">
+			                            <input type="button" value="공유하기" class="bt_share">
 			                                    
 			                        </div>    
 			                        <div class="text_wrap">

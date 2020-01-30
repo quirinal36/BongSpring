@@ -82,6 +82,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 #footerWrap {
     height: 90px;
 }
+
 #fixedMenu > a {
     display: inline-block;
     width: 25%;
@@ -92,6 +93,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
     border-left: 1px solid rgba(255, 255, 255, 0.3);
     background-repeat: no-repeat;
     background-position: 50% 30%;
+    background-size: 30px;
     text-align: center;
     font-size: 1.3rem;
     font-weight: 600;
@@ -103,17 +105,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 }
 
 #fixedMenu .home {
-    background-image: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/home.png);
+    background-image: url(/resources/img/comm/home.png) ;
 }
 
 #fixedMenu .notice {
-    background-image: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/notice.png);
+    background-image: url(/resources/img/comm/notice.png);
 }
 
 #fixedMenu .info {
-    background-image: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/info.png);
+    background-image: url(/resources/img/comm/info.png);
 }
 
 #fixedMenu .write {
-    background-image: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/write.png);
+    background-image: url(/resources/img/comm/write.png);
 }

@@ -81,7 +81,7 @@
                         <div class="text_wrap">
                             <div class="text">
                                 <p>${item.text}</p>
-                                    <a class="more" href="<c:url value="/board2/detail?boardId=${item.id }"/>">더보기</a>
+                                <a class="more" href="<c:url value="/board2/detail?boardId=${item.id }"/>">더보기</a>
                             </div>
                             <div class="comment">
                                 <a class="more" href="#">댓글 ${item.replyCount}개</a> 

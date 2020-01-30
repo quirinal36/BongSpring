@@ -99,7 +99,7 @@
     display: block;
     width: 24px;
     height: 41px;
-    background: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/dot.png) no-repeat 0 0;
+    background: url(/resources/img/comm/dot.png) no-repeat 0 0;
     font-size: 0;
     color: rgba(0, 0, 0, 0);
 }
@@ -125,12 +125,12 @@
 }
 
 .control_wrap .bt_scrap {
-    background: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/scrap.png) no-repeat 0 0;
+    background: url(/resources/img/comm/scrap.png) no-repeat 0 0 /20px;
 }
 
 
 .control_wrap  .bt_share {
-    background: url(http://hsbong.synology.me:8080/PatientPhoto/resources/img/comm/share.png) no-repeat 0 0;
+    background: url(/resources/img/comm/share.png) no-repeat 0 0 /22px;
     margin-left: 8px;
 }
 

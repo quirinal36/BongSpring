@@ -17,6 +17,7 @@
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
 						<a href="<c:url value="/member/login"/>">로그인</a>
+						<a href="<c:url value="/member/join_step1"/>">회원가입</a>
 					</sec:authorize>
                     
                     <input type="checkbox" id="bt_gnb">

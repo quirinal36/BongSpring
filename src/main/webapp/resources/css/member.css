@@ -1,3 +1,4 @@
+/*
 .member > p { margin-bottom: 30px; font-size: 16px; }
 .info { margin-bottom: 40px; font-size: 0; }
 .info > div { display: inline-block; width: 50%; border-top: 1px solid #6bc2ae; vertical-align: top; }
@@ -15,22 +16,175 @@
 .form1 input[type="text"], .form1 input[type="password"] { width: 100%; padding: 10px; box-sizing: border-box; background: #eee; }
 .form1 input[type="submit"] { width: 100%; margin-top: 20px; }
 
-/* 로그인 */
 #login form { width: 270px; }
 #login dl { font-size: 0; }
 #login dl:first-child { margin-bottom: 5px; }
 #login input[type="submit"] { width: 100%; margin: 20px 0; }
 #login a { display: inline-block; margin: 0 10px; }
 
-/* 새 비밀번호 */
 #findEdit form { width: 320px; }
 #findEdit dl { margin-top: 5px; font-size: 0; }
 #findEdit dl:first-child { margin: 0 0 14px 0; }
 #findEdit input[type="submit"] { width: 70%; }
 
-/* 회원가입 */
 #join_step2 label span { color: #6bc2ae; }
 
-/* 회원탈퇴 */
 #delete dl { width: 270px; margin: 0 auto; font-size: 0; }
 #delete input[type="submit"] { width: 270px; }
+*/
+
+html,body,#wrap {
+    height: 100%;
+}
+
+#wrap {
+    width: 100%;
+    min-width: 320px;
+}
+
+.member_wrap {
+    display: table;
+    width: 100%;
+    min-height: 100%;
+    background: rgb(152,205,123); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(152,205,123,1) 0%, rgba(61,179,185,1) 50%, rgba(19,93,167,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(152,205,123,1) 0%,rgba(61,179,185,1) 50%,rgba(19,93,167,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(152,205,123,1) 0%,rgba(61,179,185,1) 50%,rgba(19,93,167,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', endColorstr='#135da7',GradientType=1 ); /* IE6-9 */
+}
+
+.member_wrap > div {
+    display: table-cell;
+    padding: 50px 40px;
+}
+
+.member_wrap h2 {
+    font-size: 3.2rem;
+    color: #fff;
+    font-weight: 400;
+}
+
+.member_wrap span {
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.member_wrap form {
+    margin-top: 65px;
+}
+
+.member_wrap dl {
+    margin-top: 50px;
+}
+
+.member_wrap dl:first-child {
+    margin-top: 0;
+}
+
+.member_wrap dt {
+    position: relative;
+    font-size: 2.3rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.member_wrap dd {
+    margin-top: 10px;
+}
+
+.member_wrap input[type=text],
+.member_wrap input[type=password] {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.member_wrap dd input::placeholder {
+    color: rgba(255,255,255,0.5);
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.member_wrap .pass a {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.member_wrap input[type="checkbox"] {
+    display: none;
+}
+
+.member_wrap input[type="checkbox"] + label {
+    position: relative;
+    display: inline-block;    
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.member_wrap #save_info + label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+.member_wrap input[type="checkbox"] + label span {
+    position: relative;
+    display: inline-block;
+    padding: 0 0 0 30px; 
+    font-size: 1.5rem;
+    color: #fff;
+    z-index: 2;
+}
+
+.member_wrap form input[type="checkbox"]:checked + label span {
+    background: url(/resources/img/comm/tick.png) no-repeat 0 0 /20px;
+}
+
+.member_wrap .bt_login,
+.member_wrap .bt_kakao {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 100px;  
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    color: #373737;
+
+}
+.member_wrap .bt_login {
+    margin-top: 60px;
+}
+
+.member_wrap .bt_kakao {
+    margin-top: 15px;
+    background: #f8e00d;
+    border: 0;
+}
+
+.member_wrap .bt_kakao::before {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 28px;
+    margin: 0 8px 0 0;
+    background: url(/resources/img/comm/kakao.png) no-repeat 0 0 /30px;
+    vertical-align: text-bottom;
+}
