@@ -42,7 +42,7 @@
 		(
 			patientId,
 			uploader,
-			captureDate,
+			<!-- captureDate, -->
 			doctor,
 			sync,
 			classification,
@@ -60,7 +60,7 @@
 		(
 			${patientId},
 			'${uploader}',
-			'${captureDate}',
+			<!-- '${captureDate}', -->
 			'${doctor}',
 			${sync},
 			'${classification}',

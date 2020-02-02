@@ -156,6 +156,7 @@ public class BoardBaseController extends BacoderController {
 	@RequestMapping(value="/board2/insert", method= RequestMethod.POST, produces = "application/json; charset=utf8")
 	public String writeBoard2 (BoardBase board) {
 		int result = boardBaseService.insert(board);
+//		int result2 = boardBaseService.insertBoardPhoto(board);
 		return board.toString();
 	}
 	

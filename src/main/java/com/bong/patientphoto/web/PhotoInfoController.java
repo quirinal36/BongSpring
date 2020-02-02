@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bong.patientphoto.vo.Board;
 import com.bong.patientphoto.vo.PhotoInfo;
 import com.bong.patientphoto.vo.UserVO;
 
@@ -122,4 +125,19 @@ public class PhotoInfoController extends BacoderController{
 		mv.setViewName("/photoInfo/detail");
 		return mv;
 	}
+	
+//	@RequestMapping(value="/photoInfo/update", method=RequestMethod.GET)
+//	public ModelAndView updateBoard(Board board, HttpServletResponse response,
+//			HttpServletRequest request, ModelAndView mv, RedirectAttributes attr) throws IOException {
+//		int result = boardService.update(board);
+//		
+//		JSONObject json = new JSONObject();
+//		json.put("result", result);
+//		response.getWriter().append(json.toString());
+//		
+//		attr.addAttribute("id", board.getId());
+//		
+//		mv.setViewName("redirect:/board/detail");
+//		return mv;
+//	}
 }

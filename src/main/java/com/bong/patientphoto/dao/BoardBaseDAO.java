@@ -20,7 +20,9 @@ public class BoardBaseDAO implements DataAccess<BoardBase> {
 	public int insert(BoardBase input) {
 		return sqlSession.insert(namespace + ".insert", input);
 	}
-
+	public int insertBoardPhoto(BoardBase input) {
+		return sqlSession.insert(namespace + ".insertPhoto", input);
+	}
 	@Override
 	public int update(BoardBase input) {
 		// TODO Auto-generated method stub
