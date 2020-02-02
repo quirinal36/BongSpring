@@ -15,4 +15,11 @@
         <function-class>com.bong.patientphoto.util.StringUtil</function-class>
         <function-signature>java.lang.String replaceBR(java.lang.String)</function-signature>
     </function>
+    
+    <function>
+        <description>date format</description>
+        <name>dateStr</name>
+        <function-class>com.bong.patientphoto.util.StringUtil</function-class>
+        <function-signature>java.lang.String dateStr(java.sql.Timestamp)</function-signature>
+    </function>
 </taglib>

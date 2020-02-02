@@ -1,4 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ taglib prefix="su" uri="tlds/customTags.tld"%>
+
 <%@ page session="false" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
@@ -30,32 +33,12 @@
                 </div>
                 <div class="board_list">
                 	<c:forEach items="${list }" var="item">
-                		<script>
-                			var updatedTime = new Date('${item.updatedTime}');
-                			var now = new Date();
-                			var gap = now.getTime() - updatedTime.getTime();
-                			var min_gap = parseInt(gap / 60000);
-                			var hr_gap = parseInt(min_gap / 60);
-                			var date_gap = now.getDate() - updatedTime.getDate();
-                			var updated_gap = null;
-                			if(min_gap < 1) {
-                				var updated_gap = "방금 전";
-                			}
-                			if(min_gap > 0 && min_gap < 60) {
-                				var updated_gap = min_gap + "분 전";
-                			}
-                			if(min_gap >59 && hr_gap <24) {
-                				var updated_gap = hr_gap + "시간 전";
-                			}
-                			if(hr_gap > 23) {
-                				var updated_gap = date_gap + "일 전";
-                			}
-                		</script>
+                		
                     <div class="item">
                         <div class="top_wrap">
                             <a href="#" class="image" style="background-image: url(${item.profileUrl});"></a>
                             <a href="#" class="name">${item.writerName} (${item.position })</a>
-                            <span class="time"><script>document.write(updated_gap);</script></span>
+                            <span class="time">${su:dateStr(item.updatedTime)}</span>
                             <input type="checkbox" id="feed_more">
                             <label for="feed_more">더 보기</label>
                         </div>
