@@ -28,8 +28,11 @@ $(document).ready(function(){
    $("#submitBtn").on("click", function(){
 	  var param = $("form").serialize();	// 넘길 정보
 	  var url = $("form").attr("action");	// 처리할 URL
-	  console.log(url+"?"+param);
-	  
+	  /* console.log(url+"?"+param); */
+	  /* var param2 = $("#uploaded-files").serialize(); */
+	  var param2 = fn_formParse("uploaded-files");
+	  var jsonObj = tableToJson(document.getElementById("uploaded-files")); // table id를 던지고 함수를 실행한다.
+	  console.log("#uploaded-files: "+JSON.stringify(html2json()));
 	  /*
 	  * AJAX 문법으로 처리
 	  */
@@ -41,10 +44,23 @@ $(document).ready(function(){
 	  }).done(function(json){
 		 console.log(json);	// 작성 완료
 		 
-		 if(json.id > 1){ // 글작성 성공
+		 /* if(json.id > 1){ // 글작성 성공
 			 window.location.replace("<c:url value="/"/>");	
-		 }
+		 } */
+		 $.ajax({
+			  url : url,
+			  data: param,
+			  type: "POST",
+			  dataType: "json"
+		  }).done(function(json){
+			 console.log(json);	// 작성 완료
+			 
+			 if(json.id > 1){ // 글작성 성공
+				/*  window.location.replace("<c:url value="/"/>");	 */
+			 }
+		  });
 	  });
+	  
    });
 });
 
@@ -112,14 +128,15 @@ $(document).ready(function(){
 				    <table id="uploaded-files">
 				    	<thead>
 				    		<tr>
-								<th colspan="3">사진업로드</th>
+								<th colspan="4">사진업로드</th>
 							</tr>
 						</thead>
 						<tbody>
 					        <tr>
+					        	<th>번호</th>
 					            <th>파일명</th>
 					            <th>Size</th>
-					            <th>Type</th>
+					            <th>Caption</th>
 					        </tr>
 				        </tbody>
 				    </table>
@@ -144,17 +161,22 @@ $(document).ready(function(){
 	        done: function (e, data) {
 	        	var url = $("input[name='uploadUrl']").val();
 	        	
+	     /*    	var jArray = new Array();
+	        	var jobj = new Object(); */
 	        	
 	          /*   $("#uploaded-files tr:has(td)").remove(); */
 	            $.each(data.result.files, function (index, file) {
 	            	console.log(file);
+	            	
 	                $("#uploaded-files").append(
-	                        $('<tr/>').attr("id",file.id)
+	                        $('<tr/>').attr("id",file.id))
+	                        .append($('<td/>').text(index+1))
 	                        .append($('<td/>').text(file.name))
 	                        .append($('<td/>').text(file.size))
 /* 	                        .append($('<td/>').text(file.contentType))
- */	                        .append($('<td/>').append($('<input>').attr('type','text')))
-	                        )//end $("#uploaded-files").append()
+ */	                        .append($('<td/>')).append($('<input>').attr('type','text'))
+	                        
+	                
 	            }); 
 	        },
 	 		
@@ -170,7 +192,64 @@ $(document).ready(function(){
 	    });
 	});
 	
-	</script>
+	function fn_formParse(formName) {
+	    var form = $("#" + formName).serializeArray();
+	    var formArray = {};
+	 
+	    $.map(form, function(n, i){
+	        formArray[n['name']] = n['value'];
+	    });
+	 
+	    return formArray;
+	}
 	
+function tableToJson(table) { // 변환 함수
+    var data = [];
+
+    var headers = [];
+    for(var i=0; i<table.rows[1].cells.length; i++) {
+        headers[i] = table.rows[1].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+    }
+    console.log("table.rows[1].cells.length="+table.rows[1].cells.length);
+	console.log("table.rows.length="+table.rows.length);
+	console.log("##"+table.rows[1].cells[1].innerHTML);
+	
+    for(var i=0; i<table.rows.length; i++) {
+        var tableRow = table.rows[i];
+        var rowData = {};
+
+        for(var j=0; j<tableRow.cells.length; j++) {
+            rowData[headers[j]] = tableRow.cells[j].innerHTML;
+        }
+        data.push(rowData);
+    }
+
+    return data;
+}
+
+function html2json() {
+	   var json = '{';
+	   var otArr = [];
+	   var tbl2 = $('#uploaded-files').each(function(i) {        
+	      x = $(this).children();
+	      var itArr = [];
+	      x.each(function() {
+	         itArr.push('"' + $(this).text().replace(/ /gi,'') + '"');
+	      });
+	      otArr.push('"' + i + '": [' + itArr.join(',') + ']');
+	   })
+	   json += otArr.join(",") + '}'
+
+	   return json;
+	}
+</script>
+
+<!-- <script>
+        
+       /*  alert(JSON.stringify(jsonObj)); // JSON 객체가 리턴된다! */
+</script> -->
+
+
+
 </body>
 </html>

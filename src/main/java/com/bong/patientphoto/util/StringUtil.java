@@ -40,13 +40,13 @@ public class StringUtil {
 		logger.info("seconds: " + seconds);
 		
 		if(minutes < 1) {
-			result.append("방금전");
+			result.append("방금 전");
 		}else if(minutes < 60) {
-			result.append(minutes).append(" 분전");
+			result.append(minutes).append("분 전");
 		}else if(hours < 24) {
-			result.append(hours).append(" 시간전");
+			result.append(hours).append("시간 전");
 		}else if(months < 1) {
-			result.append(days).append(" 일전");
+			result.append(days).append("일 전");
 		}else {
 			result.append(writtenDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		}
