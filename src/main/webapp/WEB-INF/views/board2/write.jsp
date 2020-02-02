@@ -62,7 +62,7 @@ $(document).ready(function(){
         <div id="containerWrap">
             <div id="container">
                 <!-- container 시작 -->
-				<form action="/board2/insert">
+				<form action="<c:url value="/board2/insert"/>">
 					<table>
 						<colgroup>
 							<col width="30%">
@@ -97,7 +97,7 @@ $(document).ready(function(){
 								<td>공개설정</td>
 								<td><input type="text" name="accessLevel" placeholder="0:전체,2:회원공개 " required/></td>
 							</tr>
-							
+							<input type="hidden" name="groupId" value="1"/>
 							<input type="hidden" name="creatorId" value="${user.id }"/>
 							<input type="hidden" name="status" value="1"/>
 							
@@ -145,13 +145,15 @@ $(document).ready(function(){
 	        	var url = $("input[name='uploadUrl']").val();
 	        	
 	        	
-	            $("#uploaded-files tr:has(td)").remove();
-	            $.each(data.result, function (index, file) {
+	          /*   $("#uploaded-files tr:has(td)").remove(); */
+	            $.each(data.result.files, function (index, file) {
+	            	console.log(file);
 	                $("#uploaded-files").append(
-	                        $('<tr/>')
-	                        .append($('<td/>').text(file.fileName))
-	                        .append($('<td/>').text(file.fileSize))
-	                        .append($('<td/>').text(file.fileType))
+	                        $('<tr/>').attr("id",file.id)
+	                        .append($('<td/>').text(file.name))
+	                        .append($('<td/>').text(file.size))
+/* 	                        .append($('<td/>').text(file.contentType))
+ */	                        .append($('<td/>').append($('<input>').attr('type','text')))
 	                        )//end $("#uploaded-files").append()
 	            }); 
 	        },

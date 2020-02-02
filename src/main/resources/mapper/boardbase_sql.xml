@@ -84,9 +84,9 @@
 	
 	<insert id="insert" parameterType="boardbase" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO Board_main 
-			(creatorId, patientId, status, text, type, accessLevel)
+			(creatorId, patientId, status, text, type, accessLevel, groupId)
 		values
-			(${creatorId}, ${patientId}, ${status}, '${text}', ${type}, ${accessLevel})
+			(${creatorId}, ${patientId}, ${status}, '${text}', ${type}, ${accessLevel}, ${groupId})
 	</insert>
 	
 	<delete id="delete" parameterType="boardbase">

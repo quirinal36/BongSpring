@@ -149,11 +149,11 @@ public class FileController extends BacoderController{
 		String patientId = request.getParameter("patientId");
 		logger.info("patientId: " + patientId);
 		
-		String date = request.getParameter("date");
-		logger.info("date: " + date);
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date parsed = format.parse(date);
-        java.sql.Date captureDate = new java.sql.Date(parsed.getTime());
+//		String date = request.getParameter("date");
+//		logger.info("date: " + date);
+//		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        Date parsed = format.parse(date);
+//        java.sql.Date captureDate = new java.sql.Date(parsed.getTime());
 
 		String doctor = request.getParameter("doctor");
 		logger.info("doctor: " + doctor);
@@ -181,8 +181,8 @@ public class FileController extends BacoderController{
             mpf = request.getFile(itr.next());
             logger.info("Uploading {}" + mpf.getOriginalFilename());
             
-            //String url = "/home/phbong31/storage";
-            String url = "";
+//            String url = "/home/phbong31/storage";
+            String url = System.getProperty("catalina.home");
             
             File photoDir = new File(url + File.separator + "board_photo");
             if(!photoDir.exists()) {
@@ -195,22 +195,27 @@ public class FileController extends BacoderController{
             String newFilename = newFilenameBase + originalFileExtension;
             
             //String srcPath = request.getSession().getServletContext().getRealPath("/upload");
-            String srcPath = Config.srcPath;
-
-            logger.info("srcPath: " + srcPath);
+//            String srcPath = Config.srcPath;
+//            String srcPath = System.getProperty("Catalina.home");
+//            logger.info("srcPath: " + srcPath);
+            
 			String contentType = mpf.getContentType();
 			
-			File newFile = new File(srcPath + "/" + newFilename);
+			File newFile = new File(photoDir + "/" + newFilename);
             try {
                 mpf.transferTo(newFile);
                 
                 BufferedImage thumbnail = Scalr.resize(ImageIO.read(newFile), 290);
                 String thumbnailFilename = newFilenameBase + "-thumbnail.JPG";
-                File thumbnailFile = new File(srcPath + "/" + thumbnailFilename);
+                File thumbnailFile = new File(photoDir + "/" + thumbnailFilename);
                 ImageIO.write(thumbnail, "jpg", thumbnailFile);
                 
                 PhotoInfo photo = new PhotoInfo();
-                photo.setPatientId(patientId);
+                if(photo.getPatientId() != null && photo.getPatientId().length() > 0 ) {
+                    photo.setPatientId(patientId);
+                } else {
+                    photo.setPatientId("0");
+                }
                 photo.setName(mpf.getOriginalFilename());
                 photo.setThumbnailFilename(thumbnailFilename);
                 photo.setNewFilename(newFilename);
@@ -221,7 +226,7 @@ public class FileController extends BacoderController{
                 photo.setSync(3);
                 photo.setPhotoUrl(newFilename);
                 photo.setDoctor(doctor);
-                photo.setCaptureDate(captureDate);
+//                photo.setCaptureDate(captureDate);
                 photo.setUploader(uploader);
                 
                 int result = photoInfoService.insert(photo);

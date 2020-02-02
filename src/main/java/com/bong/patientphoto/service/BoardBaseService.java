@@ -19,6 +19,9 @@ public class BoardBaseService implements DataService<BoardBase> {
 	public int insert(BoardBase input) {
 		return dao.insert(input);
 	}
+	public int insertBoardPhoto(BoardBase input) {
+		return dao.insertBoardPhoto(input);
+	}
 
 	@Override
 	public int update(BoardBase input) {

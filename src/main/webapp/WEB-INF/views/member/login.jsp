@@ -19,28 +19,32 @@
                 <span>계정</span>을<br>
                 로그인하세요.
                 </h2>
-                <form>
+                <form class="form1" action="<c:url value="/j_spring_security_check"/>" method="post">
                     <dl>
                         <dt>이메일</dt>
-                        <dd><input type="text" placeholder="abc@myapo.com"></dd>
+                        <dd><input type="text" name="loginid" value="${loginid }" placeholder="abc@myapo.com" required></dd>
                     </dl>
                     <dl class="pass">
                         <dt>비밀번호
                             <a href="#">비밀번호를 잊으셨나요?</a>
                         </dt> 
-                        <dd><input type="password" placeholder="*******"></dd>
+                        <dd><input type="password" name="loginpwd" value="${loginpwd }" placeholder="*******" required></dd>
                     </dl>
+                    <c:if test="${not empty securityexceptionmsg }">
+						<span id="error_msg" class="error" >${securityexceptionmsg}</span>
+					</c:if>
+					<input type="hidden" name="loginRedirect" value="${loginRedirect }"/>
                     <div>
                         <input type="checkbox" id="save_info">
                         <label for="save_info"><span>계정 정보를 저장합니다.</span></label>
                     </div>
-                    <input type="button" value="로그인" class="bt_login">        
+                    <input type="submit" value="로그인" class="bt_login">        
                 </form>
                 <a href="#" class="bt_kakao">카카오톡으로 로그인</a>   
             </div>
         </div>
     </div>
-    <div id="wrap" style="display:none;">
+   <%--  <div id="wrap" style="display:none;">
         <div id="headerWrap">
         <!-- header 분리함  -->
            <%@ include file="/WEB-INF/views/inc/header_app.jsp" %>
@@ -51,7 +55,7 @@
 
 		<!-- 컨텐츠 시작 -->
 		<div id="login" class="member">
-			<form class="form1" action="<c:url value="/j_spring_security_check"/>" method="post">
+			<form class="form2" action="<c:url value="/j_spring_security_check"/>" method="post">
 				<dl>
 					<dd><input type="text" name="loginid" value="${loginid }" required placeholder="아이디를 입력하세요."/></dd>
 				</dl>
@@ -70,7 +74,7 @@
 		</div>
 		<!-- 컨텐츠 끝 -->
 		</div>
-	</div>
+	</div> --%>
 	<div id="footerWrap">
 		<footer>
 			<c:import url="/inc/footer"></c:import>
