@@ -152,110 +152,68 @@ Number.prototype.zf = function(len){return this.toString().zf(len);};
             <div id="container">
                 <!-- container 시작 -->
                 <div class="board_list detail">
-                    <div class="item">
+                    <div class="back">
+                        <a href="history.back();">이전페이지</a>
+                    </div>    
+                    <div class="item">                    
                         <div class="top_wrap">
-                            <div class="top_wrap">
-                                <a href="#" class="image" style="background-image: url(${board.profileUrl});">photo</a>
-                                <a href="#" class="name">${board.writerName} (${board.position})</a>
-                                <span class="time"><script>document.write(new Date('${board.updatedTime }').format("yyyy.MM.dd a/p hh:mm"));</script></span>
-                                <input type="checkbox" id="feed_more">
-                                <label for="feed_more">더 보기</label>
-                        </div>
+                            <a href="#" class="image" style="background-image: url(/resources//img/temp/1.jpg);">홍길동</a>
+                            <a href="#" class="name">홍길동 정형외과 전문의</a>
+                            <span class="time">2시간 전</span>
+                            <input type="checkbox" id="feed_more">
+                            <label for="feed_more">더 보기</label>
+                        </div>                       
                         <div class="text_wrap">
                             <div class="text">
-                                <p>${board.text}
+                                <p>앞십자인대와 뒤십자인대가 있으며 무릎관절 내에 존재하나 인대는 활막에 싸여 구별되므로 십자인대 자체는 활막 외 조직 이다.
+                                    <br>인대파열 정도가 심하지 않은 경우라면 약물이나 주사 그리고 도수물리 운동 등의 보존적인 처치로 증상 개선을 도와드릴 수 있습니다. 
+                                    <br>답변에 도움이 되셨길 바랍니다
                                 </p>
                             </div>   
-                        </div>     
+                        </div>    
                         <div class="comment_view">
-                        	<c:forEach items="${reply }" var="item">
-	                            <dl>
-	                                <dt><a href="#">${item.writerName }</a></dt>
-	                                <dd>${item.text } (<script>document.write(new Date('${item.updatedTime }').format("yyyy.MM.dd a/p hh:mm"));</script>) 
-	                                <c:choose>
-										<c:when test="${user.userLevel == '5' or user.id eq item.writerId }">
-	                               			 <input type="button" value="삭제" onclick="javascript:deleteReply('${item.id}')"/>
-	                              		</c:when>
-	                              		<c:otherwise>
-	                              			<input type="button" value="삭제" disabled/>
-	                              		</c:otherwise>
-	                              	</c:choose>
-	                                </dd>
-								
-	                            </dl>
-                            </c:forEach>
+                            <dl>
+                                <dt>
+                                    <a href="#" class="profile_image">사진</a>
+                                    <a href="#">홍길동환자</a>
+                                </dt>
+                                <dd class="button">보존치료만 해도 되나요?</dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a href="#" class="profile_image">사진</a>
+                                    <a href="#" >홍홍길동환자</a>
+                                </dt>
+                                <dd class="button">보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?</dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a href="#" class="profile_image">사진</a>
+                                    <a href="#">홍홍홍길동환자</a>
+                                </dt>
+                                <dd class="button">보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?</dd>
+                            </dl>  
+                            <div class="replywrite">
+                                <form>
+                                    <div class="comment">
+                                        <textarea placeholder="댓글을 입력하세요."></textarea>
+                                        <input type="button" value="입 력">
+                                    </div>
+                                </form>
+                            </div>                         
                         </div>  
-                        <div class="comment_write">
-			                <form id="replyForm" action="<c:url value="/board2/insertReply"/>">
-								<table>
-									<colgroup>
-										<col width="20%">
-										<col width="70%">
-										<col width="10%">
-									</colgroup>
-									
-									<tbody>
-										<tr>
-											<c:choose>
-												<c:when test="${user.userLevel > '1' }">
-													<td>답글쓰기</td>
-													<td><input type="text" name="text" placeholder="내용" required/></td>
-													<td><input type="button" value="답글쓰기" id="replyBtn"/></td>
-												</c:when>
-												<c:otherwise>
-													<td>답글쓰기</td>
-													<td><input type="text" name="text" placeholder="작성 권한이 없습니다" disabled/></td>
-													<td><input type="button" value="답글쓰기" id="replyBtn" disabled/></td>
-												</c:otherwise>
-											</c:choose>
-										</tr>
-									</tbody>
-								</table>
-											<input type="hidden" value="1" name="status"/>
-											<input type="hidden" value="${user.id}" name="writerId"/>
-											<input type="hidden" value="${board.id }" name="boardId"/>
-			   				</form>
-                        </div>  
-                    </div>    
+                    </div>        
                 </div>
-                
                 <div class="detail_img_list">
                     <div class="item">
                         <a href="#" class="image" style="background-image:url(/resources/img/temp/slider1.jpg)";>사진</a>
-                        <div class="count">
-                            <a href="#">댓글 5개</a>
-                            <span>공유 3개</span>
-                        </div>
-                        <div class="bt">
-                            <a href="#">댓글작성</a>
-                            <a href="javascript:void(0);">공유하기</a>
-                        </div>
-                    </div> 
-                    <div class="item">
-                        <a href="#" class="image" style="background-image:url(/resources/img/temp/slider1.jpg)";>사진</a>
-                        <div class="count">
-                            <a href="#">댓글 5개</a>
-                            <span>공유 3개</span>
-                        </div>
-                        <div class="bt">
-                            <a href="#">댓글작성</a>
-                            <a href="javascript:void(0);">공유하기</a>
-                        </div>
-                    </div>   
-                    <div class="item">
-                        <a href="#" class="image" style="background-image:url(/resources/img/temp/slider1.jpg)";>사진</a>
-                        <div class="count">
-                            <a href="#">댓글 5개</a>
-                            <span>공유 3개</span>
-                        </div>
-                        <div class="bt">
-                            <a href="#">댓글작성</a>
-                            <a href="javascript:void(0);">공유하기</a>
-                        </div>
-                    </div>                      
+                        <div class="text_detail">
+                            <a href="#">앞십자인대와 뒤십자인대가 있으며 무릎관절 내에 존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는</a>
+                        </div>                    
+                    </div>                   
                 </div>
             </div>   
-        </div>     
+        </div>       
                 <!-- container 끝 -->
         <div id="footerWrap">
               <footer><c:import url="/inc/footer"></c:import></footer>

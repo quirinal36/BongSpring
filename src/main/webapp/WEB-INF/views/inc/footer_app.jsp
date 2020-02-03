@@ -49,7 +49,7 @@
                 <div id="fixedMenu">
                     <a href="<c:url value="/list"/>" class="home">홈</a>
                     <a href="#" class="notice">진료안내</a>
-                    <a href="<c:url value="/myGroup"/>" class="info">내 그룹</a>
+                    <a href="<c:url value="/myGroup"/>" class="info">내정보</a>
                     <a href="#" id="btnWrite" class="write">글쓰기</a>
                 </div>
                 <!-- footer 끝 -->
