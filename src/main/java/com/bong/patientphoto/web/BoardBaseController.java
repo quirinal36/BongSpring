@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bong.patientphoto.util.Token;
 import com.bong.patientphoto.vo.Board;
 import com.bong.patientphoto.vo.BoardBase;
 import com.bong.patientphoto.vo.BoardReply;
@@ -42,11 +43,18 @@ public class BoardBaseController extends BacoderController {
 			@RequestParam(value="search", required=false)String search,
 			@RequestParam(value="page", required=false)Optional<Integer> pageNum,
 			@RequestParam(value="orderById", required=false)Optional<Integer> orderById,
-			HttpServletRequest request) {
+			@RequestParam(value="token")Optional<String> tokenStr,
+			HttpServletRequest request, HttpServletResponse response) {
 		
 		if(request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
 			
 		}
+//		if(tokenStr.isPresent()) {
+//			Token token = new Token();
+//			if(token.IsValidToken(tokenStr.get())) {
+//				
+//			}
+//		}
 		List<BoardBase> list;
 		
 		BoardBase board;
@@ -75,17 +83,15 @@ public class BoardBaseController extends BacoderController {
 		}
 		
 		mv.addObject("pageNum", board.getPageNo());
-		//logger.info("param :" + board.getPageNo());
-		//logger.info("board :" + board.toString());
-		board.setTotalCount(boardBaseService.count(board));
-		
+
+		board.setTotalCount(boardBaseService.count(board));	
 		
 		list = boardBaseService.select(board);
 		//logger.info("list : "+ list.toString());
 
-	//	mv.addObject("board", board);
 		mv.addObject("list", list);
 		mv.setViewName("/index");
+//		response.getWriter(list.toString());
 		return mv;
 	}
 	
