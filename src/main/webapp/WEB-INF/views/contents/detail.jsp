@@ -208,7 +208,7 @@ Number.prototype.zf = function(len){return this.toString().zf(len);};
                     <div class="item">
                         <a href="#" class="image" style="background-image:url(/resources/img/temp/slider1.jpg)";>사진</a>
                         <div class="text_detail">
-                            <a href="#">앞십자인대와 뒤십자인대가 있으며 무릎관절 내에 존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는</a>
+                            <a href="#">앞십자인대와 뒤십자인대가 있으며 무릎관절 내에 존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는존재하나, 인대는</a>
                         </div>                    
                     </div>                   
                 </div>

@@ -72,7 +72,7 @@
                                     <a href="#" class="profile_image">사진</a>
                                     <a href="#">홍홍홍길동환자</a>
                                 </dt>
-                                <dd class="button">보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?</dd>
+                                <dd class="button">보존치료만 해도 되나요? 수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?</dd>
                             </dl>  
                             <div class="replywrite">
                                 <form>

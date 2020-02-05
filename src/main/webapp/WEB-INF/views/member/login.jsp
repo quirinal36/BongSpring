@@ -40,7 +40,7 @@
                     </div>
                     <input type="submit" value="로그인" class="bt_login">        
                 </form>
-                <a href="#" class="bt_kakao">카카오톡으로 로그인</a>   
+                <a href="#" class="bt_kakao">카카오톡으로로그인</a>   
             </div>
         </div>
     </div>
