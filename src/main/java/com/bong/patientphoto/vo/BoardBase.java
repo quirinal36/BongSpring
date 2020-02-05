@@ -28,6 +28,7 @@ public class BoardBase extends Paging {
 	private String position;
 	private int groupId;
 	private int userId;
+    private String photoList;
 	
 	private int photoId;
 	private String caption;
@@ -196,6 +197,14 @@ public class BoardBase extends Paging {
 
 	public void setCaption(String caption) {
 		this.caption = caption;
+	}
+
+	public String getPhotoList() {
+		return photoList;
+	}
+
+	public void setPhotoList(String photoList) {
+		this.photoList = photoList;
 	}
 
 	@Override

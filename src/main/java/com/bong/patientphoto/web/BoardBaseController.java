@@ -172,4 +172,65 @@ public class BoardBaseController extends BacoderController {
 		boardBaseService.delete(board);
 		return board.toString();
 	}
+	
+	@RequestMapping(value= "api/list", method=RequestMethod.GET)
+	public void getBoardListAPI(
+			@RequestParam(value="groupId", required=false)Optional<Integer> groupId,
+			@RequestParam(value="search", required=false)String search,
+			@RequestParam(value="page", required=false)Optional<Integer> pageNum,
+			@RequestParam(value="orderById", required=false)Optional<Integer> orderById,
+			@RequestParam(value="token")Optional<String> tokenStr,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+		
+//		if(tokenStr.isPresent()) {
+//			Token token = new Token();
+//			if(token.IsValidToken(tokenStr.get())) {
+//				
+//			}
+//		}
+		List<BoardBase> list;
+		BoardBase board;
+		
+		if(pageNum.isPresent()) {
+			board = new BoardBase(0, pageNum.get());	
+		}else {
+			board = new BoardBase(0, 1);
+		}
+		if(groupId.isPresent()) {
+			board.setGroupId(groupId.get());
+		} else {
+			board.setGroupId(1);
+		}
+		
+	//	board.setSearch(search);
+	//	logger.info("param :" + pageNum.get());
+		
+//		UserVO user = getUser();
+//		mv.addObject("user", user);
+		
+//		if(user != null) {
+			board.setUserId(1);
+			board.setUserLevel(5);
+//
+//		}else {
+//			logger.info("user null#######################");
+//			board.setUserLevel(0);
+//		}
+		
+//		mv.addObject("pageNum", board.getPageNo());
+
+		board.setTotalCount(boardBaseService.count(board));	
+		
+		list = boardBaseService.select(board);
+		
+		try {
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().append(list.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

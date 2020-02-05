@@ -24,11 +24,26 @@
 			board.expireDate,
 			board.accessLevel,
 			board.groupId,
-			(SELECT count(*) FROM Board_reply reply WHERE reply.boardId = board.id) AS replyCount
+			(SELECT count(*) FROM Board_reply reply WHERE reply.boardId = board.id) AS replyCount,
+			CASE
+	        WHEN photo.id IS NULL THEN NULL
+	        ELSE CONCAT('[',
+	             		  GROUP_CONCAT(CONCAT('{ "id":',
+                            photo.id,
+                            ',"boardId":',
+                            photo.boardId,
+                            ',"caption":"',
+                            REPLACE(photo.caption, '"', '\"'),
+                            '","photoId":',
+                            photo.photoId,
+                            ' }')),
+                ']')
+    		END photoList
 			
 		FROM Board_main board
 		
 		LEFT JOIN Person AS user ON user.NUM = board.creatorId
+		LEFT JOIN Board_photo photo ON photo.boardId = board.id
 		<where>
 			${userLevel} >= board.accessLevel
 			AND 
@@ -36,7 +51,9 @@
 				OR
 				board.status = '3')
 		</where>
+		GROUP BY board.id
 		ORDER BY board.createdTime DESC
+		
 		limit ${from}, ${pageSize}
 		
 		
@@ -62,15 +79,33 @@
 			board.expireDate,
 			board.accessLevel,
 			board.groupId,
-			Count(reply.id) AS replyCount
+			Count(reply.id) AS replyCount,
+			CASE
+	        WHEN photo.id IS NULL THEN NULL
+	        ELSE CONCAT('[',
+	             		  GROUP_CONCAT(CONCAT('{ "id":',
+                            photo.id,
+                            ',"boardId":',
+                            photo.boardId,
+                            ',"caption":"',
+                            REPLACE(photo.caption, '"', '\"'),
+                            '","photoId":',
+                            photo.photoId,
+                            ' }')),
+                ']')
+    		END photoList
+    		
 		from Board_main board
 		LEFT JOIN Board_reply AS reply ON reply.boardId = board.id
 		LEFT JOIN Person AS user ON user.NUM = board.creatorId
+		LEFT JOIN Board_photo photo ON photo.boardId = board.id
 		
 		<where>
 			board.id = ${id}
 		</where>
+		GROUP BY board.id
 	</select>
+	
 	<select id="count" parameterType="boardbase" resultType="int">
 		select
 			count(*)
