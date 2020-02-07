@@ -188,3 +188,167 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
     background: url(/resources/img/comm/kakao.png) no-repeat 0 0 /30px;
     vertical-align: text-bottom;
 }
+
+
+/*doctor_signup_wrap*/
+.doctor_signup_wrap {
+    display: table;
+    width: 100%;
+    min-height: 100%;
+    background: rgb(152,205,123); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(152,205,123,1) 0%, rgba(61,179,185,1) 50%, rgba(19,93,167,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(152,205,123,1) 0%,rgba(61,179,185,1) 50%,rgba(19,93,167,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(152,205,123,1) 0%,rgba(61,179,185,1) 50%,rgba(19,93,167,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', endColorstr='#135da7',GradientType=1 ); /* IE6-9 */
+}
+
+.doctor_signup_wrap > div {
+    display: table-cell;
+    padding: 40px 40px;
+}
+
+.doctor_signup_wrap h2 {
+    font-size: 3.2rem;
+    color: #fff;
+    font-weight: 400;
+    line-height: 40px;
+}
+
+.doctor_signup_wrap span {
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.doctor_signup_wrap form {
+    margin-top: 20px;
+}
+
+.doctor_signup_wrap dl:first-child {
+    margin-top: 0;
+}
+
+.doctor_signup_wrap dt {
+    position: relative;
+    margin-top: 15px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.doctor_signup_wrap dt :first-child {
+    margin-top: 0;
+}
+
+
+.doctor_signup_wrap dd {
+    margin-top: 10px;
+}
+
+.doctor_signup_wrap input[type=name],
+.doctor_signup_wrap input[type=gender],
+.doctor_signup_wrap input[type=year],
+.doctor_signup_wrap input[type=phone],
+.doctor_signup_wrap input[type=mail],
+.doctor_signup_wrap input[type=address],
+.doctor_signup_wrap input[type=work],
+.doctor_signup_wrap input[type=position],
+.doctor_signup_wrap input[type=password] {
+    display: block;
+    width: 100%;
+    padding: 3px 0;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.doctor_signup_wrap dd input::placeholder {
+    color: rgba(255,255,255,0.5);
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.doctor_signup_wrap .pass a {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.doctor_signup_wrap input[type="checkbox"] {
+    display: none;
+}
+
+.doctor_signup_wrap input[type="checkbox"] + label {
+    position: relative;
+    display: inline-block;    
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.doctor_signup_wrap #save_info + label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+.doctor_signup_wrap input[type="checkbox"] + label span {
+    position: relative;
+    display: inline-block;
+    padding: 0 0 0 30px; 
+    font-size: 1.5rem;
+    color: #fff;
+    z-index: 2;
+}
+
+
+.doctor_signup_wrap .name_wrap > dl {
+    display: inline-block;
+    text-align: middle;
+    width: 47%;
+    padding-right: 5%;
+}
+
+.doctor_signup_wrap .name_wrap > dl:nth-child(2) {
+    padding-right: 0;
+}
+
+.doctor_signup_wrap input[type="checkbox"] + label span {
+    position: relative;
+    display: inline-block;
+    padding: 0 0 0 30px; 
+    font-size: 1.4rem;
+    color: #fff;
+    z-index: 2;
+}
+
+.doctor_signup_wrap input[type="checkbox"]:checked + label span {
+    background: url(/img/comm/tick.png) no-repeat 0 0 /20px;
+}
+
+.doctor_signup_wrap .bt_signup {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 100px;  
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+    color: #373737;
+}
+
+.doctor_signup_wrap .bt_signup {
+    margin-top: 20px;
+}
+    
