@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 public class BoardBase extends Paging {
 	
@@ -29,6 +31,7 @@ public class BoardBase extends Paging {
 	private int groupId;
 	private int userId;
     private String photoList;
+    private JSONArray photoListArray;
 	
 	private int photoId;
 	private String caption;
@@ -205,6 +208,20 @@ public class BoardBase extends Paging {
 
 	public void setPhotoList(String photoList) {
 		this.photoList = photoList;
+	}
+	
+
+	public JSONArray getPhotoListArray() {
+		if(this.photoList != null && this.photoList.length()>0) {
+			JSONArray array = new JSONArray(this.photoList);
+			return array;
+		} else {
+			return null;
+		}
+	}
+	
+	public void setPhotoListArray(JSONArray photoListArray) {
+		this.photoListArray = photoListArray;
 	}
 
 	@Override

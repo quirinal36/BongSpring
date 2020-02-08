@@ -18,7 +18,9 @@
 			user.patientId as patientId,
 			user.userType as userType,
 			user.userLevel as userLevel,
-			user.position as position
+			user.position as position,
+			user.profileUrl as profileUrl
+			
 		from Board_reply reply
 		LEFT JOIN Person AS user ON user.NUM = reply.writerId
 		<where>

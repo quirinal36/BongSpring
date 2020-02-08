@@ -23,6 +23,7 @@ public class BoardReply {
 	private int userLevel;
 	private int accessLevel;
 	private String position;
+	private String profileUrl;
 	
 	public int getId() {
 		return id;
@@ -103,6 +104,13 @@ public class BoardReply {
 	public void setPosition(String position) {
 		this.position = position;
 	}
+	public String getProfileUrl() {
+		return profileUrl;
+	}
+	public void setProfileUrl(String profileUrl) {
+		this.profileUrl = profileUrl;
+	}
+	
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

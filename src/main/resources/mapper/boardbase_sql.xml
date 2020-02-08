@@ -79,7 +79,6 @@
 			board.expireDate,
 			board.accessLevel,
 			board.groupId,
-			Count(reply.id) AS replyCount,
 			CASE
 	        WHEN photo.id IS NULL THEN NULL
 	        ELSE CONCAT('[',
@@ -96,7 +95,6 @@
     		END photoList
     		
 		from Board_main board
-		LEFT JOIN Board_reply AS reply ON reply.boardId = board.id
 		LEFT JOIN Person AS user ON user.NUM = board.creatorId
 		LEFT JOIN Board_photo photo ON photo.boardId = board.id
 		

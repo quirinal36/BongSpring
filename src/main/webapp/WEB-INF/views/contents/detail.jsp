@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@page import="org.json.JSONArray"%>
+<%@page import="org.json.JSONObject"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -153,64 +155,83 @@ Number.prototype.zf = function(len){return this.toString().zf(len);};
                 <!-- container 시작 -->
                 <div class="board_list detail">
                     <div class="back">
-                        <a href="history.back();">이전페이지</a>
+                        <a href="<c:url value="/board2/list"/>">이전페이지</a>
                     </div>    
                     <div class="item">                    
                         <div class="top_wrap">
-                            <a href="#" class="image" style="background-image: url(/resources//img/temp/1.jpg);">홍길동</a>
-                            <a href="#" class="name">홍길동 정형외과 전문의</a>
-                            <span class="time">2시간 전</span>
+                            <a href="#" class="image" style="background-image: url(${user.profileUrl});">홍길동</a>
+                            <a href="#" class="name">${board.writerName}</a>
+                            <span class="time">${board.updatedTime}</span>
                             <input type="checkbox" id="feed_more">
                             <label for="feed_more">더 보기</label>
                         </div>                       
                         <div class="text_wrap">
                             <div class="text">
-                                <p>앞십자인대와 뒤십자인대가 있으며 무릎관절 내에 존재하나 인대는 활막에 싸여 구별되므로 십자인대 자체는 활막 외 조직 이다.
-                                    <br>인대파열 정도가 심하지 않은 경우라면 약물이나 주사 그리고 도수물리 운동 등의 보존적인 처치로 증상 개선을 도와드릴 수 있습니다. 
-                                    <br>답변에 도움이 되셨길 바랍니다
+                                <p>
+                                	${board.text }
                                 </p>
                             </div>   
                         </div>    
                         <div class="comment_view">
-                            <dl>
-                                <dt>
-                                    <a href="#" class="profile_image">사진</a>
-                                    <a href="#">홍길동환자</a>
-                                </dt>
-                                <dd class="button">보존치료만 해도 되나요?</dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <a href="#" class="profile_image">사진</a>
-                                    <a href="#" >홍홍길동환자</a>
-                                </dt>
-                                <dd class="button">보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?</dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <a href="#" class="profile_image">사진</a>
-                                    <a href="#">홍홍홍길동환자</a>
-                                </dt>
-                                <dd class="button">보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?수술이 필요한가요? 보존치료만 해도 되나요?</dd>
-                            </dl>  
+	                        <c:forEach items="${reply }" var="item">
+								<dl>
+									<dt>
+										<a href="#" class="profile_image" style="background-image: url(${item.profileUrl});">사진</a>
+										<a href="#">${item.writerName}</a>
+									</dt>
+									<dd class="button">
+										${item.text} / ${item.createdTime}
+										<c:if test="${user.id == item.writerId || user.userLevel > '3'}"> 
+											<input type="button" value="삭제" onclick="javascript:deleteReply('${item.id}')"/>
+										</c:if>
+									</dd>
+								</dl>
+							</c:forEach>
+                           
                             <div class="replywrite">
-                                <form>
+								<form id="replyForm" action="<c:url value="/board2/insertReply"/>">
                                     <div class="comment">
-                                        <textarea placeholder="댓글을 입력하세요."></textarea>
-                                        <input type="button" value="입 력">
+                                    <c:choose>
+                                    <c:when test="${user.userLevel > '1'}">
+                                        <textarea name="text" placeholder="댓글을 입력하세요."></textarea>
+                                        <input type="button" value="답글쓰기" id="replyBtn"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                    	<textarea name="text" placeholder="로그인이 필요합니다!!" disabled></textarea>
+                                        <input type="button" value="답글쓰기" id="replyBtn" disabled/>
+                                    </c:otherwise>
+                                    </c:choose>
+                                        <input type="hidden" value="1" name="status">
+                                        <input type="hidden" value="${user.id}" name="writerId"/>
+                                        <input type="hidden" value="${board.id }" name="boardId">
+										
                                     </div>
                                 </form>
                             </div>                         
                         </div>  
                     </div>        
                 </div>
+                
                 <div class="detail_img_list">
-                    <div class="item">
-                        <a href="#" class="image" style="background-image:url(/resources/img/temp/slider1.jpg)";>사진</a>
-                        <div class="text_detail">
-                            <a href="#">앞십자인대와 뒤십자인대가 있으며 무릎관절 내에 존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는존재하나 인대는존재하나, 인대는</a>
-                        </div>                    
-                    </div>                   
+                	<!-- <script>
+                    var testStr = '${board.photoList}';
+                    var photoListJson = $.parseJSON(testStr);
+                    var jsonStr = photoListJson[0].photoId;
+                    </script> -->
+                    <c:if test="${not empty board.photoList}">
+						<c:forEach begin="0" end="${board.photoListArray.length() -1}" var="index">
+		                    <div class="item">
+		                        <a href="#" class="image" style="background-image:url(/PatientPhoto/thumbnail/${board.photoListArray.getJSONObject(index).getInt("photoId")})";>사진</a>
+		                        <div class="text_detail">
+		                            <a href="#"> ${board.photoListArray.getJSONObject(index).getString("caption")}</a>
+		                        </div>                    
+		                    </div>   
+	                    </c:forEach>
+                    </c:if>
+                     <%-- <%
+					    String str = "<script>document.writeln(jsonStr)</script>";
+					    out.println(str);
+					%> --%>
                 </div>
             </div>   
         </div>       

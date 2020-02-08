@@ -25,19 +25,19 @@ public class StringUtil {
 		
 		Period period = Period.between(writtenDate.toLocalDate(), now.toLocalDate());
 		int days = period.getDays();
-		logger.info("days: " + days);
+		//logger.info("days: " + days);
 		int months = period.getMonths();
-		logger.info("months: " + months);
+		//logger.info("months: " + months);
 		int years = period.getYears();
-		logger.info("years: " + years);
+		//logger.info("years: " + years);
 		
 		long seconds = ChronoUnit.SECONDS.between(writtenDate, now);
 		long minutes = ChronoUnit.MINUTES.between(writtenDate, now);
 		long hours = ChronoUnit.HOURS.between(writtenDate, now);
 		
-		logger.info("hours: " + hours);
-		logger.info("minutes: " + minutes);
-		logger.info("seconds: " + seconds);
+		//logger.info("hours: " + hours);
+		//logger.info("minutes: " + minutes);
+		//logger.info("seconds: " + seconds);
 		
 		if(minutes < 1) {
 			result.append("방금 전");

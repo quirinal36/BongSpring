@@ -75,10 +75,10 @@ public class BoardBaseController extends BacoderController {
 		if(user != null) {
 			board.setUserId(user.getId());
 			board.setUserLevel(user.getUserLevel());
-			logger.info(user.getUserLevel()+"//user not null#################");
+//			logger.info(user.getUserLevel()+"//user not null#################");
 
 		}else {
-			logger.info("user null#######################");
+//			logger.info("user null#######################");
 			board.setUserLevel(0);
 		}
 		
@@ -87,7 +87,7 @@ public class BoardBaseController extends BacoderController {
 		board.setTotalCount(boardBaseService.count(board));	
 		
 		list = boardBaseService.select(board);
-		//logger.info("list : "+ list.toString());
+//		logger.info("###list : "+ list.toString());
 
 		mv.addObject("list", list);
 		mv.setViewName("/index");

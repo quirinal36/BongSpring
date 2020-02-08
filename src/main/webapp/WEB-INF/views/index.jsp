@@ -42,15 +42,18 @@
                             <input type="checkbox" id="feed_more">
                             <label for="feed_more">더 보기</label>
                         </div>
-                        <c:if test="${item.type eq '1' }">
+                       
+                        <c:if test="${not empty item.photoList}">
+                        	
 	                        <div class="feed_img_slider">
 	                            <div class="feed_img">
-	                                <div class="item" style="background-image:url(<c:url value="/resources/img/temp/slider1.jpg"/>);">사진</div>
-	                                <div class="item" style="background-image:url(<c:url value="/resources/img/temp/slider2.jpg"/>);">사진</div>
-	                                <div class="item" style="background-image:url(<c:url value="/resources/img/temp/slider3.jpg"/>);">사진</div>
+									<c:forEach begin="0" end="${item.photoListArray.length() -1}" var="index">
+		                                <div class="item" style="background-image:url(/PatientPhoto/thumbnail/${item.photoListArray.getJSONObject(index).getInt("photoId")})";>사진</div>
+		                            </c:forEach>  
 	                            </div>
 	                        </div>
                         </c:if>
+                        
                         <div class="control_wrap">
                             <input type="button" value="스크랩" class="bt_scrap">
                             <input type="button" value="공유하기" class="bt_share">
