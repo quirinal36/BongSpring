@@ -159,7 +159,7 @@ Number.prototype.zf = function(len){return this.toString().zf(len);};
                     </div>    
                     <div class="item">                    
                         <div class="top_wrap">
-                            <a href="#" class="image" style="background-image: url(${user.profileUrl});">홍길동</a>
+                            <a href="#" class="image" style="background-image: url(${board.profileUrl});">홍길동</a>
                             <a href="#" class="name">${board.writerName}</a>
                             <span class="time">${board.updatedTime}</span>
                             <input type="checkbox" id="feed_more">
