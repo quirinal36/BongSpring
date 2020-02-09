@@ -21,9 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bong.patientphoto.service.DepartmentService;
+import com.bong.patientphoto.service.CompanyService;
 import com.bong.patientphoto.service.PersonService;
 import com.bong.patientphoto.service.UserService;
 import com.bong.patientphoto.vo.Department;
+import com.bong.patientphoto.vo.Group;
+import com.bong.patientphoto.vo.Company;
 import com.bong.patientphoto.vo.Person;
 import com.bong.patientphoto.vo.UserVO;
 
@@ -35,6 +38,8 @@ public class MemberController  {
 	
 	@Autowired
 	DepartmentService departmentService;
+	@Autowired
+	CompanyService companyService;
 	@Autowired
 	PersonService personService;
 	
@@ -48,9 +53,17 @@ public class MemberController  {
 	 * @return
 	 */
 	@RequestMapping(value="/member/join_step1", method=RequestMethod.GET)
-	public ModelAndView getJoinStep1View(ModelAndView mv) {
-		
-		mv.setViewName("/member/join_step1");
+	public ModelAndView getJoinStep1View(ModelAndView mv, UserVO user, HttpServletRequest req) {
+		if(req.isUserInRole("ROLE_USER") || req.isUserInRole("ROLE_ADMIN")) {
+			mv.setViewName("redirect:/");
+		}else {
+			List<Department> departmentList = departmentService.select();
+			List<Company> companyList = companyService.select();
+			mv.addObject("departmentList", departmentList);
+			mv.addObject("companyList", companyList);
+			mv.addObject("user", user);
+			mv.setViewName("/member/signin");
+		}
 		return mv;
 	}
 	/**
@@ -75,8 +88,9 @@ public class MemberController  {
 	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
 	public String memberInsert(ModelAndView mv, 
 			Person person, HttpServletResponse resp) throws IOException {
-		logger.info(person.toString());
+		logger.info("person.toString():"+person.toString());
 		int result = personService.insert(person);
+		
 		JSONObject json = new JSONObject();
 		json.put("result", result);
 		return json.toString();

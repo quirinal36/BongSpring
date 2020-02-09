@@ -36,7 +36,7 @@
 <!-- 컨텐츠 시작 -->
 
 <div id="join_step2" class="page member">
-	<form method="post" action="/member/insert">
+	<form method="post" action="<c:url value="/member/insert"/>">
 		
 		<div class="info">
 			<strong>회원가입</strong>

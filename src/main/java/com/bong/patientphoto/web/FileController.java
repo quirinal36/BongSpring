@@ -254,7 +254,9 @@ public class FileController extends BacoderController{
 		PhotoInfo param = new PhotoInfo();
 		param.setId(id);
 		logger.info(param.toString());	
-		if(request.isUserInRole("ROLE_USER") || request.isUserInRole("ROLE_ADMIN"))
+		if(request.isUserInRole("ROLE_USER1") || request.isUserInRole("ROLE_USER2") 
+				|| request.isUserInRole("ROLE_USER3") || request.isUserInRole("ROLE_USER4") ||
+				request.isUserInRole("ROLE_USER5") ||request.isUserInRole("ROLE_ADMIN"))
 		{
 				PhotoInfo image = photoInfoService.selectOne(param);
 			      //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
@@ -307,7 +309,9 @@ public class FileController extends BacoderController{
 			PhotoInfo param = new PhotoInfo();
 			param.setId(id);
 			logger.info(param.toString());	
-			if(request.isUserInRole("ROLE_USER") || request.isUserInRole("ROLE_ADMIN"))
+			if(request.isUserInRole("ROLE_USER1") || request.isUserInRole("ROLE_USER2") 
+					|| request.isUserInRole("ROLE_USER3") || request.isUserInRole("ROLE_USER4") ||
+					request.isUserInRole("ROLE_USER5") ||request.isUserInRole("ROLE_ADMIN"))
 			{
 					PhotoInfo image = photoInfoService.selectOne(param);
 				      //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");

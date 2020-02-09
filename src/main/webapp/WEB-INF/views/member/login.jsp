@@ -21,8 +21,8 @@
                 </h2>
                 <form class="form1" action="<c:url value="/j_spring_security_check"/>" method="post">
                     <dl>
-                        <dt>이메일</dt>
-                        <dd><input type="text" name="loginid" value="${loginid }" placeholder="abc@myapo.com" required></dd>
+                        <dt>아이디</dt>
+                        <dd><input type="text" name="loginid" value="${loginid }" placeholder="아이디" required></dd>
                     </dl>
                     <dl class="pass">
                         <dt>비밀번호

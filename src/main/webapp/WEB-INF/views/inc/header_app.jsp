@@ -7,10 +7,10 @@
 <header>
                 <!-- header 시작 -->
                 <h1>
-                    <a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/comm/logo.png"/>" alt="마이닥터"></a>
+                    <a href="<c:url value="/"/>"><img src="<c:url value="/resources/img/comm/logo.png"/>" alt="어디아포"></a>
                 </h1>
                 <div class="right">
-	                <sec:authorize access="hasRole('ROLE_USER') || hasRole('ROLE_ADMIN')">
+	                <sec:authorize access="hasRole('ROLE_USER1') || hasRole('ROLE_USER2') ||hasRole('ROLE_USER3') ||hasRole('ROLE_USER4') ||hasRole('ROLE_USER5') || hasRole('ROLE_ADMIN')">
 	                ${user.username }님! 
 	                <a href="<c:url value="/j_spring_security_logout"/>" class="image" style="background-image: url(${user.profileUrl});">photo</a>
 					<!--<a href="<c:url value="/j_spring_security_logout"/>">로그아웃</a>-->

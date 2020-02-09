@@ -9,12 +9,17 @@ public class Person {
 	private int NUM;
 	private String name;
 	private int birth;
+	private String sex;
 	private String phone;
 	private String password;
 	private String email;
+	private String address;
 	private String uniqueId;
 	private int department_id;
+	private int company_id;
+	private String company;
 	private String department;
+	private String position;
 	private Date signupDate;
 	private Date mDate;
 	private int userLevel;
@@ -34,6 +39,12 @@ public class Person {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	public int getBirth() {
 		return birth;
@@ -118,6 +129,30 @@ public class Person {
 	}
 	public void setInitGroupId(int initGroupId) {
 		this.initGroupId = initGroupId;
+	}
+	public int getCompany_id() {
+		return company_id;
+	}
+	public void setCompany_id(int company_id) {
+		this.company_id = company_id;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 	@Override

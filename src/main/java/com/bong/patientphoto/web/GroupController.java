@@ -46,7 +46,7 @@ public class GroupController extends BacoderController {
 			} else {
 				group.setUserLevel(0);
 			}
-			logger.info("getUserLevel#$#$#$#$#$#$#$ : "+ group.getUserLevel());
+//			logger.info("getUserLevel#$#$#$#$#$#$#$ : "+ group.getUserLevel());
 
 			
 			list = groupService.select(group);
@@ -120,5 +120,17 @@ public class GroupController extends BacoderController {
 		}
 
 		return mv;
+	}
+	@RequestMapping(value= "/joinDefaultGroup", method=RequestMethod.GET)
+	public int joinDefaultGroup( 
+			@RequestParam(value="userId", required=true)int userId,
+			HttpServletRequest request, Group group) {
+		
+		group.setId(1);
+		group.setUserId(userId);	
+		group.setDefaultUserLevel(2);
+		int result = groupService.join(group);
+		
+		return result;
 	}
 }

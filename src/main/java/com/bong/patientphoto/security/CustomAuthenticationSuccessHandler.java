@@ -82,9 +82,21 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         for (GrantedAuthority grantedAuthority : authorities) {
         	logger.info("grantedAuthority: " + grantedAuthority);
         	
-            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+            if (grantedAuthority.getAuthority().equals("ROLE_USER1")) {
                 isUser = true;
                 break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_USER2")) {
+            	isUser = true;
+                break;
+	        } else if (grantedAuthority.getAuthority().equals("ROLE_USER3")) {
+	        	isUser = true;
+	            break;
+			} else if (grantedAuthority.getAuthority().equals("ROLE_USER4")) {
+				isUser = true;
+		        break;
+			} else if (grantedAuthority.getAuthority().equals("ROLE_USER5")) {
+				isUser = true;
+		        break;
             } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
                 isAdmin = true;
                 break;

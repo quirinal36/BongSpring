@@ -13,7 +13,9 @@ import com.bong.patientphoto.service.AppUserService;
 import com.bong.patientphoto.service.BoardBaseService;
 import com.bong.patientphoto.service.BoardReplyService;
 import com.bong.patientphoto.service.BoardService;
+import com.bong.patientphoto.service.DepartmentService;
 import com.bong.patientphoto.service.GroupService;
+import com.bong.patientphoto.service.CompanyService;
 import com.bong.patientphoto.service.ImageService;
 import com.bong.patientphoto.service.OPRecordService;
 import com.bong.patientphoto.service.PatientInfoService;
@@ -57,6 +59,12 @@ public class BacoderController {
 	
 	@Resource(name="patientInfoService")
 	protected PatientInfoService patientInfoService;
+	
+	@Resource(name="companyService")
+	protected CompanyService companyService;
+	
+	@Resource(name="departmentService")
+	protected DepartmentService departmentService;
 	
 	@Autowired
 	protected AuthenticationFacade authenticationFacade;

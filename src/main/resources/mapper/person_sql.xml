@@ -19,19 +19,29 @@
 		(
 		name,
 		birth,
+		sex,
 		phone,
 		password,
 		uniqueId,
-		department_id
+		address,
+		email,
+		department_id,
+		company_id,
+		position
 		)
 		values
 		(
 		'${name}',
 		${birth},
+		'${sex}',
 		'${phone}',
 		'${password}',
 		'${uniqueId}',
-		${department_id}
+		'${address}',
+		'${email}',
+		${department_id},
+		${company_id},
+		'${position}'
 		)
 	</insert>
 </mapper>

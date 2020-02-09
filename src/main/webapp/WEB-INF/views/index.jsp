@@ -54,7 +54,7 @@
 	                        </div>
                         </c:when>
                         <c:when test="${item.photoListArray.length() == 1}">
-		                     <div class="item" style="width:100%; height:200px; background-image:url(/PatientPhoto/thumbnail/${item.photoListArray.getJSONObject(0).getInt("photoId")})";>사진</div>
+		                     <div class="" style="width:100%; height:300px; background:url(/PatientPhoto/thumbnail/${item.photoListArray.getJSONObject(0).getInt("photoId")}) no-repeat 50% 50% /cover";></div>
                         </c:when>
                         </c:choose>
                         
