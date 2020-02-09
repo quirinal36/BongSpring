@@ -1,10 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="baseUrl" value="${pageContext.request.contextPath}"></c:set>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +14,8 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css.css"/>" />
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
 	
-	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 	<script src="<c:url value="/resources/js/jquery-1.9.1.min.js"/>"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 	<script src="<c:url value="/resources/js/jquery.ui.widget.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.iframe-transport.js"/>"></script>
 	<script src="<c:url value="/resources/js/jquery.fileupload.js"/>"></script>
@@ -30,24 +28,28 @@ $(document).ready(function(){
 	  var url = $("form").attr("action");	// 처리할 URL
 	  /* console.log(url+"?"+param); */
 	  /* var param2 = $("#uploaded-files").serialize(); */
+	  
+	  /*
 	  var param2 = fn_formParse("uploaded-files");
 	  var jsonObj = tableToJson(document.getElementById("uploaded-files")); // table id를 던지고 함수를 실행한다.
 	  console.log("#uploaded-files: "+JSON.stringify(html2json()));
-	  /*
-	  * AJAX 문법으로 처리
 	  */
-	  $.ajax({
-		  url : url,
-		  data: param,
-		  type: "POST",
-		  dataType: "json"
-	  }).done(function(json){
-		 console.log(json);	// 작성 완료
-		 
-		 /* if(json.id > 1){ // 글작성 성공
-			 window.location.replace("<c:url value="/"/>");	
-		 } */
-		 $.ajax({
+	  var photos = [];
+	  $("#uploaded-files").find("tr").each(function(index, item){
+		 console.log(item); 
+		 if($(item).attr("id") > 0){
+			 photos.push($(item).attr("id"));
+		 }
+	  });
+	  var photos = "&photos="+photos.join(",");
+	  console.log(photos);
+	  param = param + photos;
+	  
+	  if(confirm("전송하시겠습니까?")){
+		  /*
+		  * AJAX 문법으로 처리
+		  */
+		  $.ajax({
 			  url : url,
 			  data: param,
 			  type: "POST",
@@ -55,21 +57,29 @@ $(document).ready(function(){
 		  }).done(function(json){
 			 console.log(json);	// 작성 완료
 			 
-			 if(json.id > 1){ // 글작성 성공
-				/*  window.location.replace("<c:url value="/"/>");	 */
-			 }
+			 /* if(json.id > 1){ // 글작성 성공
+				 window.location.replace("<c:url value="/"/>");	
+			 } */
+			 $.ajax({
+				  url : url,
+				  data: param,
+				  type: "POST",
+				  dataType: "json"
+			  }).done(function(json){
+				 console.log(json);	// 작성 완료
+				 
+				 if(json.id > 1){ // 글작성 성공
+					/*  window.location.replace("<c:url value="/"/>");	 */
+				 }
+			  });
 		  });
-	  });
-	  
+	  }
    });
 });
 
 </script>
 
 </head>
-
-
-
     <div id="wrap">
         <div id="headerWrap">
            <!-- header 분리함  -->
@@ -125,13 +135,13 @@ $(document).ready(function(){
 				    <div id="progress">
 				        <div style="width: 0%;"></div>
 				    </div>
-				    <table id="uploaded-files">
+				    <table>
 				    	<thead>
 				    		<tr>
 								<th colspan="4">사진업로드</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="uploaded-files">
 					        <tr>
 					        	<th>번호</th>
 					            <th>파일명</th>
@@ -169,14 +179,15 @@ $(document).ready(function(){
 	            	console.log(file);
 	            	
 	                $("#uploaded-files").append(
-	                        $('<tr/>').attr("id",file.id))
-	                        .append($('<td/>').text(index+1))
-	                        .append($('<td/>').text(file.name))
-	                        .append($('<td/>').text(file.size))
-/* 	                        .append($('<td/>').text(file.contentType))
- */	                        .append($('<td/>')).append($('<input>').attr('type','text'))
-	                        
-	                
+	                        $('<tr>')
+		                        .append($('<td/>').text(index+1))
+		                        .append($('<td/>').text(file.name))
+		                        .append($('<td/>').text(file.size))
+	/* 	                        .append($('<td/>').text(file.contentType))
+	 */	                        .append(
+			 						$('<td/>').append($('<input>').attr('type','text')))
+			 					.attr("id", file.id)
+			 				)
 	            }); 
 	        },
 	 		
