@@ -43,8 +43,8 @@
                             <label for="feed_more">더 보기</label>
                         </div>
                        
-                        <c:if test="${not empty item.photoList}">
-                        	
+                        <c:choose>
+                        <c:when test="${item.photoListArray.length() > 1}">
 	                        <div class="feed_img_slider">
 	                            <div class="feed_img">
 									<c:forEach begin="0" end="${item.photoListArray.length() -1}" var="index">
@@ -52,7 +52,15 @@
 		                            </c:forEach>  
 	                            </div>
 	                        </div>
-                        </c:if>
+                        </c:when>
+                        <c:when test="${item.photoListArray.length() == 1}">
+                        	<div class="feed_img_slider">
+	                            <div class="feed_img">
+		                        	<div class="item" style="background-image:url(/PatientPhoto/thumbnail/${item.photoListArray.getJSONObject(0).getInt("photoId")})";>사진</div>
+	                            </div>
+	                        </div>
+                        </c:when>
+                        </c:choose>
                         
                         <div class="control_wrap">
                             <input type="button" value="스크랩" class="bt_scrap">

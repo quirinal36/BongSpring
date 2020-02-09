@@ -37,11 +37,14 @@ $(document).ready(function(){
 	  var photos = [];
 	  $("#uploaded-files").find("tr").each(function(index, item){
 		 console.log(item); 
+		 var photoObj = new Object();
 		 if($(item).attr("id") > 0){
-			 photos.push($(item).attr("id"));
+			 photoObj.id = $(item).attr("id");
+			 photoObj.caption = $(item).find("input").val();
+		    photos.push(photoObj);
 		 }
 	  });
-	  var photos = "&photos="+photos.join(",");
+	  var photos = "&photos="+JSON.stringify(photos);
 	  console.log(photos);
 	  param = param + photos;
 	  
@@ -57,21 +60,10 @@ $(document).ready(function(){
 		  }).done(function(json){
 			 console.log(json);	// 작성 완료
 			 
-			 /* if(json.id > 1){ // 글작성 성공
+			 if(json.id > 1){ // 글작성 성공
 				 window.location.replace("<c:url value="/"/>");	
-			 } */
-			 $.ajax({
-				  url : url,
-				  data: param,
-				  type: "POST",
-				  dataType: "json"
-			  }).done(function(json){
-				 console.log(json);	// 작성 완료
-				 
-				 if(json.id > 1){ // 글작성 성공
-					/*  window.location.replace("<c:url value="/"/>");	 */
-				 }
-			  });
+			 }
+			 
 		  });
 	  }
    });

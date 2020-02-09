@@ -92,7 +92,7 @@
     right: 8px;    
     width: 24px;
     height: 41px;
-    background: url(/resources/img/comm/dot.png) no-repeat 0 0;
+    background: url(/PatientPhoto/resources/img/comm/dot.png) no-repeat 0 0;
     font-size: 0;
     color: rgba(0, 0, 0, 0);
 }
@@ -116,11 +116,11 @@
 }
 
 .control_wrap .bt_scrap {
-    background:url(/resources/img/comm/scrap.png) no-repeat 0 0;
+    background:url(/PatientPhoto/resources/img/comm/scrap.png) no-repeat 0 0;
 }
 
 .control_wrap  .bt_share {
-    background: url(/resources/img/comm/share.png) no-repeat 0 0;
+    background: url(/PatientPhoto/resources/img/comm/share.png) no-repeat 0 0;
     margin-left: 8px;
 }
 
@@ -207,7 +207,7 @@
 }
 
 .detail .back a {
-    background: url(/resources/img/comm/back.png) no-repeat 0 0 /13px;
+    background: url(/PatientPhoto/resources/img/comm/back.png) no-repeat 0 0 /13px;
     font-size: 1.5rem;
     font-weight: 600;
     padding-left: 25px;
@@ -267,7 +267,7 @@
     right: 8px;    
     width: 24px;
     height: 41px;
-    background: url(/resources/img/comm/dot.png) no-repeat 0 0;
+    background: url(/PatientPhoto/resources/img/comm/dot.png) no-repeat 0 0;
     font-size: 0;
     color: rgba(0, 0, 0, 0);
 }
@@ -346,7 +346,7 @@
 }
 
 .comment_view  dt .profile_image {
-    background: url(/resources/img/temp/1.jpg) no-repeat 50% 50% /cover;
+    background: url(/PatientPhoto/resources/img/temp/1.jpg) no-repeat 50% 50% /cover;
     border-radius: 100px;
     width: 18px;
     height: 18px;
@@ -414,7 +414,7 @@
     right: 10px;
     width: 20px;
     height: 20px;
-    background:  url(/resources/img/comm/fullscreen.png) no-repeat 0 0 /15px;
+    background:  url(/PatientPhoto/resources/img/comm/fullscreen.png) no-repeat 0 0 /15px;
 }
 
 .detail_img_list .item .text_detail{
@@ -441,7 +441,7 @@
 }
 
 .last_page a {
-    background: red url(/resources/img/comm/back.png) no-repeat 0 0 /17px;
+    background: red url(/PatientPhoto/resources/img/comm/back.png) no-repeat 0 0 /17px;
     font-size: 2rem;
     font-weight: 600;
     padding-left: 30px;
@@ -522,7 +522,7 @@
     right: 10px;
     width: 20px;
     height: 30px;
-    background:  url(/resources/img/comm/dot.png) no-repeat 0;
+    background:  url(/PatientPhoto/resources/img/comm/dot.png) no-repeat 0;
     text-indent: -100px;
     overflow: hidden;
     cursor: pointer;
@@ -591,7 +591,7 @@
     height: 40px;
     margin-right: 10px;
     vertical-align: middle;
-    background: #577dc0 url(/resources/img/comm/camera.png) no-repeat 50% 50% /25px;
+    background: #577dc0 url(/PatientPhoto/resources/img/comm/camera.png) no-repeat 50% 50% /25px;
     border-radius: 100px;
     text-indent: -100px;
     overflow: hidden;

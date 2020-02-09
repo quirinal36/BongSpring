@@ -9,6 +9,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bong.patientphoto.util.Token;
 import com.bong.patientphoto.vo.Board;
 import com.bong.patientphoto.vo.BoardBase;
+import com.bong.patientphoto.vo.BoardPhoto;
 import com.bong.patientphoto.vo.BoardReply;
 import com.bong.patientphoto.vo.PhotoInfo;
 import com.bong.patientphoto.vo.UserVO;
@@ -160,9 +162,28 @@ public class BoardBaseController extends BacoderController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/board2/insert", method= RequestMethod.POST, produces = "application/json; charset=utf8")
-	public String writeBoard2 (BoardBase board) {
+	public String writeBoard2 (BoardBase board,
+			@RequestParam (value="photos") String photos) {
+		
 		int result = boardBaseService.insert(board);
 //		int result2 = boardBaseService.insertBoardPhoto(board);
+		
+		JSONArray array = new JSONArray(photos);
+		List<BoardPhoto> list = new ArrayList<BoardPhoto>();
+		
+		
+		logger.info("##getId:"+board.getId());
+		for(int i=0; i<array.length(); i++) {
+			logger.info(array.getJSONObject(i).toString());
+			BoardPhoto boardPhoto = new BoardPhoto();
+			boardPhoto.setBoardId(board.getId());
+			boardPhoto.setCaption(array.getJSONObject(i).getString("caption"));
+			boardPhoto.setPhotoId(array.getJSONObject(i).getInt("id"));
+			list.add(boardPhoto);
+		}
+		
+		int result2 = boardBaseService.insertPhotos(list);
+		
 		return board.toString();
 	}
 	

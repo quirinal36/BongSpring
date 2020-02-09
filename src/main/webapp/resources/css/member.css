@@ -152,7 +152,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 }
 
 .member_wrap form input[type="checkbox"]:checked + label span {
-    background: url(/resources/img/comm/tick.png) no-repeat 0 0 /20px;
+    background: url(/PatientPhoto/resources/img/comm/tick.png) no-repeat 0 0 /20px;
 }
 
 .member_wrap .bt_login,
@@ -185,7 +185,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
     width: 30px;
     height: 28px;
     margin: 0 8px 0 0;
-    background: url(/resources/img/comm/kakao.png) no-repeat 0 0 /30px;
+    background: url(/PatientPhoto/resources/img/comm/kakao.png) no-repeat 0 0 /30px;
     vertical-align: text-bottom;
 }
 
@@ -332,7 +332,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 }
 
 .doctor_signup_wrap input[type="checkbox"]:checked + label span {
-    background: url(/img/comm/tick.png) no-repeat 0 0 /20px;
+    background: url(/PatientPhoto/img/comm/tick.png) no-repeat 0 0 /20px;
 }
 
 .doctor_signup_wrap .bt_signup {

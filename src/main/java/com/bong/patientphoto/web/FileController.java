@@ -181,8 +181,8 @@ public class FileController extends BacoderController{
             mpf = request.getFile(itr.next());
             logger.info("Uploading {}" + mpf.getOriginalFilename());
             
-//            String url = "/home/phbong31/storage";
-            String url = System.getProperty("catalina.home");
+            String url = "/home/phbong31/storage";
+//            String url = System.getProperty("catalina.home");
             
             File photoDir = new File(url + File.separator + "board_photo");
             if(!photoDir.exists()) {
@@ -192,7 +192,8 @@ public class FileController extends BacoderController{
            // String newFilenameBase = patientId+"/"+patientId+"_"+date+"_"+time1;
 
             String originalFileExtension = mpf.getOriginalFilename().substring(mpf.getOriginalFilename().lastIndexOf("."));
-            String newFilename = newFilenameBase + originalFileExtension;
+            String newFilename = photoDir + "/" + newFilenameBase + originalFileExtension;
+            String dbFileName = "board_photo/" + newFilenameBase + originalFileExtension;
             
             //String srcPath = request.getSession().getServletContext().getRealPath("/upload");
 //            String srcPath = Config.srcPath;
@@ -201,13 +202,14 @@ public class FileController extends BacoderController{
             
 			String contentType = mpf.getContentType();
 			
-			File newFile = new File(photoDir + "/" + newFilename);
+			File newFile = new File(newFilename);
             try {
                 mpf.transferTo(newFile);
                 
                 BufferedImage thumbnail = Scalr.resize(ImageIO.read(newFile), 290);
-                String thumbnailFilename = newFilenameBase + "-thumbnail.JPG";
-                File thumbnailFile = new File(photoDir + "/" + thumbnailFilename);
+                String thumbnailFilename = photoDir + "/" + newFilenameBase + "-thumbnail.JPG";
+                String dbThumbnailFilename = "/" + newFilenameBase + "-thumbnail.JPG";
+                File thumbnailFile = new File(thumbnailFilename);
                 ImageIO.write(thumbnail, "jpg", thumbnailFile);
                 
                 PhotoInfo photo = new PhotoInfo();
@@ -217,8 +219,8 @@ public class FileController extends BacoderController{
                     photo.setPatientId("0");
                 }
                 photo.setName(mpf.getOriginalFilename());
-                photo.setThumbnailFilename(thumbnailFilename);
-                photo.setNewFilename(newFilename);
+                photo.setThumbnailFilename(dbThumbnailFilename);
+                photo.setNewFilename(dbFileName);
                 photo.setSize((int)mpf.getSize());
                 photo.setThumbnailSize((int)thumbnailFile.length());
                 photo.setContentType(contentType);

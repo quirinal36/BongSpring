@@ -122,6 +122,23 @@
 			(${creatorId}, ${patientId}, ${status}, '${text}', ${type}, ${accessLevel}, ${groupId})
 	</insert>
 	
+	<insert id="insert_photos" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		INSERT into Board_photo 
+		(
+			boardId,
+			photoId,
+			caption
+		)
+		values
+		
+		<foreach collection="list" item="elem" index="i" open="(" separator="),(" close=")">
+			${elem.boardId},
+			${elem.photoId},
+			'${elem.caption}'
+		</foreach>
+		
+	</insert>
+	
 	<delete id="delete" parameterType="boardbase">
 		delete from Board_main
 		where id = ${id}

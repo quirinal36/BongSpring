@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bong.patientphoto.vo.BoardBase;
+import com.bong.patientphoto.vo.BoardPhoto;
 
 @Repository("BoardBaseDAO")
 public class BoardBaseDAO implements DataAccess<BoardBase> {
@@ -22,6 +23,9 @@ public class BoardBaseDAO implements DataAccess<BoardBase> {
 	}
 	public int insertBoardPhoto(BoardBase input) {
 		return sqlSession.insert(namespace + ".insertPhoto", input);
+	}
+	public int insertPhotos(List<BoardPhoto> input) {
+		return sqlSession.insert(namespace + ".insert_photos", input);
 	}
 	@Override
 	public int update(BoardBase input) {
