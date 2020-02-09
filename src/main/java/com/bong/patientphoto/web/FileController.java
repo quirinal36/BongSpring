@@ -208,7 +208,7 @@ public class FileController extends BacoderController{
                 
                 BufferedImage thumbnail = Scalr.resize(ImageIO.read(newFile), 290);
                 String thumbnailFilename = photoDir + "/" + newFilenameBase + "-thumbnail.JPG";
-                String dbThumbnailFilename = "/" + newFilenameBase + "-thumbnail.JPG";
+                String dbThumbnailFilename = "board_photo/" + newFilenameBase + "-thumbnail.JPG";
                 File thumbnailFile = new File(thumbnailFilename);
                 ImageIO.write(thumbnail, "jpg", thumbnailFile);
                 
@@ -226,7 +226,7 @@ public class FileController extends BacoderController{
                 photo.setContentType(contentType);
                 photo.setClassification(classification);
                 photo.setSync(3);
-                photo.setPhotoUrl(newFilename);
+                photo.setPhotoUrl(dbFileName);
                 photo.setDoctor(doctor);
 //                photo.setCaptureDate(captureDate);
                 photo.setUploader(uploader);

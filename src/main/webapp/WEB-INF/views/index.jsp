@@ -54,11 +54,7 @@
 	                        </div>
                         </c:when>
                         <c:when test="${item.photoListArray.length() == 1}">
-                        	<div class="feed_img_slider">
-	                            <div class="feed_img">
-		                        	<div class="item" style="background-image:url(/PatientPhoto/thumbnail/${item.photoListArray.getJSONObject(0).getInt("photoId")})";>사진</div>
-	                            </div>
-	                        </div>
+		                     <div class="item" style="width:100%; height:200px; background-image:url(/PatientPhoto/thumbnail/${item.photoListArray.getJSONObject(0).getInt("photoId")})";>사진</div>
                         </c:when>
                         </c:choose>
                         
