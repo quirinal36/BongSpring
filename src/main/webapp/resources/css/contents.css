@@ -111,8 +111,8 @@
 .board_list >.item .top_wrap #feed_more + label {
     position: absolute;
     display: block;
-    top: 10px;
-    right: 10px;    
+    top: 18px;
+    right: 0;    
     width: 24px;
     height: 41px;
     background: url(/img/comm/dot.png) no-repeat 0 0;
@@ -199,7 +199,7 @@
 
 .text_wrap .text a {
     color: #999;
-    font-size: 1.6rem; 
+    font-size: 1.4rem; 
 }
 
 .text_wrap .comment {
@@ -305,11 +305,11 @@
 .detail > .item .top_wrap #feed_more + label {
     position: absolute;
     display: block;
-    top: 9px;
-    right: 8px;    
+    top: 20px;
+    right: 0;    
     width: 24px;
     height: 41px;
-    background: url(/sources/img/comm/dot.png) no-repeat 0 0;
+    background: url(/img/comm/dot.png) no-repeat 0 0;
     font-size: 0;
     color: rgba(0, 0, 0, 0);
 }
@@ -318,13 +318,13 @@
     display: none;
 }
 
+
 .detail .text_wrap {
     padding: 5px 15px 5px 15px;
     background: #f1f1f1;
     box-sizing: border-box;
     overflow: hidden;
 }
-
 .detail .text_wrap .text p {
     font-size: 1.4rem;
     padding: 10px;
@@ -378,7 +378,9 @@
     color: #fff;
 }
 
+
 /*comment_view*/
+
 .comment_view {
     padding: 15px 25px;
     background: #f1f1f1;
@@ -436,7 +438,10 @@
     background: url(/img/comm/cross.png) no-repeat 50% 50% /6px;
 }
 
+
+
 /*detail_img_list */
+
 .detail_img_list {
     padding: 0 15px;
 }
@@ -497,7 +502,7 @@
 }
 
 .last_page a {
-    background: red url(/img/comm/back.png) no-repeat 0 0 /17px;
+    background:url(/img/comm/back.png) no-repeat 0 0 /17px;
     font-size: 2rem;
     font-weight: 600;
     padding-left: 30px;
@@ -557,6 +562,14 @@
     border-top: 30px solid #daf3c3;
 }
 
+.comment_list .item .cont .cont_Wrap {
+    width: 5px;
+    height: 5px;
+    border-radius: 100px;
+    color: rgba(0,0,0,0);
+    background: url(/img/temp/1.jpg) no-repeat 50% 50% /40px;
+}
+
 .comment_list .item a {
     font-size: 1.8rem;
     font-weight: 600;
@@ -573,9 +586,9 @@
 
 .patient_dot + label {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 20px;
+    bottom: 15px;
+    right: 15px;
+    width: 8px;
     height: 30px;
     background:  url(/img/comm/dot.png) no-repeat 0;
     text-indent: -100px;
@@ -631,7 +644,7 @@
 }
 
 .comment_list .item.nurse a {
-    color: #84bd4f;
+    color: #4f9a08;
 }
 
 .comment_write #img_select {
@@ -650,23 +663,37 @@
     overflow: hidden;
 }
 
-.comment_write .comment  {
+.comment_write .comment_reply  {
     display: inline-block;
-    width: calc(100% - 30px);
+    width: calc(100% - 100px);
     border-radius: 10px;
     vertical-align: middle;
     background: #fff;
 }
 
-.comment_write .replywrite textarea {
+.comment_write .comment_reply textarea {
     width: 80%;
     height: 30px;
     box-sizing: border-box;
     border: 0;
     border-radius: 10px;
     background: #fff;
-    font-size: 1.4rem;
+    padding: 5px 12px;
+    font-size: 1.2rem;
     resize: none;
+}
+
+.comment_write input[type="button"] {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    padding: 3px 10px;
+    border: 0;
+    border-radius: 8px;
+    background: #5c8cc2;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
 }
 
 .replywrite {
@@ -675,13 +702,13 @@
 
 .replywrite input[type="button"] {
     position: absolute;
-    top: 13px;
-    right: -80px;
+    top: 28px;
+    right: 0;
     padding: 3px 10px;
     border: 0;
     border-radius: 8px;
     background: #5c8cc2;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 600;
     color: #fff;
 }

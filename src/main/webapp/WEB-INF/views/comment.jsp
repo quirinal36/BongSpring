@@ -25,10 +25,11 @@
                     <div class="comment_list">
                         <div class="item patient">
                             <div class="cont">
+                                <a href="#" class="cont_Wrap">사진</a>
                                 <a href="#">홍길동 (001234123) </a>
                                 <p>발목염좌 왜이렇게 자주 생기나요<br>
                                 꾸준히 치료하고 나름 발목염좌 안생기게 신경도 썼는데 그래도 발목염좌 자주 새역요 그러니까 자주 삐끗하는데, 이거 뭐가 문제일까요 <br>
-                                도와주세요 의사선생님!
+                                도와주세요 의사선생님
                                 </p>
                                 <input type="checkbox" id="comment1" class="patient_dot">
                                 <label for="comment1">메뉴</label>
@@ -37,6 +38,7 @@
                         </div>
                         <div class="item doctor">
                             <div class="cont">
+                                <a href="#" class="cont_Wrap">사진</a>
                                 <a href="#">봉황세 전문의</a>
                                 <p>발목염좌 왜이렇게 자주 생기나요<br>
                                 꾸준히 치료하고 나름 발목염좌 안생기게 신경도 썼는데 그래도 발목염좌 자주 새역요 그러니까 자주 삐끗하는데, 이거 뭐가 문제일까요 <br>
@@ -56,7 +58,8 @@
                             <span>2시간전</span>
                         </div>
                         <div class="item nurse">
-                            <div class="cont">
+                            <div class="cont">                                
+                                <a href="#" class="cont_Wrap">사진</a>
                                 <a href="#"> 이미송 간호사</a>
                                 <p>발목염좌 왜이렇게 자주 생기나요<br>
                                 꾸준히 치료하고 나름 발목염좌 안생기게 신경도 썼는데 그래도 발목염좌 자주 새역요 그러니까 자주 삐끗하는데, 이거 뭐가 문제일까요 <br>
@@ -72,7 +75,7 @@
                         <form>
                             <input type="checkbox" id="img_select">
                             <label for="img_select">사진</label>
-                            <div class="comment">
+                            <div class="comment_reply">
                                 <textarea placeholder="댓글을 입력하세요."></textarea>
                                 <input type="button" value="입 력">
                             </div>
