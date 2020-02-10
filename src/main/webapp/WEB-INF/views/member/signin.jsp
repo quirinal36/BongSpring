@@ -120,15 +120,17 @@
                         <span style="font-size:12px; color:red; display:none;">error</span></dd>
                         
                    </dl>
-                   <div class="name_wrap">
-                   <dl class="pass">
-                        <dt>비밀번호 *</dt> 
-                        <dd><input type="password" name="password" placeholder="*******">
-                        	<span style="font-size:12px; color:red; display:none;">error</span></dd>
-						<dt>비밀번호 확인</dt>
-						<dd><input type="password" name="password_confirm" placeholder="*******">
-						<span style="font-size:12px; color:red; display:none;">error</span></dd>
-					</dl>
+                   <div class="password_wrap">
+						<dl>
+	                        <dt>비밀번호 *</dt> 
+		                        <dd><input type="password" name="password" placeholder="*******">
+		                       	<span style="font-size:12px; color:red; display:none;">error</span></dd>
+		                 </dl>     
+		                 <dl> 	
+							<dt>비밀번호 확인</dt>
+								<dd><input type="password" name="password_confirm" placeholder="*******">
+								<span style="font-size:12px; color:red; display:none;">error</span></dd>
+						</dl>
 					</div>
                     <div class="name_wrap">
                         <dl>
@@ -148,6 +150,7 @@
                             </dd>
                         </dl>
                     </div>
+                   
                     <dl>
                         <dt>생년월일 *</dt>
                         <dd><input type="year" name="birth" placeholder="YYYYMMDD">

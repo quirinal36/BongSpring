@@ -75,11 +75,6 @@
 		<!-- 컨텐츠 끝 -->
 		</div>
 	</div> --%>
-	<div id="footerWrap">
-		<footer>
-			<c:import url="/inc/footer"></c:import>
-		</footer>
-	</div>
 </div>
 </body>
 </html>
