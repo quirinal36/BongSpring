@@ -1,0 +1,110 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.detail_image_wrap {
+    height: 100%;
+}
+
+.detail_image_wrap .top {   
+    position: fixed;
+    width: 100%;
+    padding: 20px 0 0 20px;
+    box-sizing: border-box;
+}
+
+.detail_image_wrap .top > a {
+    padding-left: 25px;
+    font-size: 1.8rem;
+    font-weight: 600;   
+    background:  url(/img/comm/back.png) no-repeat 0 0 /10px;
+    color: #fff;
+}
+
+.detail_image_wrap .menu_wrap {
+    float: right;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+}
+
+.detail_image_wrap .menu_wrap .menu {
+    display: none;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    background: #eee;
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.detail_image_wrap .menu_wrap .menu > a {
+    display: block;
+    padding: 10px 30px 5px 30px;
+}
+
+.detail_image_wrap .menu_wrap .menu > a:first-child {
+    padding: 10px 30px 5px 30px;
+    border-bottom: 1px dotted #333;
+}
+
+.detail_image_wrap .menu_wrap > a {
+    background: url(/img/comm/dot.png) no-repeat 0 0 /18px;
+    color: rgba(255,255,255,0);
+    font-size: 2rem;
+}
+
+.detail_image_wrap .image_wrap {
+    display: table;
+    width: 100%;
+    min-height: 100%;
+    background: #000;
+}
+
+.detail_image_wrap .image_wrap > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.detail_image_wrap .image_wrap img {
+    width: 100%;
+}
+
+.detail_image_wrap .caption_wrap {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.detail_image_wrap .caption_wrap p {
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 1.6rem;
+    color: #fff;
+    line-height: 25px;
+}
+
+.detail_image_wrap .caption_wrap.on p {
+    width: calc(100%  + 50px);
+    max-height: 300px;
+    padding-right: 50px;
+    box-sizing: border-box;
+    white-space: initial;
+    text-overflow: clip;
+    overflow: visible;
+    overflow-y: auto;
+}
