@@ -1,0 +1,107 @@
+html,body,.agree_wrap {
+    height: 100%;
+}
+
+.agree_wrap {
+    width: 100%;
+    min-width: 320px;
+    padding: 80px 0 0 0;
+    height: 100%;
+    background: rgb(152,205,123); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(152,205,123,1) 0%, rgba(61,179,185,1) 50%, rgba(19,93,167,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(152,205,123,1) 0%,rgba(61,179,185,1) 50%,rgba(19,93,167,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(152,205,123,1) 0%,rgba(61,179,185,1) 50%,rgba(19,93,167,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', endColorstr='#135da7',GradientType=1 ); /* IE6-9 */
+}
+
+.agree_wrap .txt_Wrap {
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+    padding: 0px 0 10px 0;
+}
+
+.agree_wrap h1{
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: -1.5;
+    text-shadow: 3px 3px 5px #666;
+    margin-bottom: 40px;
+}
+
+.agree_wrap .txt_Wrap .item_Wrap {
+    height: 500px;
+    margin: 0 auto;
+    overflow: auto;
+    background: #fff;}
+
+.agree_wrap .txt_Wrap .item_Wrap > div{
+    padding: 30px;
+}
+
+.agree_wrap .txt_Wrap .item_Wrap p{
+    font-size: 1.2rem;
+    line-height: 20px;
+    letter-spacing: -0.5px;
+}
+
+.agree_wrap .agree {
+    width: 90%;
+    text-align: right;
+    padding: 10px 0 20px 0;
+}
+
+
+/*동의체크*/
+.agree_wrap input[type="checkbox"] {
+    display: none;
+}
+
+.agree_wrap input[type="checkbox"] + label {
+    position: relative;
+    display: inline-block;    
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.agree_wrap #agree_click + label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+.agree_wrap input[type="checkbox"] + label span {
+    position: relative;
+    display: inline-block;
+    border: 0;
+    padding: 0 0 0 25px; 
+    font-size: 1.5rem;
+    color: #fff;
+    z-index: 2;
+}
+
+.agree_wrap input[type="checkbox"]:checked + label span {
+    background: url(/img/comm/tick.png) no-repeat 0 0 /20px;
+}
+
+
+/*회원가입*/
+.agree_wrap .sign_in {
+    width: 70%;
+    margin: 0 auto;
+    padding: 10px 0 ;  
+    border: 1px solid #fff;  
+    border-radius: 100px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+    background: #fff;
+}
+
