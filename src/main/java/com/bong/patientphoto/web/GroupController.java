@@ -1,22 +1,58 @@
 package com.bong.patientphoto.web;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bong.patientphoto.util.Token;
+import com.bong.patientphoto.vo.BoardBase;
 import com.bong.patientphoto.vo.Group;
 import com.bong.patientphoto.vo.UserVO;
 
 @Controller
 public class GroupController extends BacoderController {
 
+	@RequestMapping(value= "api/groupListAll", method=RequestMethod.GET)
+	public void getBoardListAPI(   
+			@RequestHeader(value="Authorization")Optional<String> tokenStr,
+			HttpServletRequest request, HttpServletResponse response, Group group) {
+		
+		int userLevel = 0;
+		
+		if(tokenStr.isPresent()) {
+			Token token = new Token();
+			if(token.getUserLevelByToken(tokenStr.get()) > 0) {
+				userLevel = token.getUserLevelByToken(tokenStr.get());
+			}
+		}
+		logger.info("getUserLevelByToken :"+ userLevel);
+	
+		List<Group> list;
+		group.setUserLevel(userLevel);
+				
+		list = groupService.select(group);
+		logger.info("list : "+ list.toString());
+
+		try {
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().append(list.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	@RequestMapping(value= "/", method=RequestMethod.GET)
 	public ModelAndView initPage(ModelAndView mv, 
 			@RequestParam(value="search", required=false)String search,

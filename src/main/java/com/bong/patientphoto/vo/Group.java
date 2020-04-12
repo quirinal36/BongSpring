@@ -3,6 +3,9 @@ package com.bong.patientphoto.vo;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class Group {
 	private int id;
 	private int groupType;  //1: 기관(병원 대표), 2: 주치의, 3. 기관 내 소모임.  4:기관 외 모임, 5: 홍보 단체
@@ -156,4 +159,8 @@ public class Group {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+	}
 }

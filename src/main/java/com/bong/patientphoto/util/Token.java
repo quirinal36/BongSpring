@@ -22,6 +22,52 @@ public class Token {
 		return this.signature.getBytes();
 	}
 	
+	//get user NUM (id) by token
+	public int getIdByToken(String token) {
+		Jws<Claims> jws;
+		try {
+		    jws = Jwts.parser()         // (1)
+		    .setSigningKey(getSignatureKey())         // (2)
+		    .parseClaimsJws(token); // (3)
+		    int id = 0;
+		    if(Integer.parseInt(jws.getBody().getId()) > 0) {
+		    	id = Integer.parseInt(jws.getBody().getId());
+		    } else {
+		    	id = 0;
+		    }
+		     return id;
+		}
+		catch (JwtException ex) {       // (4)
+		    logger.info("Un-authorized : "+ ex.toString());
+		    // we *cannot* use the JWT as intended by its creator
+		    return 0;
+		}
+	
+	}
+	
+	//get user NUM (id) by token
+	public int getUserLevelByToken(String token) {
+		Jws<Claims> jws;
+		try {
+		    jws = Jwts.parser()         // (1)
+		    .setSigningKey(getSignatureKey())         // (2)
+		    .parseClaimsJws(token); // (3)
+		    int role = 0;
+		    if(Integer.parseInt(jws.getBody().get("role").toString()) > 0) {
+		    	role = Integer.parseInt(jws.getBody().get("role").toString());
+		    } else {
+		    	role = 0;
+		    }
+		     return role;
+		}
+		catch (JwtException ex) {       // (4)
+		    logger.info("Un-authorized : "+ ex.toString());
+		    // we *cannot* use the JWT as intended by its creator
+		    return 0;
+		}
+	
+	}
+	
 	public boolean IsValidToken(String token) {
 		
 		Jws<Claims> jws;
@@ -43,6 +89,9 @@ public class Token {
 		    return false;
 		}
 	}
+	
+	
+	
 	public boolean IsValidPhotoToken(String token) {
 	
 //		try {
