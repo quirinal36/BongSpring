@@ -24,21 +24,29 @@ public class GroupController extends BacoderController {
 
 	@RequestMapping(value= "api/groupListAll", method=RequestMethod.GET)
 	public void getBoardListAPI(   
-			@RequestHeader(value="Authorization")Optional<String> tokenStr,
+			@RequestParam(value="token")Optional<String> tokenStr,
 			HttpServletRequest request, HttpServletResponse response, Group group) {
 		
 		int userLevel = 0;
+		int userNum = 0;
+
 		
-		if(tokenStr.isPresent()) {
+		if(tokenStr.isPresent() && tokenStr.get().length() > 0) {
+			logger.info("token: "+tokenStr);
 			Token token = new Token();
 			if(token.getUserLevelByToken(tokenStr.get()) > 0) {
 				userLevel = token.getUserLevelByToken(tokenStr.get());
+				userNum = token.getIdByToken(tokenStr.get());
 			}
+		} else {
+			logger.info("token not found!@#!@#!@#!@#!@#!@#");
 		}
 		logger.info("getUserLevelByToken :"+ userLevel);
 	
+		logger.info("userNum: "+userNum);
 		List<Group> list;
 		group.setUserLevel(userLevel);
+		group.setUserId(userNum);
 				
 		list = groupService.select(group);
 		logger.info("list : "+ list.toString());

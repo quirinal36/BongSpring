@@ -22,7 +22,8 @@
 			groupList.secret as secret,
 			groupList.createdTime as createdTime,
 			groupList.defaultUserLevel as defaultUserLevel,
-			groupList.accessLevel
+			groupList.accessLevel,
+			(SELECT count(*) FROM Group_user user WHERE (user.id = groupList.id AND user.userId = ${userId})) AS joinCount
 		FROM Group_list groupList
 		<where>
 			groupList.secret = '0'

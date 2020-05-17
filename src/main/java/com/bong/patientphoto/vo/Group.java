@@ -30,6 +30,7 @@ public class Group {
 	private int userId;
 	private int userLevel; //0:미가입, 1: 승인대기, 2: 구독 (r), 3: 일반 (rw), 4: 관리자, 5: 대표자
 	private Timestamp joinDate;
+	private int joinCount;
 	
 	public int getId() {
 		return id;
@@ -159,6 +160,12 @@ public class Group {
 	}
 	
 	
+	public int getJoinCount() {
+		return joinCount;
+	}
+	public void setJoinCount(int joinCount) {
+		this.joinCount = joinCount;
+	}
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
