@@ -36,9 +36,12 @@
                 		
                     <div class="item">
                         <div class="top_wrap">
-                            <a href="#" class="image" style="background-image: url(${item.profileUrl});"></a>
-                            <a href="#" class="name">${item.writerName} (${item.position })</a>
-                            <span class="time">${su:dateStr(item.updatedTime)}</span>
+                            <a href="#" class="image" style="background-image: url(/img/temp/1.jpg);">홍길동</a>
+                            <div class="id_Wrap">                                
+                                <a href="#" class="name">홍길동</a>
+                                <a href="#" class="position">정형외과 전문의</a>
+                            </div>
+                            <span class="time">2시간 전</span>
                             <input type="checkbox" id="feed_more">
                             <label for="feed_more">더 보기</label>
                         </div>

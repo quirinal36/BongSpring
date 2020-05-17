@@ -34,14 +34,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 }
 
 #headerWrap .right {
-    padding-top: 17px;
+    position: relative;
+    padding-top: 22px;
     text-align: right;
+    padding-right: 50px;
 }
 
 #headerWrap .right > a,
 #headerWrap .right #bt_gnb + label {
     display: inline-block;
-    margin-right: 16px;
+    margin-right: 6px;
     vertical-align: middle;
 }
 
@@ -56,9 +58,52 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 }
 
 #headerWrap .right #bt_gnb + label {
+    position: absolute;
+    top: 25px;
+    right: 0;
     width: 38px;
     height: 31px;
-    background: url(/PatientPhoto/resources/img/comm/menu.png) no-repeat 0 0;
+    background: url(/img/comm/menu.png) no-repeat 0 0 /20px;
+    font-size: 0;
+    color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+#headerWrap .login_wrap {
+    padding-top: 17px;
+    text-align: right;
+}
+
+#headerWrap .login_wrap > a,
+#headerWrap .login_wrap #bt_gnb + label {
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+#headerWrap .login_wrap > a {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+#headerWrap .login_wrap .profile {
+    width: 30px;
+    height: 30px;
+    border-radius: 100px;
+    margin-right: 15px;
+    color: rgba(0,0,0,0);
+    background: url(/img/temp/1.jpg) no-repeat 50% 50% /50px;    
+}
+
+#headerWrap .login_wrap #bt_gnb {
+    display: none;
+}
+
+#headerWrap .login_wrap #bt_gnb + label {
+    width: 38px;
+    height: 31px;
+    background: url(/img/comm/menu.png) no-repeat 0 0 /20px;
     font-size: 0;
     color: rgba(0, 0, 0, 0);
     cursor: pointer;
@@ -82,7 +127,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 #footerWrap {
     height: 90px;
 }
-
 #fixedMenu > a {
     display: inline-block;
     width: 25%;
@@ -93,7 +137,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
     border-left: 1px solid rgba(255, 255, 255, 0.3);
     background-repeat: no-repeat;
     background-position: 50% 30%;
-    background-size: 30px;
     text-align: center;
     font-size: 1.3rem;
     font-weight: 600;
@@ -105,17 +148,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
 }
 
 #fixedMenu .home {
-    background-image: url(/PatientPhoto/resources/img/comm/home.png) ;
+    background-image: url(/img/comm/home.png);
 }
 
 #fixedMenu .notice {
-    background-image: url(/PatientPhoto/resources/img/comm/notice.png);
+    background-image: url(/img/comm/notice.png);
 }
 
 #fixedMenu .info {
-    background-image: url(/PatientPhoto/resources/img/comm/info.png);
+    background-image: url(/img/comm/info.png);
 }
 
 #fixedMenu .write {
-    background-image: url(/PatientPhoto/resources/img/comm/write.png);
+    background-image: url(/img/comm/write.png);
 }

@@ -38,12 +38,11 @@
                     </div>    
                     <div class="item">                    
                         <div class="top_wrap">
-                            <a href="#" class="image" style="background-image: url(/sources/img/temp/1.jpg);">홍길동</a>
-                            <a href="#" class="name">홍길동 정형외과 전문의</a>
-                            <span class="time">2시간 전</span>
-                            <input type="checkbox" id="feed_more">
-                            <label for="feed_more">더 보기</label>
-                        </div>                       
+                            <a href="#" class="image" style="background-image: url(/resources/img/temp/1.jpg);">홍길동</a>
+                            <div class="id_detail_Wrap">                                
+                                <a href="#" class="name">홍길동</a>
+                                <a href="#" class="position">정형외과 전문의</a>
+                            </div>                  
                         <div class="text_wrap">
                             <div class="text">
                                 <p>앞십자인대와 뒤십자인대가 있으며 무릎관절 내에 존재하나 인대는 활막에 싸여 구별되므로 십자인대 자체는 활막 외 조직 이다.
@@ -57,6 +56,7 @@
                                 <dt>
                                     <a href="#" class="profile_image">사진</a>
                                     <a href="#">홍길동환자</a>
+                                    <span class="time">2시간 전</span>                                    
                                 </dt>
                                 <dd class="button">보존치료만 해도 되나요?</dd>
                             </dl>
@@ -77,10 +77,10 @@
                             <div class="replywrite">
                                 <form>
                                     <div class="comment">
-                                        <textarea placeholder="댓글을 입력하세요."></textarea>
-                                        <input type="button" value="입 력">
+                                        <textarea placeholder="댓글을 입력하세요"></textarea>
                                     </div>
-                                </form>
+                                </form>    
+                                <input type="button" value="입 력">                                
                             </div>                         
                         </div>  
                     </div>        

@@ -223,6 +223,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
     margin-top: 20px;
 }
 
+.pass_wrap .pass > dl {
+	display: inline-block;
+	width: 40%;
+	background: blue;
+}
+
 .doctor_signup_wrap dl:first-child {
     margin-top: 0;
 }
@@ -318,6 +324,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
     padding-right: 5%;
 }
 
+
+.password_wrap > dl {
+	display: inline-block;
+	margin-left: 5%;
+}
+
+.password_wrap > dl:first-child {
+	margin-left: 0;
+}
+
 .doctor_signup_wrap .name_wrap > dl:nth-child(2) {
     padding-right: 0;
 }
@@ -352,3 +368,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98cd7b', end
     margin-top: 20px;
 }
     
+    
+.doctor_signup_wrap select {
+	border: 0;
+	border-radius: 10px;
+	padding: 5px 10px;
+	font-weight: 400;
+	background: rgba(255,255,255,0.7);
+}
