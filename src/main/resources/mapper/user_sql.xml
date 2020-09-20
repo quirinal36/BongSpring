@@ -26,6 +26,7 @@
 		</where>
 	</select>
 	
+	
 	<select id="login" parameterType="user" resultType="user">
 		SELECT 
 			usr.NUM as id, 

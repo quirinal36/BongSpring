@@ -54,6 +54,9 @@ public class PhotoInfoDAO implements DataAccess<PhotoInfo> {
 	public PhotoInfo selectOne(PhotoInfo input) {
 		return sqlSession.selectOne(namespace + ".select_one", input);
 	}
+	public PhotoInfo selectOneByUserId(PhotoInfo input) {
+		return sqlSession.selectOne(namespace + ".select_one_userId", input);
+	}
 	@Override
 	public int count(PhotoInfo input) {
 		// TODO Auto-generated method stub

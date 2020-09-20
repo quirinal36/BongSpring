@@ -84,6 +84,15 @@
 		limit 0, 1
 	</select>
 	
+	<select id = "select_one_userId" parameterType="photoinfo" resultType="photoinfo">
+		select *
+		from PhotoInfo
+		<where>
+			id = ${id}
+		</where>
+		limit 0, 1
+	</select>
+	
 	<select id="select_list" parameterType="photoinfo" resultType="photoinfo">
 		SELECT *
 		FROM PhotoInfo

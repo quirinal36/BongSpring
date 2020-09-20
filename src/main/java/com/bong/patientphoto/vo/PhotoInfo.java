@@ -7,6 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class PhotoInfo extends Paging implements Cloneable{
 	int id;
+	int userId;
 	String patientId;
 	String doctor;
 	String uploader;
@@ -280,6 +281,14 @@ public class PhotoInfo extends Paging implements Cloneable{
 
 	public void setRange(int range) {
 		this.range = range;
+	}
+	
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	@Override

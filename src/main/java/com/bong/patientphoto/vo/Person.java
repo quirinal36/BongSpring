@@ -27,6 +27,7 @@ public class Person {
 	private String profileUrl;
 	private String kImageUrl;
 	private int initGroupId;
+	private int photoId;
 	
 	public int getNUM() {
 		return NUM;
@@ -153,6 +154,12 @@ public class Person {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public int getPhotoId() {
+		return photoId;
+	}
+	public void setPhotoId(int photoId) {
+		this.photoId = photoId;
 	}
 	
 	@Override

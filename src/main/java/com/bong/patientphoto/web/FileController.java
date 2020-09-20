@@ -41,6 +41,7 @@ import com.bong.patientphoto.Config;
 import com.bong.patientphoto.util.Token;
 import com.bong.patientphoto.vo.FileMeta;
 import com.bong.patientphoto.vo.Image;
+import com.bong.patientphoto.vo.Person;
 import com.bong.patientphoto.vo.PhotoInfo;
 
 @Controller
@@ -371,6 +372,62 @@ public class FileController extends BacoderController{
 			}
 	}
 	
+//	@RequestMapping(value = "/profileImage/{userId}", method = RequestMethod.GET)
+//    public void profileImage(HttpServletRequest request,
+//    		HttpServletResponse response, @PathVariable int userId, @RequestParam(value="token")Optional<String> tokenStr) {
+//		PhotoInfo param = new PhotoInfo();
+//		Person person = new Person();
+//		param.setUserId(userId);
+//		logger.info(param.toString());	
+//		
+//
+//		if(tokenStr.isPresent()) {
+//			Token token = new Token();
+//			if(token.IsValidPhotoToken(tokenStr.get())) {
+//				PhotoInfo image = photoInfoService.selectOne(param);
+//			      //  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+//			        String srcPath = Config.srcPath;
+//	
+//			        logger.info(image.toString());
+//			        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+//			        logger.info(imageFile.getAbsolutePath());
+//			        
+//			        response.setContentType(image.getContentType());
+//			        response.setContentLength(image.getSize());
+//			        try {
+//			            InputStream is = new FileInputStream(imageFile);
+//			            IOUtils.copy(is, response.getOutputStream());
+//			        } catch(IOException e) {
+//			            logger.info("Could not show picture "+userId +"/" + e.getLocalizedMessage());
+//			        }
+//			} else {
+//				logger.info("picture :Invalid token");
+//			}
+//		} 
+////		else {
+////			logger.info("picture : token not found");
+////		}
+//		else {
+//			
+//				PhotoInfo image = photoInfoService.selectOne(param);
+//				//  String srcPath = request.getSession().getServletContext().getRealPath("/upload");
+//		        String srcPath = Config.srcPath;
+//
+//		        logger.info(image.toString());
+//		        File imageFile = new File(srcPath+"/"+image.getPhotoUrl());
+//		        logger.info(imageFile.getAbsolutePath());
+//		        
+//		        response.setContentType(image.getContentType());
+//		        response.setContentLength(image.getSize());
+//		        try {
+//		            InputStream is = new FileInputStream(imageFile);
+//		            IOUtils.copy(is, response.getOutputStream());
+//		        } catch(IOException e) {
+//		            logger.info("Could not show Profile picture "+userId +"/" + e.getLocalizedMessage());
+//		        }
+//		}
+//    }
+//	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id,
     		HttpServletRequest request) {

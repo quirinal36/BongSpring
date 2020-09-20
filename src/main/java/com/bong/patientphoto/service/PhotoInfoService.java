@@ -54,6 +54,10 @@ public class PhotoInfoService implements DataService<PhotoInfo> {
 		// TODO Auto-generated method stub
 		return dao.selectOne(input);
 	}
+	public PhotoInfo selectOneByUserId(PhotoInfo input) {
+		// TODO Auto-generated method stub
+		return dao.selectOneByUserId(input);
+	}
 
 	@Override
 	public int count(PhotoInfo input) {
